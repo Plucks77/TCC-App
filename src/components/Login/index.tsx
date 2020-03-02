@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -13,13 +13,45 @@ import { Container, Input, ViewInput, Botao, Texto } from "./styles";
 
 export default function Login({ navigation }) {
   const [user, setUser] = useState({ email: "", password: "" });
-  const [ready, setReady] = useState(true);
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    async function verifica() {
+      const tokem = await AsyncStorage.getItem("token");
+      const user_id = await AsyncStorage.getItem("user_id");
+
+      // if (tokem && user_id) {
+      if (false) {
+        navigation.navigate("Principal", { tokem, user_id });
+      }
+    }
+    verifica();
+    setReady(true);
+  }, []);
+
   async function login() {
     setReady(false);
     try {
       const { email, password } = user;
-      const response = await api.post("/login", { email, password });
-      console.log(response.data);
+      await api
+        .post("/login", { email, password })
+        .then(async response => {
+          await AsyncStorage.setItem("token", response.data.token.toString());
+          await AsyncStorage.setItem(
+            "user_id",
+            response.data.user_id.toString()
+          );
+          navigation.navigate("Principal");
+        })
+        .catch(error => {
+          const erro = error.response.data[0].field;
+          if (erro === "password") {
+            console.log("Senha incorreta");
+          }
+          if (erro === "email") {
+            console.log("Email incorreto");
+          }
+        });
     } catch (e) {
       console.log(e);
     }
