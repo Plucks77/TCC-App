@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { View, Text } from "react-native";
+import { View, Text, SegmentedControlIOSComponent } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 
+import api from "../../api";
 import {
   Container,
   Input,
@@ -22,7 +23,45 @@ export default function Cadastro({ navigation }) {
   });
   const [ready, setReady] = useState(true);
 
-  function handleState() {}
+  function handleState() {
+    if (
+      user.email !== "" &&
+      user.nome !== "" &&
+      user.senha !== "" &&
+      user.senha_conf !== "" &&
+      user.tel !== ""
+    ) {
+      if (user.senha === user.senha_conf) {
+        return 1; //valido
+      } else {
+        return 2; //senhas nao combinam
+      }
+    }
+    return 3; //nem tudo esta preenchido
+  }
+
+  async function handleSubmit() {
+    const valido = handleState();
+    if (valido === 1) {
+      try {
+        const { nome, email, senha, tel } = user;
+        await api
+          .post("/register", { nome, email, senha, tel })
+          .then(response => {
+            console.log(response.data);
+          })
+          .catch(error => {
+            console.log(error.response);
+          });
+      } catch (e) {
+        console.log(e);
+      }
+    } else if (valido === 2) {
+      console.log("Senhas não combinam");
+    } else if (valido === 3) {
+      console.log("Preencha tudo!");
+    }
+  }
 
   return (
     <Container>
@@ -40,7 +79,7 @@ export default function Cadastro({ navigation }) {
           autoCapitalize="words"
           autoCorrect={false}
           value={user.nome}
-          onChange={v => setUser({ ...user, nome: v })}
+          onChangeText={v => setUser({ ...user, nome: v })}
         />
         <Input
           placeholder="Email"
@@ -48,29 +87,29 @@ export default function Cadastro({ navigation }) {
           autoCapitalize="none"
           autoCorrect={false}
           value={user.email}
-          onChange={v => setUser({ ...user, email: v })}
+          onChangeText={v => setUser({ ...user, email: v })}
         />
         <Input
           placeholder="Senha"
           secureTextEntry={true}
           value={user.senha}
-          onChange={v => setUser({ ...user, senha: v })}
+          onChangeText={v => setUser({ ...user, senha: v })}
         />
         <Input
           placeholder="Confirme a senha"
           secureTextEntry={true}
           value={user.senha_conf}
-          onChange={v => setUser({ ...user, senha_conf: v })}
+          onChangeText={v => setUser({ ...user, senha_conf: v })}
         />
         <Input
           placeholder="Telefone"
           keyboardType="number-pad"
           value={user.tel}
-          onChange={v => setUser({ ...user, tel: v })}
+          onChangeText={v => setUser({ ...user, tel: v })}
         />
       </Campos>
 
-      <Botao>
+      <Botao onPress={handleSubmit}>
         <Text>Cadastrar</Text>
       </Botao>
     </Container>
