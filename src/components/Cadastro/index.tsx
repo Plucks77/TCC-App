@@ -1,17 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, SegmentedControlIOSComponent } from "react-native";
+import { View, Text, StatusBar } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 
 import api from "../../api";
-import {
-  Container,
-  Input,
-  Botao,
-  TituloArea,
-  Titulo,
-  Campos,
-  Seta
-} from "./styles";
+import { Container, Input, Botao, TituloArea, Titulo, Campos, Seta } from "./styles";
 
 export default function Cadastro({ navigation }) {
   const [user, setUser] = useState({
@@ -46,9 +38,10 @@ export default function Cadastro({ navigation }) {
       try {
         const { nome, email, senha, tel } = user;
         await api
-          .post("/register", { nome, email, senha, tel })
+          .post("/register", { username: nome, email, password: senha, tel })
           .then(response => {
             console.log(response.data);
+            navigation.navigation("Principal");
           })
           .catch(error => {
             console.log(error.response);
@@ -110,7 +103,7 @@ export default function Cadastro({ navigation }) {
       </Campos>
 
       <Botao onPress={handleSubmit}>
-        <Text>Cadastrar</Text>
+        <Text style={{ fontWeight: "bold" }}>Cadastrar</Text>
       </Botao>
     </Container>
   );

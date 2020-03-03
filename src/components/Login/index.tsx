@@ -1,12 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  TextInput,
-  AsyncStorage,
-  Alert
-} from "react-native";
+import { View, Text, TouchableOpacity, TextInput, AsyncStorage, Alert } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import api from "../../api";
 import LottieView from "lottie-react-native";
@@ -39,10 +32,7 @@ export default function Login({ navigation }) {
           .post("/login", { email, password })
           .then(async response => {
             await AsyncStorage.setItem("token", response.data.token.toString());
-            await AsyncStorage.setItem(
-              "user_id",
-              response.data.user_id.toString()
-            );
+            await AsyncStorage.setItem("user_id", response.data.user_id.toString());
             navigation.navigate("Principal");
           })
           .catch(error => {
@@ -66,11 +56,7 @@ export default function Login({ navigation }) {
   return ready ? (
     <Container>
       <ViewInput>
-        <MaterialIcons
-          name="email"
-          size={25}
-          style={{ position: "absolute" }}
-        />
+        <MaterialIcons name="email" size={25} style={{ position: "absolute" }} />
         <Input
           placeholder="Email"
           keyboardType="email-address"
@@ -100,10 +86,6 @@ export default function Login({ navigation }) {
       </TouchableOpacity>
     </Container>
   ) : (
-    <LottieView
-      source={require("../../../assets/loading.json")}
-      autoPlay
-      loop
-    />
+    <LottieView source={require("../../../assets/loading.json")} autoPlay loop />
   );
 }

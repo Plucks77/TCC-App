@@ -10,7 +10,7 @@ export const TituloArea = styled.View`
   align-items: center;
   justify-content: center;
   flex-direction: row;
-  margin-top: 40px;
+  margin-top: 60px;
   margin-bottom: 100px;
 `;
 
@@ -42,11 +42,12 @@ export const Input = styled.TextInput`
 
 export const Botao = styled.TouchableOpacity`
   width: 300px;
-  height: 30px;
+  height: 40px;
   border-radius: 5px;
   background-color: #c4c4c4;
   align-items: center;
   justify-content: center;
   align-self: center;
-  margin-top: 35px;
+  margin-top: auto;
+  margin-bottom: 100px;
 `;
