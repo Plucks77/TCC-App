@@ -4,7 +4,8 @@ import {
   Text,
   TouchableOpacity,
   TextInput,
-  AsyncStorage
+  AsyncStorage,
+  Alert
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import api from "../../api";
@@ -30,32 +31,36 @@ export default function Login({ navigation }) {
   }, []);
 
   async function login() {
-    setReady(false);
-    try {
-      const { email, password } = user;
-      await api
-        .post("/login", { email, password })
-        .then(async response => {
-          await AsyncStorage.setItem("token", response.data.token.toString());
-          await AsyncStorage.setItem(
-            "user_id",
-            response.data.user_id.toString()
-          );
-          navigation.navigate("Principal");
-        })
-        .catch(error => {
-          const erro = error.response.data[0].field;
-          if (erro === "password") {
-            console.log("Senha incorreta");
-          }
-          if (erro === "email") {
-            console.log("Email incorreto");
-          }
-        });
-    } catch (e) {
-      console.log(e);
+    if (user.email !== "" && user.password !== "") {
+      setReady(false);
+      try {
+        const { email, password } = user;
+        await api
+          .post("/login", { email, password })
+          .then(async response => {
+            await AsyncStorage.setItem("token", response.data.token.toString());
+            await AsyncStorage.setItem(
+              "user_id",
+              response.data.user_id.toString()
+            );
+            navigation.navigate("Principal");
+          })
+          .catch(error => {
+            const erro = error.response.data[0].field;
+            if (erro === "password") {
+              console.log("Senha incorreta");
+            }
+            if (erro === "email") {
+              console.log("Email incorreto");
+            }
+          });
+      } catch (e) {
+        console.log(e);
+      }
+      setReady(true);
+    } else {
+      Alert.alert("Preencha o email e senha!");
     }
-    setReady(true);
   }
 
   return ready ? (
@@ -91,7 +96,7 @@ export default function Login({ navigation }) {
       </Botao>
 
       <TouchableOpacity onPress={() => navigation.navigate("Cadastro")}>
-        <Texto>Cadastro</Texto>
+        <Texto style={{ fontWeight: "normal" }}>Cadastro</Texto>
       </TouchableOpacity>
     </Container>
   ) : (

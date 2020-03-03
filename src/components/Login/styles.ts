@@ -30,9 +30,10 @@ export const Botao = styled.TouchableOpacity`
   background-color: #c4c4c4;
   align-items: center;
   justify-content: center;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 `;
 
 export const Texto = styled.Text`
   color: #36453b;
+  font-weight: bold;
 `;
