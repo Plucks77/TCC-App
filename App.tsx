@@ -16,17 +16,16 @@ export default function App() {
       <Stack.Navigator initialRouteName="Login" headerMode="none">
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Cadastro" component={Cadastro} />
-        <Stack.Screen
-          name="Principal"
-          component={Principal}
-          options={{ gestureEnabled: false }}
-        />
+        <Stack.Screen name="Principal" component={drawermenu} />
       </Stack.Navigator>
-      {/* 
-      <Drawer.Navigator initialRouteName="Login">
-        <Drawer.Screen name="Login" component={Login} />
-        <Drawer.Screen name="Cadastro" component={Cadastro} />
-      </Drawer.Navigator> */}
     </NavigationContainer>
+  );
+}
+
+function drawermenu() {
+  return (
+    <Drawer.Navigator>
+      <Drawer.Screen name="Principal" component={Principal} />
+    </Drawer.Navigator>
   );
 }

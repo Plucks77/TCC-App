@@ -1,12 +1,19 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { Text, TouchableOpacity } from "react-native";
+import { Entypo } from "@expo/vector-icons";
 
-// import { Container } from './styles';
+import { Container } from "./styles";
 
-export default function Principal() {
+export default function Principal({ navigation }) {
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+    <Container>
+      <TouchableOpacity
+        style={{ position: "absolute", top: 40, left: 15 }}
+        onPress={() => navigation.toggleDrawer()}
+      >
+        <Entypo name="menu" size={40} />
+      </TouchableOpacity>
       <Text>Principal</Text>
-    </View>
+    </Container>
   );
 }
