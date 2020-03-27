@@ -9,26 +9,14 @@ import {
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import api from "../../api";
+
 import LottieView from "lottie-react-native";
+
 import { Container, Input, ViewInput, Botao, Texto } from "./styles";
 
 export default function Login({ navigation }) {
   const [user, setUser] = useState({ email: "", password: "" });
-  const [ready, setReady] = useState(false);
-
-  useEffect(() => {
-    async function verifica() {
-      const tokem = await AsyncStorage.getItem("token");
-      const user_id = await AsyncStorage.getItem("user_id");
-
-      if (tokem && user_id) {
-        // if (false) {
-        navigation.navigate("Principal", { tokem, user_id });
-      }
-    }
-    verifica();
-    setReady(true);
-  }, []);
+  const [ready, setReady] = useState(true);
 
   async function login() {
     if (user.email !== "" && user.password !== "") {
@@ -105,5 +93,8 @@ export default function Login({ navigation }) {
       autoPlay
       loop
     />
+    // <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+    //   <Text>Carregando...</Text>
+    // </View>
   );
 }
