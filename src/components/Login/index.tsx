@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   TextInput,
   AsyncStorage,
-  Alert
+  Alert,
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import api from "../../api";
@@ -25,15 +25,16 @@ export default function Login({ navigation }) {
         const { email, password } = user;
         await api
           .post("/login", { email, password })
-          .then(async response => {
+          .then(async (response) => {
             await AsyncStorage.setItem("token", response.data.token.toString());
             await AsyncStorage.setItem(
               "user_id",
               response.data.user_id.toString()
             );
-            navigation.navigate("Principal");
+            limpaCampos();
+            navigation.navigate("Cidades");
           })
-          .catch(error => {
+          .catch((error) => {
             const erro = error.response.data[0].field;
             if (erro === "password") {
               console.log("Senha incorreta");
@@ -51,6 +52,10 @@ export default function Login({ navigation }) {
     }
   }
 
+  function limpaCampos() {
+    setUser({ email: "", password: "" });
+  }
+
   return ready ? (
     <Container>
       <ViewInput>
@@ -64,7 +69,7 @@ export default function Login({ navigation }) {
           keyboardType="email-address"
           autoCapitalize="none"
           value={user.email}
-          onChangeText={d => setUser({ ...user, email: d })}
+          onChangeText={(d) => setUser({ ...user, email: d })}
         />
       </ViewInput>
 
@@ -75,7 +80,7 @@ export default function Login({ navigation }) {
           placeholder="Senha"
           secureTextEntry={true}
           value={user.password}
-          onChangeText={d => setUser({ ...user, password: d })}
+          onChangeText={(d) => setUser({ ...user, password: d })}
         />
       </ViewInput>
 
