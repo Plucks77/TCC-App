@@ -42,12 +42,11 @@ export const Input = styled.TextInput`
 
 export const Botao = styled.TouchableOpacity`
   width: 300px;
-  height: 40px;
+  height: 35px;
   border-radius: 5px;
   background-color: #c4c4c4;
   align-items: center;
   justify-content: center;
   align-self: center;
-  margin-top: auto;
-  margin-bottom: 100px;
+  margin-top: 25px;
 `;

@@ -1,9 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StatusBar } from "react-native";
+import { View, Text, StatusBar, Platform } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 
 import api from "../../api";
-import { Container, Input, Botao, TituloArea, Titulo, Campos, Seta } from "./styles";
+import {
+  Container,
+  Input,
+  Botao,
+  TituloArea,
+  Titulo,
+  Campos,
+  Seta,
+} from "./styles";
 
 export default function Cadastro({ navigation }) {
   const [user, setUser] = useState({
@@ -11,7 +19,7 @@ export default function Cadastro({ navigation }) {
     email: "",
     senha: "",
     senha_conf: "",
-    tel: ""
+    tel: "",
   });
   const [ready, setReady] = useState(true);
 
@@ -39,11 +47,11 @@ export default function Cadastro({ navigation }) {
         const { nome, email, senha, tel } = user;
         await api
           .post("/register", { username: nome, email, password: senha, tel })
-          .then(response => {
+          .then((response) => {
             console.log(response.data);
             navigation.navigation("Principal");
           })
-          .catch(error => {
+          .catch((error) => {
             console.log(error.response);
           });
       } catch (e) {
@@ -72,7 +80,7 @@ export default function Cadastro({ navigation }) {
           autoCapitalize="words"
           autoCorrect={false}
           value={user.nome}
-          onChangeText={v => setUser({ ...user, nome: v })}
+          onChangeText={(v) => setUser({ ...user, nome: v })}
         />
         <Input
           placeholder="Email"
@@ -80,25 +88,25 @@ export default function Cadastro({ navigation }) {
           autoCapitalize="none"
           autoCorrect={false}
           value={user.email}
-          onChangeText={v => setUser({ ...user, email: v })}
+          onChangeText={(v) => setUser({ ...user, email: v })}
         />
         <Input
           placeholder="Senha"
           secureTextEntry={true}
           value={user.senha}
-          onChangeText={v => setUser({ ...user, senha: v })}
+          onChangeText={(v) => setUser({ ...user, senha: v })}
         />
         <Input
           placeholder="Confirme a senha"
           secureTextEntry={true}
           value={user.senha_conf}
-          onChangeText={v => setUser({ ...user, senha_conf: v })}
+          onChangeText={(v) => setUser({ ...user, senha_conf: v })}
         />
         <Input
           placeholder="Telefone"
           keyboardType="number-pad"
           value={user.tel}
-          onChangeText={v => setUser({ ...user, tel: v })}
+          onChangeText={(v) => setUser({ ...user, tel: v })}
         />
       </Campos>
 
