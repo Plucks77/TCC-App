@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 
 import { Container, Titulo, CidadesArea, CidadeNome } from "./styles";
 
@@ -11,19 +11,38 @@ export default function Locais({ navigation, route }) {
         <>
           <Titulo>Selecione um local</Titulo>
           <CidadesArea>
-            <CidadeNome>Mauá</CidadeNome>
-            <CidadeNome>Serrinha</CidadeNome>
-            <CidadeNome>Capelinha</CidadeNome>
-            <CidadeNome>Engenheiro passos</CidadeNome>
+            <TouchableOpacity onPress={() => navigation.navigate("Pacotes")}>
+              <CidadeNome>Mauá</CidadeNome>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => navigation.navigate("Pacotes")}>
+              <CidadeNome>Serrinha</CidadeNome>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => navigation.navigate("Pacotes")}>
+              <CidadeNome>Capelinha</CidadeNome>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => navigation.navigate("Pacotes")}>
+              <CidadeNome>Engenheiro passos</CidadeNome>
+            </TouchableOpacity>
           </CidadesArea>
         </>
       ) : (
         <>
           <Titulo>Selecione um local</Titulo>
           <CidadesArea>
-            <CidadeNome>Penedo</CidadeNome>
-            <CidadeNome>Maringá</CidadeNome>
-            <CidadeNome>Maromba</CidadeNome>
+            <TouchableOpacity onPress={() => navigation.navigate("Pacotes")}>
+              <CidadeNome>Penedo</CidadeNome>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => navigation.navigate("Pacotes")}>
+              <CidadeNome>Maringá</CidadeNome>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => navigation.navigate("Pacotes")}>
+              <CidadeNome>Maromba</CidadeNome>
+            </TouchableOpacity>
           </CidadesArea>
         </>
       )}

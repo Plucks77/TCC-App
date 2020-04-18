@@ -6,7 +6,6 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 
-import Menu from "../Menu";
 import { Container, Titulo, Texto, Local, Imagem } from "./styles";
 
 export default function Cidades({ navigation }) {

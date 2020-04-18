@@ -7,6 +7,8 @@ import Login from "./src/components/Login";
 import Cadastro from "./src/components/Cadastro";
 import Locais from "./src/components/Locais";
 import Cidades from "./src/components/Cidades";
+import Pacotes from "./src/components/Pacotes";
+import Pacote from "./src/components/Pacote";
 import { AsyncStorage, Text, View } from "react-native";
 import LottieView from "lottie-react-native";
 
@@ -53,6 +55,8 @@ export default function App() {
           options={{ gestureEnabled: false }} //para não conseguir voltar pra tela de login dando um swipe da esquerda pra direita
         />
         <Stack.Screen name="Locais" component={Locais} />
+        <Stack.Screen name="Pacotes" component={Pacotes} />
+        <Stack.Screen name="Pacote" component={Pacote} />
       </Stack.Navigator>
     </NavigationContainer>
   ) : (
