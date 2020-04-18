@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text } from "react-native";
 
+import Menu from "../Menu";
 import {
   Container,
   Titulo,
@@ -17,6 +18,7 @@ export default function Pacote({ navigation, route }) {
   const { titulo, valor } = route.params;
   return (
     <Container>
+      <Menu navigation={navigation} />
       <Titulo>{titulo}</Titulo>
       <ViewFotos>
         <ScrollFotos horizontal={true} showsHorizontalScrollIndicator={false}>

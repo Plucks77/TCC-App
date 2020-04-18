@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  Text,
-  TouchableOpacity,
-  Image,
-  TouchableWithoutFeedback,
-} from "react-native";
+import { TouchableWithoutFeedback } from "react-native";
 
 import { Container, Titulo, Texto, Local, Imagem } from "./styles";
 
