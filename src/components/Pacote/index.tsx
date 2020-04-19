@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 
 import Menu from "../Menu";
 import {
@@ -12,6 +12,14 @@ import {
   ViewFotos,
   Guia,
   Valor,
+  Recomendacoes,
+  ServicosView,
+  ScrollServicos,
+  ServicoView,
+  ServicoFoto,
+  ServicoArea,
+  ServicoNome,
+  BotaoConfirmar,
 } from "./styles";
 
 export default function Pacote({ navigation, route }) {
@@ -45,6 +53,58 @@ export default function Pacote({ navigation, route }) {
         <Texto>Valor:</Texto>
         <Texto>{valor}</Texto>
       </Valor>
+
+      <Recomendacoes>
+        <Texto>Recomendações:</Texto>
+      </Recomendacoes>
+
+      <ServicosView>
+        <ServicoNome>Hotelaria</ServicoNome>
+
+        <ScrollServicos horizontal={true}>
+          <ServicoView>
+            <ServicoFoto source={require("../../../assets/hotel1.jpg")} />
+            <ServicoArea>
+              <Texto>Hotel parceiro 1</Texto>
+              <Texto>Até 5%</Texto>
+            </ServicoArea>
+          </ServicoView>
+
+          <ServicoView>
+            <ServicoFoto source={require("../../../assets/hotel1.jpg")} />
+            <ServicoArea>
+              <Texto>Hotel parceiro 2</Texto>
+              <Texto></Texto>
+            </ServicoArea>
+          </ServicoView>
+        </ScrollServicos>
+      </ServicosView>
+
+      <ServicosView>
+        <ServicoNome>Restaurantes</ServicoNome>
+
+        <ScrollServicos horizontal={true}>
+          <ServicoView>
+            <ServicoFoto source={require("../../../assets/restaurante1.jpg")} />
+            <ServicoArea>
+              <Texto>Restaurante parceiro 1</Texto>
+              <Texto>Até 5%</Texto>
+            </ServicoArea>
+          </ServicoView>
+
+          <ServicoView>
+            <ServicoFoto source={require("../../../assets/restaurante1.jpg")} />
+            <ServicoArea>
+              <Texto>Restaurante parceiro 2</Texto>
+              <Texto></Texto>
+            </ServicoArea>
+          </ServicoView>
+        </ScrollServicos>
+      </ServicosView>
+
+      <BotaoConfirmar>
+        <Texto>Confirmar</Texto>
+      </BotaoConfirmar>
     </Container>
   );
 }
