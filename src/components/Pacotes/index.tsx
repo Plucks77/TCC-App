@@ -23,7 +23,7 @@ export default function Pacotes({ navigation }) {
       <Titulo>Pacotes</Titulo>
       <AreaPacote>
         <Categoria>Aventura</Categoria>
-        <ScrollPacotes horizontal={true} showsHorizontalScrollIndicator={false}>
+        <ScrollPacotes horizontal={true} showsHorizontalScrollIndicator={true}>
           <TouchableHighlight
             onPress={() =>
               navigation.navigate("Pacote", {
@@ -63,7 +63,7 @@ export default function Pacotes({ navigation }) {
       <AreaPacote>
         <Categoria>Casual</Categoria>
 
-        <ScrollPacotes horizontal={true} showsHorizontalScrollIndicator={false}>
+        <ScrollPacotes horizontal={true} showsHorizontalScrollIndicator={true}>
           <TouchableHighlight
             onPress={() =>
               navigation.navigate("Pacote", {

@@ -29,7 +29,7 @@ export default function Pacote({ navigation, route }) {
       <Menu navigation={navigation} />
       <Titulo>{titulo}</Titulo>
       <ViewFotos>
-        <ScrollFotos horizontal={true} showsHorizontalScrollIndicator={false}>
+        <ScrollFotos horizontal={true} showsHorizontalScrollIndicator={true}>
           <Imagem source={require("../../../assets/pacote1.jpg")} />
           <Imagem source={require("../../../assets/pacote2.jpg")} />
         </ScrollFotos>
