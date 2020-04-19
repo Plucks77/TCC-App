@@ -1,12 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  TextInput,
-  AsyncStorage,
-  Alert,
-} from "react-native";
+import { TouchableOpacity, AsyncStorage, Alert } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import api from "../../api";
 
@@ -37,10 +30,10 @@ export default function Login({ navigation }) {
           .catch((error) => {
             const erro = error.response.data[0].field;
             if (erro === "password") {
-              console.log("Senha incorreta");
+              Alert.alert("Oooops...", "Senha incorreta!");
             }
             if (erro === "email") {
-              console.log("Email incorreto");
+              Alert.alert("Oooops...", "Verifique se digitou o email correto!");
             }
           });
       } catch (e) {
@@ -48,7 +41,7 @@ export default function Login({ navigation }) {
       }
       setReady(true);
     } else {
-      Alert.alert("Preencha o email e senha!");
+      Alert.alert("Oooops...", "Preencha o email e senha!");
     }
   }
 
@@ -98,8 +91,5 @@ export default function Login({ navigation }) {
       autoPlay
       loop
     />
-    // <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-    //   <Text>Carregando...</Text>
-    // </View>
   );
 }
