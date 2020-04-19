@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, Alert, AsyncStorage } from "react-native";
+import { View, Text, Alert, AsyncStorage, Keyboard } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { TextInputMask } from "react-native-masked-text";
 import LottieView from "lottie-react-native";
@@ -130,8 +130,14 @@ export default function Cadastro({ navigation }) {
             dddMask: "(99) ",
           }}
           placeholder="Telefone"
+          maxLength={15}
           value={user.tel}
-          onChangeText={(v) => setUser({ ...user, tel: v })}
+          onChangeText={(v) => {
+            setUser({ ...user, tel: v });
+            if (v.length === 15) {
+              Keyboard.dismiss();
+            }
+          }}
           ref={(ref) => (phoneField = ref)}
           style={InputMask}
         />
