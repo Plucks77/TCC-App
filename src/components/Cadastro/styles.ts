@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { TextInputMask } from "react-native-masked-text";
 
 export const Container = styled.View`
   display: flex;
@@ -39,6 +40,15 @@ export const Input = styled.TextInput`
   padding-left: 10px;
   margin-bottom: 25px;
 `;
+export const InputMask = {
+  width: 300,
+  borderBottomWidth: 1,
+  borderBottomColor: "#36453b",
+  color: "#36453b",
+  fontSize: 20,
+  paddingLeft: 10,
+  marginBottom: 25,
+};
 
 export const Botao = styled.TouchableOpacity`
   width: 300px;

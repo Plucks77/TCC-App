@@ -11,6 +11,16 @@ export default function Login({ navigation }) {
   const [user, setUser] = useState({ email: "", password: "" });
   const [ready, setReady] = useState(true);
 
+  useEffect(() => {
+    setReady(false);
+    async function RemoveDados() {
+      await AsyncStorage.removeItem("token");
+      await AsyncStorage.removeItem("user_id");
+    }
+    RemoveDados();
+    setReady(true);
+  }, []);
+
   async function login() {
     if (user.email !== "" && user.password !== "") {
       setReady(false);
@@ -25,7 +35,7 @@ export default function Login({ navigation }) {
               response.data.user_id.toString()
             );
             limpaCampos();
-            navigation.navigate("Cidades");
+            navigation.navigate("Principal", { screen: "Cidades" });
           })
           .catch((error) => {
             const erro = error.response.data[0].field;

@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { View, Text, StatusBar, Platform } from "react-native";
+import React, { useState } from "react";
+import { View, Text, Alert, AsyncStorage } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
+import { TextInputMask } from "react-native-masked-text";
+import LottieView from "lottie-react-native";
 
 import api from "../../api";
 import {
@@ -11,6 +13,7 @@ import {
   Titulo,
   Campos,
   Seta,
+  InputMask,
 } from "./styles";
 
 export default function Cadastro({ navigation }) {
@@ -22,6 +25,7 @@ export default function Cadastro({ navigation }) {
     tel: "",
   });
   const [ready, setReady] = useState(true);
+  let phoneField;
 
   function handleState() {
     if (
@@ -41,30 +45,45 @@ export default function Cadastro({ navigation }) {
   }
 
   async function handleSubmit() {
+    setReady(false);
     const valido = handleState();
     if (valido === 1) {
       try {
-        const { nome, email, senha, tel } = user;
+        const { nome, email, senha } = user;
+        const tel = phoneField.getRawValue();
         await api
           .post("/register", { username: nome, email, password: senha, tel })
-          .then((response) => {
-            console.log(response.data);
-            navigation.navigation("Principal");
+          .then(async (response) => {
+            await AsyncStorage.setItem("token", response.data.token.toString());
+            await AsyncStorage.setItem(
+              "user_id",
+              response.data.user.id.toString()
+            );
+            limpaCampos();
+            navigation.navigate("Principal", { screen: "Cidades" });
+            setReady(true);
           })
           .catch((error) => {
             console.log(error.response);
           });
       } catch (e) {
         console.log(e);
+        setReady(true);
       }
     } else if (valido === 2) {
-      console.log("Senhas não combinam");
+      setReady(true);
+      Alert.alert("Oooops...", "A senha e a confirmação devem ser iguais!");
     } else if (valido === 3) {
-      console.log("Preencha tudo!");
+      setReady(true);
+      Alert.alert("Oooops...", "Preencha todos os campos!");
     }
   }
 
-  return (
+  function limpaCampos() {
+    setUser({ nome: "", email: "", senha: "", senha_conf: "", tel: "" });
+  }
+
+  return ready ? (
     <Container>
       <TituloArea>
         <Seta onPress={() => navigation.navigate("Login")}>
@@ -97,16 +116,24 @@ export default function Cadastro({ navigation }) {
           onChangeText={(v) => setUser({ ...user, senha: v })}
         />
         <Input
-          placeholder="Confirme a senha"
+          placeholder="Confirme sua senha"
           secureTextEntry={true}
           value={user.senha_conf}
           onChangeText={(v) => setUser({ ...user, senha_conf: v })}
         />
-        <Input
+
+        <TextInputMask
+          type={"cel-phone"}
+          options={{
+            maskType: "BRL",
+            withDDD: true,
+            dddMask: "(99) ",
+          }}
           placeholder="Telefone"
-          keyboardType="number-pad"
           value={user.tel}
           onChangeText={(v) => setUser({ ...user, tel: v })}
+          ref={(ref) => (phoneField = ref)}
+          style={InputMask}
         />
       </Campos>
 
@@ -114,5 +141,11 @@ export default function Cadastro({ navigation }) {
         <Text style={{ fontWeight: "bold" }}>Cadastrar</Text>
       </Botao>
     </Container>
+  ) : (
+    <LottieView
+      source={require("../../../assets/loading.json")}
+      autoPlay
+      loop
+    />
   );
 }
