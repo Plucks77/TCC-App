@@ -1,7 +1,6 @@
-import styled from "styled-components";
-import { TextInputMask } from "react-native-masked-text";
+import styled from "styled-components/native";
 
-export const Container = styled.View`
+export const Container = styled.KeyboardAvoidingView`
   display: flex;
   flex: 1;
   background-color: #f5f9e9;

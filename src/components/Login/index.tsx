@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { TouchableOpacity, AsyncStorage, Alert } from "react-native";
+import { TouchableOpacity, AsyncStorage, Alert, Platform } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import api from "../../api";
 
@@ -60,7 +60,7 @@ export default function Login({ navigation }) {
   }
 
   return ready ? (
-    <Container>
+    <Container behavior={Platform.OS == "ios" ? "padding" : "height"}>
       <ViewInput>
         <MaterialIcons
           name="email"

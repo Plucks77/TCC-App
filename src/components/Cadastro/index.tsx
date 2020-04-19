@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { View, Text, Alert, AsyncStorage, Keyboard } from "react-native";
+import {
+  View,
+  Text,
+  Alert,
+  AsyncStorage,
+  Keyboard,
+  Platform,
+} from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { TextInputMask } from "react-native-masked-text";
 import LottieView from "lottie-react-native";
@@ -84,7 +91,7 @@ export default function Cadastro({ navigation }) {
   }
 
   return ready ? (
-    <Container>
+    <Container behavior={Platform.OS == "ios" ? "padding" : "height"}>
       <TituloArea>
         <Seta onPress={() => navigation.navigate("Login")}>
           <FontAwesome name="arrow-left" size={35} />
