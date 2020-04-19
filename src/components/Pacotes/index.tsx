@@ -1,6 +1,8 @@
 import React from "react";
 import { View, Text, TouchableHighlight } from "react-native";
 
+import Menu from "../Menu";
+
 import {
   Container,
   Titulo,
@@ -17,10 +19,10 @@ import {
 export default function Pacotes({ navigation }) {
   return (
     <Container>
+      <Menu navigation={navigation} />
       <Titulo>Pacotes</Titulo>
       <AreaPacote>
         <Categoria>Aventura</Categoria>
-
         <ScrollPacotes horizontal={true} showsHorizontalScrollIndicator={false}>
           <TouchableHighlight
             onPress={() =>

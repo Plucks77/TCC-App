@@ -35,14 +35,23 @@ export const Imagem = styled.Image`
 
 export const Descricao = styled.View`
   margin: 10px;
+  background: #e7eed1;
+  border-radius: 5px;
+  padding: 5px;
 `;
 
 export const Guia = styled.View`
   margin: 10px;
+  background: #e7eed1;
+  border-radius: 5px;
+  padding: 5px;
 `;
 
 export const Valor = styled.View`
   margin: 10px;
   flex-direction: row;
   justify-content: space-between;
+  background: #e7eed1;
+  border-radius: 5px;
+  padding: 5px;
 `;

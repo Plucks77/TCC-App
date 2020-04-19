@@ -7,7 +7,7 @@ export default function Menu({ navigation }) {
     <TouchableOpacity
       style={{
         position: "absolute",
-        top: 30,
+        top: 50,
         left: 1,
         zIndex: 1,
       }}
