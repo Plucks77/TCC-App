@@ -1,16 +1,22 @@
 import styled from "styled-components/native";
 
-export const Container = styled.KeyboardAvoidingView`
+export const Container = styled.SafeAreaView`
   display: flex;
   flex: 1;
   background-color: #f5f9e9;
+`;
+
+export const AreaInputs = styled.View`
+  width: 100%;
+  height: 100%;
   align-items: center;
   justify-content: center;
 `;
 
 export const ViewInput = styled.View`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  margin-bottom: 15px;
 `;
 
 export const Input = styled.TextInput`
@@ -20,7 +26,14 @@ export const Input = styled.TextInput`
   color: #36453b;
   font-size: 20px;
   padding-left: 35px;
-  margin-bottom: 25px;
+`;
+
+export const Erro = styled.Text`
+  color: #36453b;
+  font-weight: bold;
+  color: crimson;
+  text-align: center;
+  margin-top: 5px;
 `;
 
 export const Botao = styled.TouchableOpacity`
