@@ -27,6 +27,8 @@ import {
   Texto,
   Erro,
   AreaInputs,
+  Logo,
+  LogoView,
 } from "./styles";
 ///^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 ///^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -92,9 +94,10 @@ export default function Login({ navigation }) {
   return ready ? (
     <Container>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <KeyboardAvoidingView
-          behavior={Platform.OS == "ios" ? "padding" : null}
-        >
+        <KeyboardAvoidingView behavior="position">
+          <LogoView>
+            <Logo source={require("../../../assets/LOGO.png")} />
+          </LogoView>
           <Formik
             initialValues={{ email: "", password: "" }}
             validationSchema={loginSchema}

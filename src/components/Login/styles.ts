@@ -6,9 +6,20 @@ export const Container = styled.SafeAreaView`
   background-color: #f5f9e9;
 `;
 
+export const LogoView = styled.View`
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+  margin-top: 40px;
+`;
+
+export const Logo = styled.Image`
+  width: 200px;
+  height: 200px;
+  border-radius: 100px;
+`;
+
 export const AreaInputs = styled.View`
-  width: 100%;
-  height: 100%;
   align-items: center;
   justify-content: center;
 `;
