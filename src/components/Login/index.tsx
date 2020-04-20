@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import {
   AsyncStorage,
   Alert,
-  View,
   KeyboardAvoidingView,
   Platform,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from "react-native";
 
 import { MaterialIcons } from "@expo/vector-icons";
@@ -31,7 +33,7 @@ import {
 const loginSchema = yup.object({
   email: yup
     .string()
-    .required("Endereço de email é necessário!")
+    .required("O endereço de email é necessário!")
     .test(
       "valida-email",
       "Por favor, digite um enderço de email válido!",
@@ -42,7 +44,7 @@ const loginSchema = yup.object({
     ),
   password: yup
     .string()
-    .required("Sua senha é necessária!")
+    .required("A senha é necessária!")
     .min(5, "Sua senha tem pelo menos 5 dígitos!"),
 });
 
@@ -89,57 +91,66 @@ export default function Login({ navigation }) {
 
   return ready ? (
     <Container>
-      <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : null}>
-        <Formik
-          initialValues={{ email: "", password: "" }}
-          validationSchema={loginSchema}
-          onSubmit={(values, actions) => {
-            login(values.email, values.password);
-          }}
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <KeyboardAvoidingView
+          behavior={Platform.OS == "ios" ? "padding" : null}
         >
-          {(props) => (
-            <AreaInputs>
-              <ViewInput>
-                <MaterialIcons
-                  name="email"
-                  size={25}
-                  style={{ position: "absolute" }}
-                />
-                <Input
-                  placeholder="Email"
-                  onChangeText={props.handleChange("email")}
-                  value={props.values.email}
-                  onBlur={props.handleBlur("email")}
-                  keyboardType="email-address"
-                  autoCapitalize="none"
-                  maxLength={50}
-                />
-                <Erro>{props.touched.email && props.errors.email}</Erro>
-              </ViewInput>
+          <Formik
+            initialValues={{ email: "", password: "" }}
+            validationSchema={loginSchema}
+            onSubmit={(values, actions) => {
+              login(values.email, values.password);
+            }}
+          >
+            {(props) => (
+              <AreaInputs>
+                <ViewInput>
+                  <MaterialIcons
+                    name="email"
+                    size={25}
+                    style={{ position: "absolute" }}
+                  />
+                  <Input
+                    placeholder="Email"
+                    onChangeText={props.handleChange("email")}
+                    value={props.values.email}
+                    onBlur={props.handleBlur("email")}
+                    keyboardType="email-address"
+                    autoCapitalize="none"
+                    maxLength={50}
+                  />
+                  <Erro>{props.touched.email && props.errors.email}</Erro>
+                </ViewInput>
 
-              <ViewInput>
-                <MaterialIcons
-                  name="lock"
-                  size={25}
-                  style={{ position: "absolute" }}
-                />
-                <Input
-                  placeholder="Senha"
-                  onChangeText={props.handleChange("password")}
-                  value={props.values.password}
-                  onBlur={props.handleBlur("password")}
-                  secureTextEntry={true}
-                  maxLength={50}
-                />
-                <Erro>{props.touched.password && props.errors.password}</Erro>
-              </ViewInput>
-              <Botao onPress={props.handleSubmit}>
-                <Texto>Entrar</Texto>
-              </Botao>
-            </AreaInputs>
-          )}
-        </Formik>
-      </KeyboardAvoidingView>
+                <ViewInput>
+                  <MaterialIcons
+                    name="lock"
+                    size={25}
+                    style={{ position: "absolute" }}
+                  />
+                  <Input
+                    placeholder="Senha"
+                    onChangeText={props.handleChange("password")}
+                    value={props.values.password}
+                    onBlur={props.handleBlur("password")}
+                    secureTextEntry={true}
+                    maxLength={50}
+                  />
+                  <Erro>{props.touched.password && props.errors.password}</Erro>
+                </ViewInput>
+                <Botao onPress={props.handleSubmit}>
+                  <Texto>Entrar</Texto>
+                </Botao>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate("Cadastro")}
+                >
+                  <Texto style={{ fontWeight: "normal" }}>Cadastro</Texto>
+                </TouchableOpacity>
+              </AreaInputs>
+            )}
+          </Formik>
+        </KeyboardAvoidingView>
+      </TouchableWithoutFeedback>
     </Container>
   ) : (
     <LottieView
