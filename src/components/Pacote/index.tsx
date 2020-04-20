@@ -103,7 +103,7 @@ export default function Pacote({ navigation, route }) {
       </ServicosView>
 
       <BotaoConfirmar>
-        <Texto>Confirmar</Texto>
+        <Texto style={{ fontWeight: "bold" }}>Confirmar</Texto>
       </BotaoConfirmar>
     </Container>
   );
