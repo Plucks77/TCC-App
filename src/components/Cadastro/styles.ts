@@ -1,6 +1,6 @@
 import styled from "styled-components/native";
 
-export const Container = styled.KeyboardAvoidingView`
+export const Container = styled.SafeAreaView`
   display: flex;
   flex: 1;
   background-color: #f5f9e9;
@@ -11,7 +11,7 @@ export const TituloArea = styled.View`
   justify-content: center;
   flex-direction: row;
   margin-top: 60px;
-  margin-bottom: 100px;
+  margin-bottom: 60px;
 `;
 
 export const Titulo = styled.Text`
@@ -25,9 +25,18 @@ export const Seta = styled.TouchableOpacity`
   margin-left: 10px;
 `;
 
-export const Campos = styled.View`
+export const ScrollCampos = styled.ScrollView``;
+
+export const Campos = styled.KeyboardAvoidingView`
   align-items: center;
   justify-content: center;
+  margin-bottom: ${(props) => (props.aberto ? "300px" : "0px")};
+`;
+
+export const ViewInput = styled.View`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
 `;
 
 export const Input = styled.TextInput`
@@ -37,7 +46,6 @@ export const Input = styled.TextInput`
   color: #36453b;
   font-size: 20px;
   padding-left: 10px;
-  margin-bottom: 25px;
 `;
 export const InputMask = {
   width: 300,
@@ -46,7 +54,6 @@ export const InputMask = {
   color: "#36453b",
   fontSize: 20,
   paddingLeft: 10,
-  marginBottom: 25,
 };
 
 export const Botao = styled.TouchableOpacity`
@@ -57,5 +64,13 @@ export const Botao = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
   align-self: center;
-  margin-top: 25px;
+  z-index: 5;
+`;
+
+export const Erro = styled.Text`
+  color: #36453b;
+  font-weight: bold;
+  color: crimson;
+  text-align: center;
+  margin-top: 5px;
 `;

@@ -1,8 +1,19 @@
-import React, { useState } from "react";
-import { View, Text, Alert, AsyncStorage, Keyboard } from "react-native";
+import React, { useState, useEffect } from "react";
+import {
+  View,
+  Text,
+  Alert,
+  AsyncStorage,
+  Keyboard,
+  TouchableWithoutFeedback,
+  Platform,
+  StatusBar,
+} from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { TextInputMask } from "react-native-masked-text";
 import LottieView from "lottie-react-native";
+import { Formik, replace } from "formik";
+import * as yup from "yup";
 
 import api from "../../api";
 import {
@@ -14,138 +25,209 @@ import {
   Campos,
   Seta,
   InputMask,
+  Erro,
+  ViewInput,
+  ScrollCampos,
 } from "./styles";
 
-export default function Cadastro({ navigation }) {
-  const [user, setUser] = useState({
-    nome: "",
-    email: "",
-    senha: "",
-    senha_conf: "",
-    tel: "",
-  });
-  const [ready, setReady] = useState(true);
-  let phoneField;
-
-  function handleState() {
-    if (
-      user.email !== "" &&
-      user.nome !== "" &&
-      user.senha !== "" &&
-      user.senha_conf !== "" &&
-      user.tel !== ""
+const cadastroSchema = yup.object({
+  nome: yup
+    .string()
+    .required("Seu nome é necessário!")
+    .min(5, "Seu nome deve ter pelo menos 5 dígitos!"),
+  email: yup
+    .string()
+    .required("O endereço de email é necessário!")
+    .test(
+      "valida-email",
+      "Por favor, digite um enderço de email válido!",
+      (val) => {
+        var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        return re.test(val);
+      }
+    ),
+  senha: yup
+    .string()
+    .required("A senha é necessária!")
+    .min(8, "Sua senha tem pelo menos 8 dígitos!"),
+  confirmaSenha: yup
+    .string()
+    .required("Confirme sua senha digitando a mesma de cima!")
+    .test("passwords-match", "Verifique se digitou a mesma senha!", function (
+      value
     ) {
-      if (user.senha === user.senha_conf) {
-        return 1; //valido
-      } else {
-        return 2; //senhas nao combinam
-      }
-    }
-    return 3; //nem tudo esta preenchido
-  }
+      return this.parent.senha === value;
+    }),
+  tel: yup
+    .string()
+    .required("Seu telefone é necessário!")
+    .min(14, "Seu telefone deve ter pelo menos 10 dígitos"),
+});
 
-  async function handleSubmit() {
+export default function Cadastro({ navigation }) {
+  const [ready, setReady] = useState(true);
+
+  async function handleCadastro(nome, email, senha, tel) {
     setReady(false);
-    const valido = handleState();
-    if (valido === 1) {
-      try {
-        const { nome, email, senha } = user;
-        const tel = phoneField.getRawValue();
-        await api
-          .post("/register", { username: nome, email, password: senha, tel })
-          .then(async (response) => {
-            await AsyncStorage.setItem("token", response.data.token.toString());
-            await AsyncStorage.setItem(
-              "user_id",
-              response.data.user.id.toString()
-            );
-            limpaCampos();
-            navigation.navigate("Principal", { screen: "Cidades" });
-            setReady(true);
-          })
-          .catch((error) => {
-            console.log(error.response);
-          });
-      } catch (e) {
-        console.log(e);
-        setReady(true);
-      }
-    } else if (valido === 2) {
+    try {
+      await api
+        .post("/register", { username: nome, email, password: senha, tel })
+        .then(async (response) => {
+          await AsyncStorage.setItem("token", response.data.token.toString());
+          await AsyncStorage.setItem(
+            "user_id",
+            response.data.user.id.toString()
+          );
+          navigation.navigate("Principal", { screen: "Cidades" });
+          setReady(true);
+        })
+        .catch((error) => {
+          console.log(error.response);
+        });
+    } catch (e) {
+      console.log(e);
       setReady(true);
-      Alert.alert("Oooops...", "A senha e a confirmação devem ser iguais!");
-    } else if (valido === 3) {
-      setReady(true);
-      Alert.alert("Oooops...", "Preencha todos os campos!");
     }
   }
+  const [isKeyboardVisible, setKeyboardVisible] = useState(false);
 
-  function limpaCampos() {
-    setUser({ nome: "", email: "", senha: "", senha_conf: "", tel: "" });
-  }
+  useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener(
+      "keyboardDidShow",
+      () => {
+        setKeyboardVisible(true); // seta o state dizendo que o teclado ta aberto
+      }
+    );
+    const keyboardDidHideListener = Keyboard.addListener(
+      "keyboardDidHide",
+      () => {
+        setKeyboardVisible(false); // seta o state dizendo que o teclado ta fechado
+      }
+    );
+
+    return () => {
+      keyboardDidHideListener.remove();
+      keyboardDidShowListener.remove();
+    };
+  }, []);
 
   return ready ? (
-    <Container behavior="position" keyboardVerticalOffset={-150}>
-      <TituloArea>
-        <Seta onPress={() => navigation.navigate("Login")}>
-          <FontAwesome name="arrow-left" size={35} />
-        </Seta>
-        <Titulo>Cadastro</Titulo>
-        <View style={{ flex: 1 }} />
-      </TituloArea>
+    <Container>
+      <StatusBar
+        barStyle={Platform.OS === "ios" ? "dark-content" : "default"}
+      />
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={{ flex: 1 }}>
+          <TituloArea>
+            <Seta onPress={() => navigation.navigate("Login")}>
+              <FontAwesome name="arrow-left" size={35} />
+            </Seta>
+            <Titulo>Cadastro</Titulo>
+            <View style={{ flex: 1 }} />
+          </TituloArea>
 
-      <Campos>
-        <Input
-          placeholder="Nome"
-          autoCapitalize="words"
-          autoCorrect={false}
-          value={user.nome}
-          onChangeText={(v) => setUser({ ...user, nome: v })}
-        />
-        <Input
-          placeholder="Email"
-          keyboardType="email-address"
-          autoCapitalize="none"
-          autoCorrect={false}
-          value={user.email}
-          onChangeText={(v) => setUser({ ...user, email: v })}
-        />
-        <Input
-          placeholder="Senha"
-          secureTextEntry={true}
-          value={user.senha}
-          onChangeText={(v) => setUser({ ...user, senha: v })}
-        />
-        <Input
-          placeholder="Confirme sua senha"
-          secureTextEntry={true}
-          value={user.senha_conf}
-          onChangeText={(v) => setUser({ ...user, senha_conf: v })}
-        />
+          <Formik
+            initialValues={{
+              nome: "",
+              email: "",
+              senha: "",
+              confirmaSenha: "",
+              tel: "",
+            }}
+            validationSchema={cadastroSchema}
+            onSubmit={(values, actions) => {
+              const tel = values.tel
+                .replace(" ", "")
+                .replace("-", "")
+                .replace("(", "")
+                .replace(")", "");
+              handleCadastro(values.nome, values.email, values.senha, tel);
+            }}
+          >
+            {(props) => (
+              <ScrollCampos>
+                <Campos aberto={isKeyboardVisible}>
+                  <ViewInput>
+                    <Input
+                      placeholder="Nome"
+                      autoCapitalize="words"
+                      autoCorrect={false}
+                      value={props.values.nome}
+                      onChangeText={props.handleChange("nome")}
+                      onBlur={props.handleBlur("nome")}
+                      maxLength={50}
+                    />
+                    <Erro>{props.touched.nome && props.errors.nome}</Erro>
+                  </ViewInput>
 
-        <TextInputMask
-          type={"cel-phone"}
-          options={{
-            maskType: "BRL",
-            withDDD: true,
-            dddMask: "(99) ",
-          }}
-          placeholder="Telefone"
-          maxLength={15}
-          value={user.tel}
-          onChangeText={(v) => {
-            setUser({ ...user, tel: v });
-            if (v.length === 15) {
-              Keyboard.dismiss();
-            }
-          }}
-          ref={(ref) => (phoneField = ref)}
-          style={InputMask}
-        />
-      </Campos>
+                  <ViewInput>
+                    <Input
+                      placeholder="Email"
+                      keyboardType="email-address"
+                      autoCapitalize="none"
+                      autoCorrect={false}
+                      value={props.values.email}
+                      onChangeText={props.handleChange("email")}
+                      onBlur={props.handleBlur("email")}
+                      maxLength={50}
+                    />
+                    <Erro>{props.touched.email && props.errors.email}</Erro>
+                  </ViewInput>
 
-      <Botao onPress={handleSubmit}>
-        <Text style={{ fontWeight: "bold" }}>Cadastrar</Text>
-      </Botao>
+                  <ViewInput>
+                    <Input
+                      placeholder="Senha"
+                      secureTextEntry={true}
+                      value={props.values.senha}
+                      onChangeText={props.handleChange("senha")}
+                      onBlur={props.handleBlur("senha")}
+                      maxLength={50}
+                    />
+                    <Erro>{props.touched.senha && props.errors.senha}</Erro>
+                  </ViewInput>
+
+                  <ViewInput>
+                    <Input
+                      placeholder="Confirme sua senha"
+                      secureTextEntry={true}
+                      value={props.values.confirmaSenha}
+                      onChangeText={props.handleChange("confirmaSenha")}
+                      onBlur={props.handleBlur("confirmaSenha")}
+                      maxLength={50}
+                    />
+                    <Erro>
+                      {props.touched.confirmaSenha &&
+                        props.errors.confirmaSenha}
+                    </Erro>
+                  </ViewInput>
+
+                  <ViewInput>
+                    <TextInputMask
+                      type={"cel-phone"}
+                      options={{
+                        maskType: "BRL",
+                        withDDD: true,
+                        dddMask: "(99) ",
+                      }}
+                      placeholder="Telefone"
+                      maxLength={15}
+                      value={props.values.tel}
+                      onChangeText={props.handleChange("tel")}
+                      onBlur={props.handleBlur("tel")}
+                      style={InputMask}
+                    />
+                    <Erro>{props.touched.tel && props.errors.tel}</Erro>
+                  </ViewInput>
+
+                  <Botao onPress={props.handleSubmit}>
+                    <Text style={{ fontWeight: "bold" }}>Cadastrar</Text>
+                  </Botao>
+                </Campos>
+              </ScrollCampos>
+            )}
+          </Formik>
+        </View>
+      </TouchableWithoutFeedback>
     </Container>
   ) : (
     <LottieView

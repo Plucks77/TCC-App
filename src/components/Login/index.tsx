@@ -45,7 +45,7 @@ const loginSchema = yup.object({
   password: yup
     .string()
     .required("A senha é necessária!")
-    .min(5, "Sua senha tem pelo menos 5 dígitos!"),
+    .min(8, "Sua senha tem pelo menos 8 dígitos!"),
 });
 
 export default function Login({ navigation }) {
