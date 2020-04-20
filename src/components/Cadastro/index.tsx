@@ -2,17 +2,14 @@ import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
-  Alert,
   AsyncStorage,
   Keyboard,
   TouchableWithoutFeedback,
-  Platform,
-  StatusBar,
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { TextInputMask } from "react-native-masked-text";
 import LottieView from "lottie-react-native";
-import { Formik, replace } from "formik";
+import { Formik } from "formik";
 import * as yup from "yup";
 
 import api from "../../api";
@@ -113,9 +110,6 @@ export default function Cadastro({ navigation }) {
 
   return ready ? (
     <Container>
-      <StatusBar
-        barStyle={Platform.OS === "ios" ? "dark-content" : "default"}
-      />
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={{ flex: 1 }}>
           <TituloArea>
@@ -181,6 +175,7 @@ export default function Cadastro({ navigation }) {
                       value={props.values.senha}
                       onChangeText={props.handleChange("senha")}
                       onBlur={props.handleBlur("senha")}
+                      clearTextOnFocus={false}
                       maxLength={50}
                     />
                     <Erro>{props.touched.senha && props.errors.senha}</Erro>

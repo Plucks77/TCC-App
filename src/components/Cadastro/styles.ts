@@ -64,7 +64,7 @@ export const Botao = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
   align-self: center;
-  z-index: 5;
+  z-index: 10;
 `;
 
 export const Erro = styled.Text`
