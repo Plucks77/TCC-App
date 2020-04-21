@@ -1,7 +1,7 @@
 import React from "react";
-import { View, Text, TouchableOpacity } from "react-native";
 
 import Menu from "../Menu";
+import Botao from "../Botao";
 import {
   Container,
   Titulo,
@@ -19,7 +19,7 @@ import {
   ServicoFoto,
   ServicoArea,
   ServicoNome,
-  BotaoConfirmar,
+  ViewBotao,
 } from "./styles";
 
 export default function Pacote({ navigation, route }) {
@@ -101,10 +101,9 @@ export default function Pacote({ navigation, route }) {
           </ServicoView>
         </ScrollServicos>
       </ServicosView>
-
-      <BotaoConfirmar>
-        <Texto style={{ fontWeight: "bold" }}>Confirmar</Texto>
-      </BotaoConfirmar>
+      <ViewBotao>
+        <Botao texto="Confirmar" props={null} />
+      </ViewBotao>
     </Container>
   );
 }

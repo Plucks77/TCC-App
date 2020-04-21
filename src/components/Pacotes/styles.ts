@@ -1,16 +1,17 @@
 import styled from "styled-components/native";
+import global from "../../styles/global";
 
 export const Container = styled.View`
   display: flex;
   flex: 1;
-  background-color: #f5f9e9;
+  background-color: ${global.background};
 `;
 
 export const Titulo = styled.Text`
   margin-top: 50px;
   font-size: 30px;
   text-align: center;
-  color: #36453b;
+  color: ${global.text};
   font-weight: bold;
   margin-bottom: 40px;
 `;
@@ -20,7 +21,7 @@ export const AreaPacote = styled.View`
 `;
 
 export const Categoria = styled.Text`
-  color: #36453b;
+  color: ${global.text};
   font-size: 22px;
   text-align: center;
   margin-bottom: 10px;
@@ -47,11 +48,11 @@ export const PacoteTextoView = styled.View`
 `;
 
 export const NomePacote = styled.Text`
-  color: #36453b;
+  color: ${global.text};
   font-size: 16px;
 `;
 
 export const ValorPacote = styled.Text`
-  color: #36453b;
+  color: ${global.text};
   font-size: 16px;
 `;

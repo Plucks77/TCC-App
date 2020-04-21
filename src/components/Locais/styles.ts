@@ -1,16 +1,17 @@
 import styled from "styled-components/native";
+import global from "../../styles/global";
 
 export const Container = styled.View`
   display: flex;
   flex: 1;
-  background-color: #f5f9e9;
+  background-color: ${global.background};
 `;
 
 export const Titulo = styled.Text`
   margin-top: 50px;
   font-size: 30px;
   text-align: center;
-  color: #36453b;
+  color: ${global.text};
   font-weight: bold;
 `;
 
@@ -22,4 +23,5 @@ export const CidadesArea = styled.View`
 
 export const CidadeNome = styled.Text`
   font-size: 25px;
+  color: ${global.text};
 `;

@@ -1,6 +1,7 @@
 import React from "react";
 import { TouchableOpacity } from "react-native";
 import { Entypo } from "@expo/vector-icons";
+import global from "../../styles/global";
 
 export default function Menu({ navigation }) {
   return (
@@ -13,7 +14,7 @@ export default function Menu({ navigation }) {
       }}
       onPress={() => navigation.toggleDrawer()}
     >
-      <Entypo name="menu" size={40} color="#36453b" />
+      <Entypo name="menu" size={40} color={global.text} />
     </TouchableOpacity>
   );
 }

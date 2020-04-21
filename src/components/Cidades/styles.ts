@@ -1,16 +1,17 @@
 import styled from "styled-components/native";
+import global from "../../styles/global";
 
 export const Container = styled.View`
   display: flex;
   flex: 1;
-  background-color: #f5f9e9;
+  background-color: ${global.background};
 `;
 
 export const Titulo = styled.Text`
   margin-top: 50px;
   text-align: center;
   font-size: 30px;
-  color: #36453b;
+  color: ${global.text};
   font-weight: bold;
 `;
 
@@ -21,7 +22,7 @@ export const Local = styled.View`
 export const Texto = styled.Text`
   font-size: 25px;
   text-align: center;
-  color: #36453b;
+  color: ${global.text};
 `;
 
 export const Imagem = styled.Image`

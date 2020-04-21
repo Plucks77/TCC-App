@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, TouchableHighlight } from "react-native";
+import { TouchableHighlight } from "react-native";
 
 import Menu from "../Menu";
 
