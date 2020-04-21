@@ -10,20 +10,17 @@ import {
 } from "react-native";
 
 import { MaterialIcons } from "@expo/vector-icons";
-
 import api from "../../api";
-
 import { Formik } from "formik";
-
 import LottieView from "lottie-react-native";
-
 import * as yup from "yup";
+
+import Botaoo from "../Botao";
 
 import {
   Container,
   Input,
   ViewInput,
-  Botao,
   Texto,
   Erro,
   AreaInputs,
@@ -141,9 +138,7 @@ export default function Login({ navigation }) {
                   />
                   <Erro>{props.touched.password && props.errors.password}</Erro>
                 </ViewInput>
-                <Botao onPress={props.handleSubmit}>
-                  <Texto>Entrar</Texto>
-                </Botao>
+                <Botaoo texto="Entrar" />
                 <TouchableOpacity
                   onPress={() => navigation.navigate("Cadastro")}
                 >

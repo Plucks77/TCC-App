@@ -1,9 +1,10 @@
 import styled from "styled-components/native";
+import global from "../../styles/global";
 
 export const Container = styled.SafeAreaView`
   display: flex;
   flex: 1;
-  background-color: #f5f9e9;
+  background-color: ${global.background};
 `;
 
 export const LogoView = styled.View`
@@ -33,31 +34,21 @@ export const ViewInput = styled.View`
 export const Input = styled.TextInput`
   width: 300px;
   border-bottom-width: 1px;
-  border-bottom-color: #36453b;
-  color: #36453b;
+  border-bottom-color: ${global.text};
+  color: ${global.text};
   font-size: 20px;
   padding-left: 35px;
 `;
 
 export const Erro = styled.Text`
-  color: #36453b;
   font-weight: bold;
-  color: crimson;
+  color: ${global.error};
   text-align: center;
   margin-top: 5px;
 `;
 
-export const Botao = styled.TouchableOpacity`
-  width: 300px;
-  height: 35px;
-  border-radius: 5px;
-  background-color: #c4c4c4;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
-`;
-
 export const Texto = styled.Text`
-  color: #36453b;
-  font-weight: bold;
+  color: ${global.text};
+  font-weight: normal;
+  margin-top: 10px;
 `;
