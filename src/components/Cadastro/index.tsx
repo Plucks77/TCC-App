@@ -144,6 +144,7 @@ export default function Cadastro({ navigation }) {
                   <ViewInput>
                     <Input
                       placeholder="Nome"
+                      placeholderTextColor={global.text}
                       autoCapitalize="words"
                       autoCorrect={false}
                       value={props.values.nome}
@@ -157,6 +158,7 @@ export default function Cadastro({ navigation }) {
                   <ViewInput>
                     <Input
                       placeholder="Email"
+                      placeholderTextColor={global.text}
                       keyboardType="email-address"
                       autoCapitalize="none"
                       autoCorrect={false}
@@ -171,6 +173,7 @@ export default function Cadastro({ navigation }) {
                   <ViewInput>
                     <Input
                       placeholder="Senha"
+                      placeholderTextColor={global.text}
                       secureTextEntry={true}
                       value={props.values.senha}
                       onChangeText={props.handleChange("senha")}
@@ -184,6 +187,7 @@ export default function Cadastro({ navigation }) {
                   <ViewInput>
                     <Input
                       placeholder="Confirme sua senha"
+                      placeholderTextColor={global.text}
                       secureTextEntry={true}
                       value={props.values.confirmaSenha}
                       onChangeText={props.handleChange("confirmaSenha")}
@@ -205,6 +209,7 @@ export default function Cadastro({ navigation }) {
                         dddMask: "(99) ",
                       }}
                       placeholder="Telefone"
+                      placeholderTextColor={global.text}
                       maxLength={15}
                       value={props.values.tel}
                       onChangeText={props.handleChange("tel")}

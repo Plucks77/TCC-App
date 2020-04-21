@@ -50,5 +50,5 @@ export const Erro = styled.Text`
 export const Texto = styled.Text`
   color: ${global.text};
   font-weight: normal;
-  margin-top: 10px;
+  margin-top: 15px;
 `;

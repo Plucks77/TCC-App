@@ -26,6 +26,7 @@ import {
   Logo,
   LogoView,
 } from "./styles";
+import global from "../../styles/global";
 ///^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 ///^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const loginSchema = yup.object({
@@ -108,9 +109,11 @@ export default function Login({ navigation }) {
                     name="email"
                     size={25}
                     style={{ position: "absolute" }}
+                    color={global.text}
                   />
                   <Input
                     placeholder="Email"
+                    placeholderTextColor={global.text}
                     onChangeText={props.handleChange("email")}
                     value={props.values.email}
                     onBlur={props.handleBlur("email")}
@@ -126,9 +129,11 @@ export default function Login({ navigation }) {
                     name="lock"
                     size={25}
                     style={{ position: "absolute" }}
+                    color={global.text}
                   />
                   <Input
                     placeholder="Senha"
+                    placeholderTextColor={global.text}
                     onChangeText={props.handleChange("password")}
                     value={props.values.password}
                     onBlur={props.handleBlur("password")}
