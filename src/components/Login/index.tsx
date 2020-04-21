@@ -3,7 +3,6 @@ import {
   AsyncStorage,
   Alert,
   KeyboardAvoidingView,
-  Platform,
   TouchableOpacity,
   TouchableWithoutFeedback,
   Keyboard,
@@ -15,7 +14,7 @@ import { Formik } from "formik";
 import LottieView from "lottie-react-native";
 import * as yup from "yup";
 
-import Botaoo from "../Botao";
+import Botao from "../Botao";
 
 import {
   Container,
@@ -138,11 +137,11 @@ export default function Login({ navigation }) {
                   />
                   <Erro>{props.touched.password && props.errors.password}</Erro>
                 </ViewInput>
-                <Botaoo texto="Entrar" />
+                <Botao texto="Entrar" props={props.handleSubmit} />
                 <TouchableOpacity
                   onPress={() => navigation.navigate("Cadastro")}
                 >
-                  <Texto style={{ fontWeight: "normal" }}>Cadastro</Texto>
+                  <Texto>Cadastro</Texto>
                 </TouchableOpacity>
               </AreaInputs>
             )}

@@ -11,12 +11,12 @@ import { TextInputMask } from "react-native-masked-text";
 import LottieView from "lottie-react-native";
 import { Formik } from "formik";
 import * as yup from "yup";
-
+import global from "../../styles/global";
+import Botao from "../Botao";
 import api from "../../api";
 import {
   Container,
   Input,
-  Botao,
   TituloArea,
   Titulo,
   Campos,
@@ -114,7 +114,7 @@ export default function Cadastro({ navigation }) {
         <View style={{ flex: 1 }}>
           <TituloArea>
             <Seta onPress={() => navigation.navigate("Login")}>
-              <FontAwesome name="arrow-left" size={35} />
+              <FontAwesome name="arrow-left" size={35} color={global.text} />
             </Seta>
             <Titulo>Cadastro</Titulo>
             <View style={{ flex: 1 }} />
@@ -214,9 +214,7 @@ export default function Cadastro({ navigation }) {
                     <Erro>{props.touched.tel && props.errors.tel}</Erro>
                   </ViewInput>
 
-                  <Botao onPress={props.handleSubmit}>
-                    <Text style={{ fontWeight: "bold" }}>Cadastrar</Text>
-                  </Botao>
+                  <Botao texto="Cadastrar" props={props.handleSubmit} />
                 </Campos>
               </ScrollCampos>
             )}

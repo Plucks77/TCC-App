@@ -1,9 +1,10 @@
 import styled from "styled-components/native";
+import global from "../../styles/global";
 
 export const Container = styled.SafeAreaView`
   display: flex;
   flex: 1;
-  background-color: #f5f9e9;
+  background-color: ${global.background};
 `;
 
 export const TituloArea = styled.View`
@@ -18,6 +19,7 @@ export const Titulo = styled.Text`
   flex: 2;
   font-size: 35px;
   font-weight: bold;
+  color: ${global.text};
 `;
 
 export const Seta = styled.TouchableOpacity`
@@ -42,33 +44,22 @@ export const ViewInput = styled.View`
 export const Input = styled.TextInput`
   width: 300px;
   border-bottom-width: 1px;
-  border-bottom-color: #36453b;
-  color: #36453b;
+  border-bottom-color: ${global.text};
+  color: ${global.text};
   font-size: 20px;
   padding-left: 10px;
 `;
 export const InputMask = {
   width: 300,
   borderBottomWidth: 1,
-  borderBottomColor: "#36453b",
-  color: "#36453b",
+  borderBottomColor: global.text,
+  color: global.text,
   fontSize: 20,
   paddingLeft: 10,
 };
 
-export const Botao = styled.TouchableOpacity`
-  width: 300px;
-  height: 35px;
-  border-radius: 5px;
-  background-color: #c4c4c4;
-  align-items: center;
-  justify-content: center;
-  align-self: center;
-  z-index: 10;
-`;
-
 export const Erro = styled.Text`
-  color: #36453b;
+  color: ${global.error};
   font-weight: bold;
   color: crimson;
   text-align: center;
