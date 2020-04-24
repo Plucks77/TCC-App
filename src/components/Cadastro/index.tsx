@@ -5,6 +5,7 @@ import {
   AsyncStorage,
   Keyboard,
   TouchableWithoutFeedback,
+  Alert,
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { TextInputMask } from "react-native-masked-text";
@@ -63,12 +64,31 @@ const cadastroSchema = yup.object({
 
 export default function Cadastro({ navigation }) {
   const [ready, setReady] = useState(true);
+  const [user, setUser] = useState({
+    nome: "",
+    email: "",
+    senha: "",
+    conf_senha: "",
+    tel: "",
+  });
 
-  async function handleCadastro(nome, email, senha, tel) {
+  async function handleCadastro(nome, email, senha, conf_senha, tel) {
     setReady(false);
+    setUser({ nome, email, senha, conf_senha, tel });
+
+    const envtel = tel
+      .replace(" ", "")
+      .replace("-", "")
+      .replace("(", "")
+      .replace(")", "");
     try {
       await api
-        .post("/register", { username: nome, email, password: senha, tel })
+        .post("/register", {
+          username: nome,
+          email,
+          password: senha,
+          tel: envtel,
+        })
         .then(async (response) => {
           await AsyncStorage.setItem("token", response.data.token.toString());
           await AsyncStorage.setItem(
@@ -76,15 +96,26 @@ export default function Cadastro({ navigation }) {
             response.data.user.id.toString()
           );
           navigation.navigate("Principal", { screen: "Cidades" });
-          setReady(true);
+          setUser({ nome: "", email: "", senha: "", conf_senha: "", tel: "" });
         })
         .catch((error) => {
-          console.log(error.response);
+          if (error.response.data.erro.constraint === "users_username_unique") {
+            Alert.alert(
+              "Oooops...",
+              "Este nome de usuário já está cadastrado!"
+            );
+          }
+          if (error.response.data.erro.constraint === "users_email_unique") {
+            Alert.alert(
+              "Oooops...",
+              "Este endereço de e-mail já está cadastrado!"
+            );
+          }
         });
     } catch (e) {
       console.log(e);
-      setReady(true);
     }
+    setReady(true);
   }
   const [isKeyboardVisible, setKeyboardVisible] = useState(false);
 
@@ -122,20 +153,21 @@ export default function Cadastro({ navigation }) {
 
           <Formik
             initialValues={{
-              nome: "",
-              email: "",
-              senha: "",
-              confirmaSenha: "",
-              tel: "",
+              nome: user.nome,
+              email: user.email,
+              senha: user.senha,
+              confirmaSenha: user.conf_senha,
+              tel: user.tel,
             }}
             validationSchema={cadastroSchema}
             onSubmit={(values, actions) => {
-              const tel = values.tel
-                .replace(" ", "")
-                .replace("-", "")
-                .replace("(", "")
-                .replace(")", "");
-              handleCadastro(values.nome, values.email, values.senha, tel);
+              handleCadastro(
+                values.nome,
+                values.email,
+                values.senha,
+                values.confirmaSenha,
+                values.tel
+              );
             }}
           >
             {(props) => (
