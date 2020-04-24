@@ -49,6 +49,7 @@ const loginSchema = yup.object({
 
 export default function Login({ navigation }) {
   const [ready, setReady] = useState(true);
+  const [user, setUser] = useState({ email: "", password: "" });
 
   useEffect(() => {
     setReady(false);
@@ -62,6 +63,7 @@ export default function Login({ navigation }) {
 
   async function login(email, password) {
     setReady(false);
+    setUser({ email, password });
     try {
       await api
         .post("/login", { email, password })
@@ -72,6 +74,7 @@ export default function Login({ navigation }) {
             response.data.user_id.toString()
           );
           navigation.navigate("Principal", { screen: "Cidades" });
+          setUser({ email: "", password: "" });
         })
         .catch((error) => {
           const erro = error.response.data[0].field;
@@ -96,7 +99,7 @@ export default function Login({ navigation }) {
             <Logo source={require("../../../assets/LOGO.png")} />
           </LogoView>
           <Formik
-            initialValues={{ email: "", password: "" }}
+            initialValues={{ email: user.email, password: user.password }}
             validationSchema={loginSchema}
             onSubmit={(values, actions) => {
               login(values.email, values.password);
