@@ -12,6 +12,7 @@ import { TextInputMask } from "react-native-masked-text";
 import LottieView from "lottie-react-native";
 import { Formik } from "formik";
 import * as yup from "yup";
+import { Entypo } from "@expo/vector-icons";
 import global from "../../styles/global";
 import Botao from "../Botao";
 import api from "../../api";
@@ -71,6 +72,7 @@ export default function Cadastro({ navigation }) {
     conf_senha: "",
     tel: "",
   });
+  const [showPassword, setShowPassword] = useState(false);
 
   async function handleCadastro(nome, email, senha, conf_senha, tel) {
     setReady(false);
@@ -206,13 +208,23 @@ export default function Cadastro({ navigation }) {
                     <Input
                       placeholder="Senha"
                       placeholderTextColor={global.text}
-                      secureTextEntry={true}
+                      secureTextEntry={showPassword ? false : true}
                       value={props.values.senha}
                       onChangeText={props.handleChange("senha")}
                       onBlur={props.handleBlur("senha")}
                       clearTextOnFocus={false}
                       maxLength={50}
                     />
+                    <TouchableWithoutFeedback
+                      onPress={() => setShowPassword(!showPassword)}
+                    >
+                      <Entypo
+                        name={showPassword ? "eye-with-line" : "eye"}
+                        size={25}
+                        style={{ position: "absolute", alignSelf: "flex-end" }}
+                        color={global.text}
+                      />
+                    </TouchableWithoutFeedback>
                     <Erro>{props.touched.senha && props.errors.senha}</Erro>
                   </ViewInput>
 
@@ -220,12 +232,22 @@ export default function Cadastro({ navigation }) {
                     <Input
                       placeholder="Confirme sua senha"
                       placeholderTextColor={global.text}
-                      secureTextEntry={true}
+                      secureTextEntry={showPassword ? false : true}
                       value={props.values.confirmaSenha}
                       onChangeText={props.handleChange("confirmaSenha")}
                       onBlur={props.handleBlur("confirmaSenha")}
                       maxLength={50}
                     />
+                    <TouchableWithoutFeedback
+                      onPress={() => setShowPassword(!showPassword)}
+                    >
+                      <Entypo
+                        name={showPassword ? "eye-with-line" : "eye"}
+                        size={25}
+                        style={{ position: "absolute", alignSelf: "flex-end" }}
+                        color={global.text}
+                      />
+                    </TouchableWithoutFeedback>
                     <Erro>
                       {props.touched.confirmaSenha &&
                         props.errors.confirmaSenha}

@@ -9,6 +9,7 @@ import {
 } from "react-native";
 
 import { MaterialIcons } from "@expo/vector-icons";
+import { Entypo } from "@expo/vector-icons";
 import api from "../../api";
 import { Formik } from "formik";
 import LottieView from "lottie-react-native";
@@ -50,6 +51,7 @@ const loginSchema = yup.object({
 export default function Login({ navigation }) {
   const [ready, setReady] = useState(true);
   const [user, setUser] = useState({ email: "", password: "" });
+  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     setReady(false);
@@ -140,9 +142,19 @@ export default function Login({ navigation }) {
                     onChangeText={props.handleChange("password")}
                     value={props.values.password}
                     onBlur={props.handleBlur("password")}
-                    secureTextEntry={true}
+                    secureTextEntry={showPassword ? false : true}
                     maxLength={50}
                   />
+                  <TouchableWithoutFeedback
+                    onPress={() => setShowPassword(!showPassword)}
+                  >
+                    <Entypo
+                      name={showPassword ? "eye-with-line" : "eye"}
+                      size={25}
+                      style={{ position: "absolute", alignSelf: "flex-end" }}
+                      color={global.text}
+                    />
+                  </TouchableWithoutFeedback>
                   <Erro>{props.touched.password && props.errors.password}</Erro>
                 </ViewInput>
                 <Botao texto="Entrar" props={props.handleSubmit} />
