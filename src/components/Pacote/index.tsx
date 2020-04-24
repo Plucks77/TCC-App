@@ -38,9 +38,10 @@ export default function Pacote({ navigation, route }) {
       <Descricao>
         <Texto>Descrição:</Texto>
         <Texto>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, at! Harum
-          neque deserunt tempore velit labore, ab consectetur placeat dolores
-          veritatis at alias suscipit quod ad iure dolore voluptatem ex!
+          A região das pedras é muito conhecida por ter pedras. {"\n"}
+          Você vai passar pelas incríveis pedras e aprender sobre elas, passando
+          por pontes e pedras.{"\n"}
+          Sua viagem terá início no dia 30 de abril hás 15:00 horas.
         </Texto>
       </Descricao>
 
@@ -102,7 +103,7 @@ export default function Pacote({ navigation, route }) {
         </ScrollServicos>
       </ServicosView>
       <ViewBotao>
-        <Botao texto="Confirmar" props={null} />
+        <Botao texto="Contratar" props={null} />
       </ViewBotao>
     </Container>
   );
