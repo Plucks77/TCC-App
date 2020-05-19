@@ -1,7 +1,10 @@
 export default {
-  background: "#f5f9e9",
-  text: "#36453b",
+  background: "white",
+  text: "#36453B",
   error: "crimson",
-  button: "#c4c4c4",
+  button: "#818BE7",
+  button_text: "#EEEEEE",
   background_text: "#e7eed1",
+  tab_menu: "#A5B9FF",
+  tab_menu_secundary: "#758ecd",
 };
