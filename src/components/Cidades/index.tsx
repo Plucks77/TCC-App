@@ -14,7 +14,10 @@ export default function Cidades({ navigation }) {
             navigation.navigate("Locais", { cidade: "Resende" });
           }}
         >
-          <Imagem source={require("../../../assets/Resende.jpg")} />
+          <Imagem
+            source={require("../../../assets/Resende.jpg")}
+            resizeMode="stretch"
+          />
         </TouchableWithoutFeedback>
       </Local>
 
@@ -25,7 +28,10 @@ export default function Cidades({ navigation }) {
             navigation.navigate("Locais", { cidade: "Itatiaia" });
           }}
         >
-          <Imagem source={require("../../../assets/Itatiaia.jpg")} />
+          <Imagem
+            source={require("../../../assets/Itatiaia.jpg")}
+            resizeMode="stretch"
+          />
         </TouchableWithoutFeedback>
       </Local>
     </Container>

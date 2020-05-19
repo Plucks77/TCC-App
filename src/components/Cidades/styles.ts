@@ -28,7 +28,7 @@ export const Texto = styled.Text`
 export const Imagem = styled.Image`
   width: 350px;
   height: 150px;
-  resize-mode: stretch;
   align-self: center;
   margin-top: 10px;
+  border-radius: 5px;
 `;

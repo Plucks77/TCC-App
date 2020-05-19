@@ -26,7 +26,7 @@ export default function Pacote({ navigation, route }) {
   const { titulo, valor } = route.params;
   return (
     <Container>
-      <Menu navigation={navigation} />
+      {/* <Menu navigation={navigation} /> */}
       <Titulo>{titulo}</Titulo>
       <ViewFotos>
         <ScrollFotos horizontal={true} showsHorizontalScrollIndicator={true}>

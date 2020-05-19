@@ -32,13 +32,19 @@ export const ScrollPacotes = styled.ScrollView``;
 export const PacoteView = styled.View`
   flex-direction: column;
   margin-left: 10px;
-  margin-right: 10px;
+  padding: 5px;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background: ${global.tab_menu_secundary};
+  border-radius: 5px;
 `;
 
 export const FotoPacote = styled.Image`
   width: 350px;
   height: 150px;
   resize-mode: stretch;
+  border-radius: 5px;
 `;
 
 export const PacoteTextoView = styled.View`

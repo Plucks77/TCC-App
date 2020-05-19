@@ -38,24 +38,28 @@ export const Campos = styled.KeyboardAvoidingView`
 export const ViewInput = styled.View`
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 `;
 
 export const Input = styled.TextInput`
-  width: 300px;
-  border-bottom-width: 1px;
-  border-bottom-color: ${global.text};
+  width: 310px;
+  height: 40px;
+  border-width: 2px;
+  border-color: ${global.button};
   color: ${global.text};
   font-size: 20px;
-  padding-left: 10px;
+  padding-left: 15px;
+  border-radius: 10px;
 `;
 export const InputMask = {
-  width: 300,
-  borderBottomWidth: 1,
-  borderBottomColor: global.text,
+  width: 310,
+  height: 40,
+  borderWidth: 2,
+  borderColor: global.button,
   color: global.text,
   fontSize: 20,
-  paddingLeft: 10,
+  paddingLeft: 15,
+  borderRadius: 10,
 };
 
 export const Erro = styled.Text`

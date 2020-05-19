@@ -19,7 +19,7 @@ import {
 export default function Pacotes({ navigation }) {
   return (
     <Container>
-      <Menu navigation={navigation} />
+      {/* <Menu navigation={navigation} /> */}
       <Titulo>Pacotes</Titulo>
       <AreaPacote>
         <Categoria>Aventura</Categoria>

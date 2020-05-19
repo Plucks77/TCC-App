@@ -75,7 +75,7 @@ export default function Login({ navigation }) {
             "user_id",
             response.data.user_id.toString()
           );
-          navigation.navigate("Principal", { screen: "Cidades" });
+          navigation.navigate("Main");
           setUser({ email: "", password: "" });
         })
         .catch((error) => {
@@ -98,7 +98,10 @@ export default function Login({ navigation }) {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <KeyboardAvoidingView behavior="position">
           <LogoView>
-            <Logo source={require("../../../assets/LOGO.png")} />
+            <Logo
+              source={require("../../../assets/LOGO.png")}
+              resizeMode="contain"
+            />
           </LogoView>
           <Formik
             initialValues={{ email: user.email, password: user.password }}
@@ -113,7 +116,11 @@ export default function Login({ navigation }) {
                   <MaterialIcons
                     name="email"
                     size={25}
-                    style={{ position: "absolute" }}
+                    style={{
+                      position: "absolute",
+                      marginTop: 7,
+                      paddingLeft: 6,
+                    }}
                     color={global.text}
                   />
                   <Input
@@ -133,7 +140,11 @@ export default function Login({ navigation }) {
                   <MaterialIcons
                     name="lock"
                     size={25}
-                    style={{ position: "absolute" }}
+                    style={{
+                      position: "absolute",
+                      marginTop: 7,
+                      paddingLeft: 6,
+                    }}
                     color={global.text}
                   />
                   <Input
@@ -151,7 +162,12 @@ export default function Login({ navigation }) {
                     <Entypo
                       name={showPassword ? "eye-with-line" : "eye"}
                       size={25}
-                      style={{ position: "absolute", alignSelf: "flex-end" }}
+                      style={{
+                        position: "absolute",
+                        alignSelf: "flex-end",
+                        marginTop: 7,
+                        paddingRight: 6,
+                      }}
                       color={global.text}
                     />
                   </TouchableWithoutFeedback>

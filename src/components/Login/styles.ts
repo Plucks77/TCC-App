@@ -17,7 +17,6 @@ export const LogoView = styled.View`
 export const Logo = styled.Image`
   width: 200px;
   height: 200px;
-  border-radius: 100px;
 `;
 
 export const AreaInputs = styled.View`
@@ -32,12 +31,14 @@ export const ViewInput = styled.View`
 `;
 
 export const Input = styled.TextInput`
-  width: 300px;
-  border-bottom-width: 1px;
-  border-bottom-color: ${global.text};
+  width: 310px;
+  height: 40px;
+  border: 2px;
+  border-color: ${global.button};
   color: ${global.text};
   font-size: 20px;
   padding-left: 35px;
+  border-radius: 10px;
 `;
 
 export const Erro = styled.Text`

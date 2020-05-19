@@ -51,7 +51,7 @@ const cadastroSchema = yup.object({
     .min(8, "Sua senha tem pelo menos 8 dígitos!"),
   confirmaSenha: yup
     .string()
-    .required("Confirme sua senha digitando a mesma de cima!")
+    .required("Digite a mesma senha de cima!")
     .test("passwords-match", "Verifique se digitou a mesma senha!", function (
       value
     ) {
@@ -221,7 +221,12 @@ export default function Cadastro({ navigation }) {
                       <Entypo
                         name={showPassword ? "eye-with-line" : "eye"}
                         size={25}
-                        style={{ position: "absolute", alignSelf: "flex-end" }}
+                        style={{
+                          position: "absolute",
+                          alignSelf: "flex-end",
+                          marginTop: 7,
+                          paddingRight: 7,
+                        }}
                         color={global.text}
                       />
                     </TouchableWithoutFeedback>
@@ -244,7 +249,12 @@ export default function Cadastro({ navigation }) {
                       <Entypo
                         name={showPassword ? "eye-with-line" : "eye"}
                         size={25}
-                        style={{ position: "absolute", alignSelf: "flex-end" }}
+                        style={{
+                          position: "absolute",
+                          alignSelf: "flex-end",
+                          marginTop: 7,
+                          paddingRight: 7,
+                        }}
                         color={global.text}
                       />
                     </TouchableWithoutFeedback>
