@@ -53,3 +53,7 @@ export const Texto = styled.Text`
   font-weight: normal;
   margin-top: 15px;
 `;
+
+export const ViewBotao = styled.View`
+  margin-bottom: 10px;
+`;

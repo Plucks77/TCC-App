@@ -26,6 +26,7 @@ import {
   AreaInputs,
   Logo,
   LogoView,
+  ViewBotao,
 } from "./styles";
 import global from "../../styles/global";
 ///^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
@@ -173,11 +174,15 @@ export default function Login({ navigation }) {
                   </TouchableWithoutFeedback>
                   <Erro>{props.touched.password && props.errors.password}</Erro>
                 </ViewInput>
-                <Botao texto="Entrar" props={props.handleSubmit} />
-                <TouchableOpacity
-                  onPress={() => navigation.navigate("Cadastro")}
-                >
-                  <Texto>Cadastro</Texto>
+                <ViewBotao>
+                  <Botao texto="Entrar" props={props.handleSubmit} />
+                </ViewBotao>
+                <Botao
+                  texto="Fazer cadastro"
+                  props={() => navigation.navigate("Cadastro")}
+                />
+                <TouchableOpacity onPress={null}>
+                  <Texto>Esqueci minha senha</Texto>
                 </TouchableOpacity>
               </AreaInputs>
             )}
