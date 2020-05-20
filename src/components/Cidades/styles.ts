@@ -16,7 +16,14 @@ export const Titulo = styled.Text`
 `;
 
 export const Local = styled.View`
+  align-self: center;
   margin-top: 35px;
+  background: rgba(129, 139, 231, 0.5);
+  border-color: rgba(129, 139, 231, 1);
+  border-width: 2px;
+  border-radius: 10px;
+  width: 370px;
+  height: 210px;
 `;
 
 export const Texto = styled.Text`

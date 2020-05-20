@@ -24,7 +24,7 @@ export default function Locais({ navigation, route }) {
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => navigation.navigate("Pacotes")}>
-              <CidadeNome>Engenheiro passos</CidadeNome>
+              <CidadeNome>Engenheiro Passos</CidadeNome>
             </TouchableOpacity>
           </CidadesArea>
         </>
