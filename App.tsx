@@ -54,7 +54,11 @@ export default function App() {
         headerMode="none"
         initialRouteName={user_logado ? "Main" : "Login"}
       >
-        <Stack.Screen name="Login" component={LoginStack} />
+        <Stack.Screen
+          name="Login"
+          component={LoginStack}
+          options={{ gestureEnabled: false }}
+        />
         <Stack.Screen
           name="Main"
           component={BottomTab}
