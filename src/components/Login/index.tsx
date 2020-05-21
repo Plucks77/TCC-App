@@ -181,7 +181,9 @@ export default function Login({ navigation }) {
                   texto="Fazer cadastro"
                   props={() => navigation.navigate("Cadastro")}
                 />
-                <TouchableOpacity onPress={null}>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate("Esqueci minha senha")}
+                >
                   <Texto>Esqueci minha senha</Texto>
                 </TouchableOpacity>
               </AreaInputs>

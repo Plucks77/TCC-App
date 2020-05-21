@@ -14,6 +14,7 @@ import Pacotes from "./src/components/Pacotes";
 import Pacote from "./src/components/Pacote";
 import Perfil from "./src/components/Perfil";
 import Configuracoes from "./src/components/Configuracoes";
+import EsqueciSenha from "./src/components/EsqueciSenha";
 import { AsyncStorage } from "react-native";
 import LottieView from "lottie-react-native";
 import Globals from "./src/styles/global";
@@ -87,6 +88,7 @@ function LoginStack() {
     <Stack.Navigator headerMode="none">
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Cadastro" component={Cadastro} />
+      <Stack.Screen name="Esqueci minha senha" component={EsqueciSenha} />
     </Stack.Navigator>
   );
 }
