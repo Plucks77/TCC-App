@@ -97,7 +97,7 @@ export default function Cadastro({ navigation }) {
             "user_id",
             response.data.user.id.toString()
           );
-          navigation.navigate("Principal", { screen: "Cidades" });
+          navigation.navigate("Main");
           setUser({ nome: "", email: "", senha: "", conf_senha: "", tel: "" });
         })
         .catch((error) => {
