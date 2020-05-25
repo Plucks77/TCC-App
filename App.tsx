@@ -101,6 +101,7 @@ function BottomTab() {
         inactiveTintColor: Globals.tab_menu_secundary,
         activeBackgroundColor: Globals.tab_menu,
         inactiveBackgroundColor: Globals.tab_menu,
+        keyboardHidesTabBar: true,
         style: {
           borderTopWidth: 0,
           borderTopColor: "black",
