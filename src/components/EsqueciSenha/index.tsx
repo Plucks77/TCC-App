@@ -9,6 +9,7 @@ import {
 import { FontAwesome } from "@expo/vector-icons";
 import { Formik } from "formik";
 import * as yup from "yup";
+import LottieView from "lottie-react-native";
 
 import api from "../../api";
 import Botao from "../Botao";
@@ -43,6 +44,7 @@ const emailSchema = yup.object({
 export default function EsqueciSenha({ navigation }) {
   const [enviado, setEnviado] = useState(false);
   const [endereco, setEndereco] = useState("");
+  const [ready, setReady] = useState(true);
 
   async function handleEnviar(email) {
     await api
@@ -50,12 +52,13 @@ export default function EsqueciSenha({ navigation }) {
       .then(() => {
         setEndereco(email);
         setEnviado(true);
+        setReady(true);
       })
       .catch((e) => {
         console.log(e);
       });
   }
-  return (
+  return ready ? (
     <Container>
       {!enviado ? (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -76,6 +79,7 @@ export default function EsqueciSenha({ navigation }) {
               initialValues={{ email: "" }}
               validationSchema={emailSchema}
               onSubmit={(values, actions) => {
+                setReady(false);
                 actions.resetForm();
                 handleEnviar(values.email);
               }}
@@ -119,5 +123,11 @@ export default function EsqueciSenha({ navigation }) {
         </ViewEnviado>
       )}
     </Container>
+  ) : (
+    <LottieView
+      source={require("../../../assets/loading.json")}
+      autoPlay
+      loop
+    />
   );
 }

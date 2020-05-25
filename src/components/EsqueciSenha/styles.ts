@@ -32,7 +32,6 @@ export const Texto = styled.Text`
 export const ViewInput = styled.View`
   display: flex;
   flex-direction: column;
-  margin-bottom: 15px;
   justify-content: center;
   align-items: center;
 `;
@@ -51,7 +50,7 @@ export const Input = styled.TextInput`
 export const BotaoArea = styled.View`
   justify-content: center;
   align-items: center;
-  margin-top: 30px;
+  margin-top: 10px;
 `;
 
 export const Erro = styled.Text`
