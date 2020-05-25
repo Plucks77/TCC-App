@@ -4,7 +4,14 @@ import api from "../../api";
 
 import Botao from "../Botao";
 
-import { Container, Titulo, ViewInfos, Texto, BotaoArea } from "./styles";
+import {
+  Container,
+  Titulo,
+  ViewInfos,
+  Texto,
+  Input,
+  BotaoArea,
+} from "./styles";
 import { AsyncStorage } from "react-native";
 import LottieView from "lottie-react-native";
 
@@ -31,9 +38,12 @@ export default function Perfil({ navigation }) {
     <Container>
       <Titulo>Perfil</Titulo>
       <ViewInfos>
-        <Texto>{user.username}</Texto>
-        <Texto>{user.email}</Texto>
-        <Texto>{user.tel}</Texto>
+        <Texto>Nome:</Texto>
+        <Input>{user.username}</Input>
+        <Texto>Telefone:</Texto>
+        <Input>{user.tel}</Input>
+        <Texto>E-mail:</Texto>
+        <Input editable={false}>{user.email}</Input>
 
         <BotaoArea>
           <Botao texto="Salvar" props={null} />

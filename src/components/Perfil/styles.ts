@@ -9,24 +9,30 @@ export const Container = styled.View`
 
 export const Titulo = styled.Text`
   margin-top: 50px;
-  font-size: 30px;
+  font-size: 40px;
   text-align: center;
   color: ${global.text};
   font-weight: bold;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 `;
 
-export const ViewInfos = styled.View`
+export const ViewInfos = styled.ScrollView.attrs(() => ({
+  alignItems: "center",
+}))`
   margin-top: 25px;
-  align-items: center;
   flex: 1;
-  justify-content: space-evenly;
 `;
 
-export const Texto = styled.TextInput`
+export const Texto = styled.Text`
   font-size: 18px;
   color: ${global.text};
-  margin-bottom: 10px;
+  margin-left: 10px;
+`;
+
+export const Input = styled.TextInput`
+  font-size: 18px;
+  color: ${global.text};
+  margin-bottom: 20px;
   border: 2px;
   border-radius: 10px;
   width: 310px;
