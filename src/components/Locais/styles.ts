@@ -21,6 +21,17 @@ export const CidadesArea = styled.View`
   align-items: center;
 `;
 
+export const CidadeBotao = styled.TouchableOpacity`
+  background: ${global.buttonLight};
+  border: 2px solid ${global.button};
+  width: 300px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+`;
+
 export const CidadeNome = styled.Text`
   font-size: 25px;
   color: ${global.text};

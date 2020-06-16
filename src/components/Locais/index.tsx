@@ -1,7 +1,7 @@
 import React from "react";
 import { TouchableOpacity } from "react-native";
 
-import { Container, Titulo, CidadesArea, CidadeNome } from "./styles";
+import { Container, Titulo, CidadesArea, CidadeNome, CidadeBotao } from "./styles";
 
 export default function Locais({ navigation, route }) {
   const { cidade } = route.params;
@@ -11,38 +11,38 @@ export default function Locais({ navigation, route }) {
         <>
           <Titulo>Selecione um local</Titulo>
           <CidadesArea>
-            <TouchableOpacity onPress={() => navigation.navigate("Pacotes")}>
+            <CidadeBotao onPress={() => navigation.navigate("Pacotes")}>
               <CidadeNome>Mauá</CidadeNome>
-            </TouchableOpacity>
+            </CidadeBotao>
 
-            <TouchableOpacity onPress={() => navigation.navigate("Pacotes")}>
+            <CidadeBotao onPress={() => navigation.navigate("Pacotes")}>
               <CidadeNome>Serrinha</CidadeNome>
-            </TouchableOpacity>
+            </CidadeBotao>
 
-            <TouchableOpacity onPress={() => navigation.navigate("Pacotes")}>
+            <CidadeBotao onPress={() => navigation.navigate("Pacotes")}>
               <CidadeNome>Capelinha</CidadeNome>
-            </TouchableOpacity>
+            </CidadeBotao>
 
-            <TouchableOpacity onPress={() => navigation.navigate("Pacotes")}>
+            <CidadeBotao onPress={() => navigation.navigate("Pacotes")}>
               <CidadeNome>Engenheiro Passos</CidadeNome>
-            </TouchableOpacity>
+            </CidadeBotao>
           </CidadesArea>
         </>
       ) : (
         <>
           <Titulo>Selecione um local</Titulo>
           <CidadesArea>
-            <TouchableOpacity onPress={() => navigation.navigate("Pacotes")}>
+            <CidadeBotao onPress={() => navigation.navigate("Pacotes")}>
               <CidadeNome>Penedo</CidadeNome>
-            </TouchableOpacity>
+            </CidadeBotao>
 
-            <TouchableOpacity onPress={() => navigation.navigate("Pacotes")}>
+            <CidadeBotao onPress={() => navigation.navigate("Pacotes")}>
               <CidadeNome>Maringá</CidadeNome>
-            </TouchableOpacity>
+            </CidadeBotao>
 
-            <TouchableOpacity onPress={() => navigation.navigate("Pacotes")}>
+            <CidadeBotao onPress={() => navigation.navigate("Pacotes")}>
               <CidadeNome>Maromba</CidadeNome>
-            </TouchableOpacity>
+            </CidadeBotao>
           </CidadesArea>
         </>
       )}
