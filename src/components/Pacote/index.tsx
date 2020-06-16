@@ -1,33 +1,37 @@
 import React from "react";
+import { FontAwesome } from "@expo/vector-icons";
 
-import Menu from "../Menu";
 import Botao from "../Botao";
 import {
   Container,
+  TituloContainer,
   Titulo,
   ScrollFotos,
   Imagem,
-  Texto,
-  Descricao,
   ViewFotos,
-  Guia,
-  Valor,
-  Recomendacoes,
-  ServicosView,
-  ScrollServicos,
-  ServicoView,
-  ServicoFoto,
-  ServicoArea,
-  ServicoNome,
   ViewBotao,
+  Campo,
+  CampoTitulo,
+  TextoContainer,
+  CampoTexto,
+  Seta,
+  Cidade,
 } from "./styles";
+import global from "../../styles/global";
 
 export default function Pacote({ navigation, route }) {
   const { titulo, valor } = route.params;
   return (
     <Container>
-      {/* <Menu navigation={navigation} /> */}
-      <Titulo>{titulo}</Titulo>
+      <TituloContainer>
+        <Seta onPress={() => console.log("Foda")}>
+          <FontAwesome name="arrow-left" size={35} color={global.text} />
+        </Seta>
+        <Titulo>{titulo}</Titulo>
+      </TituloContainer>
+
+      <Cidade>Cidade</Cidade>
+
       <ViewFotos>
         <ScrollFotos horizontal={true} showsHorizontalScrollIndicator={true}>
           <Imagem source={require("../../../assets/pacote1.jpg")} />
@@ -35,75 +39,32 @@ export default function Pacote({ navigation, route }) {
         </ScrollFotos>
       </ViewFotos>
 
-      <Descricao>
-        <Texto>Descrição:</Texto>
-        <Texto>
-          A região das pedras é muito conhecida por ter pedras. {"\n"}
-          Você vai passar pelas incríveis pedras e aprender sobre elas, passando
-          por pontes e pedras.{"\n"}
-          Sua viagem terá início no dia 30 de abril hás 15:00 horas.
-        </Texto>
-      </Descricao>
+      <Campo>
+        <CampoTitulo>Descrição</CampoTitulo>
+        <TextoContainer>
+          <CampoTexto>
+            Passeio piriri pororo dia 25 começa hás 09:00 passa pelo parara pororo e vai pelo bla
+            bla bla.
+          </CampoTexto>
+        </TextoContainer>
+      </Campo>
 
-      <Guia>
-        <Texto>Guia:</Texto>
-        <Texto>Um guia muito bom</Texto>
-      </Guia>
+      <Campo>
+        <CampoTitulo>Guia</CampoTitulo>
+        <TextoContainer>
+          <CampoTexto>Mário Roberto da Silva</CampoTexto>
+        </TextoContainer>
+      </Campo>
 
-      <Valor>
-        <Texto>Valor:</Texto>
-        <Texto>{valor}</Texto>
-      </Valor>
+      <Campo>
+        <CampoTitulo>Preço</CampoTitulo>
+        <TextoContainer>
+          <CampoTexto>R$ 1000</CampoTexto>
+        </TextoContainer>
+      </Campo>
 
-      <Recomendacoes>
-        <Texto>Recomendações:</Texto>
-      </Recomendacoes>
-
-      <ServicosView>
-        <ServicoNome>Hotelaria</ServicoNome>
-
-        <ScrollServicos horizontal={true}>
-          <ServicoView>
-            <ServicoFoto source={require("../../../assets/hotel1.jpg")} />
-            <ServicoArea>
-              <Texto>Hotel parceiro 1</Texto>
-              <Texto>Até 5%</Texto>
-            </ServicoArea>
-          </ServicoView>
-
-          <ServicoView>
-            <ServicoFoto source={require("../../../assets/hotel1.jpg")} />
-            <ServicoArea>
-              <Texto>Hotel parceiro 2</Texto>
-              <Texto></Texto>
-            </ServicoArea>
-          </ServicoView>
-        </ScrollServicos>
-      </ServicosView>
-
-      <ServicosView>
-        <ServicoNome>Restaurantes</ServicoNome>
-
-        <ScrollServicos horizontal={true}>
-          <ServicoView>
-            <ServicoFoto source={require("../../../assets/restaurante1.jpg")} />
-            <ServicoArea>
-              <Texto>Restaurante parceiro 1</Texto>
-              <Texto>Até 5%</Texto>
-            </ServicoArea>
-          </ServicoView>
-
-          <ServicoView>
-            <ServicoFoto source={require("../../../assets/restaurante1.jpg")} />
-            <ServicoArea>
-              <Texto>Restaurante parceiro 2</Texto>
-              <Texto></Texto>
-            </ServicoArea>
-          </ServicoView>
-        </ScrollServicos>
-      </ServicosView>
       <ViewBotao>
-        <Botao texto="Contratar" props={null} />
+        <Botao texto="Comprar" props={null} />
       </ViewBotao>
     </Container>
   );
