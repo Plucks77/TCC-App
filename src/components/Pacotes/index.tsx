@@ -1,7 +1,5 @@
 import React from "react";
-import { TouchableHighlight } from "react-native";
-
-import Menu from "../Menu";
+import { TouchableHighlight, ScrollView } from "react-native";
 
 import {
   Container,
@@ -10,95 +8,99 @@ import {
   Categoria,
   ScrollPacotes,
   FotoPacote,
-  NomePacote,
-  ValorPacote,
+  PacoteTexto,
   PacoteView,
   PacoteTextoView,
+  Cidade,
 } from "./styles";
 
-export default function Pacotes({ navigation }) {
+export default function Pacotes({ navigation, route }) {
+  console.log(route.params);
   return (
     <Container>
-      {/* <Menu navigation={navigation} /> */}
       <Titulo>Pacotes</Titulo>
-      <AreaPacote>
-        <Categoria>Aventura</Categoria>
-        <ScrollPacotes horizontal={true} showsHorizontalScrollIndicator={true}>
-          <TouchableHighlight
-            onPress={() =>
-              navigation.navigate("Pacote", {
-                titulo: "Pacote de aventura 1",
-                valor: "R$ 1000,00",
-              })
-            }
-          >
-            <PacoteView>
-              <FotoPacote source={require("../../../assets/pacote1.jpg")} />
-              <PacoteTextoView>
-                <NomePacote>Pacote de aventura 1</NomePacote>
-                <ValorPacote>R$ 1000,00</ValorPacote>
-              </PacoteTextoView>
-            </PacoteView>
-          </TouchableHighlight>
+      <Cidade>{route.params.local}</Cidade>
 
-          <TouchableHighlight
-            onPress={() =>
-              navigation.navigate("Pacote", {
-                titulo: "Pacote de aventura 2",
-                valor: "R$ 2000,00",
-              })
-            }
-          >
-            <PacoteView>
-              <FotoPacote source={require("../../../assets/pacote2.jpg")} />
-              <PacoteTextoView>
-                <NomePacote>Pacote de aventura 2</NomePacote>
-                <ValorPacote>R$ 2000,00</ValorPacote>
-              </PacoteTextoView>
-            </PacoteView>
-          </TouchableHighlight>
-        </ScrollPacotes>
-      </AreaPacote>
+      <ScrollView>
+        <AreaPacote>
+          <Categoria>Aventura</Categoria>
+          <ScrollPacotes horizontal={true} showsHorizontalScrollIndicator={true}>
+            <TouchableHighlight
+              onPress={() =>
+                navigation.navigate("Pacote", {
+                  titulo: "Pacote de aventura 1",
+                  valor: "R$ 1000,00",
+                })
+              }
+            >
+              <PacoteView>
+                <FotoPacote source={require("../../../assets/pacote1.jpg")} />
+                <PacoteTextoView>
+                  <PacoteTexto>Pacote de aventura 1</PacoteTexto>
+                  <PacoteTexto>R$ 1000,00</PacoteTexto>
+                </PacoteTextoView>
+              </PacoteView>
+            </TouchableHighlight>
 
-      <AreaPacote>
-        <Categoria>Casual</Categoria>
+            <TouchableHighlight
+              onPress={() =>
+                navigation.navigate("Pacote", {
+                  titulo: "Pacote de aventura 2",
+                  valor: "R$ 2000,00",
+                })
+              }
+            >
+              <PacoteView>
+                <FotoPacote source={require("../../../assets/pacote2.jpg")} />
+                <PacoteTextoView>
+                  <PacoteTexto>Pacote de aventura 2</PacoteTexto>
+                  <PacoteTexto>R$ 2000,00</PacoteTexto>
+                </PacoteTextoView>
+              </PacoteView>
+            </TouchableHighlight>
+          </ScrollPacotes>
+        </AreaPacote>
 
-        <ScrollPacotes horizontal={true} showsHorizontalScrollIndicator={true}>
-          <TouchableHighlight
-            onPress={() =>
-              navigation.navigate("Pacote", {
-                titulo: "Pacote casual 1",
-                valor: "R$ 3000,00",
-              })
-            }
-          >
-            <PacoteView>
-              <FotoPacote source={require("../../../assets/pacote4.jpg")} />
-              <PacoteTextoView>
-                <NomePacote>Pacote casual 1</NomePacote>
-                <ValorPacote>R$ 3000,00</ValorPacote>
-              </PacoteTextoView>
-            </PacoteView>
-          </TouchableHighlight>
+        <AreaPacote>
+          <Categoria>Casual</Categoria>
 
-          <TouchableHighlight
-            onPress={() =>
-              navigation.navigate("Pacote", {
-                titulo: "Pacote casual 2",
-                valor: "R$ 4000,00",
-              })
-            }
-          >
-            <PacoteView>
-              <FotoPacote source={require("../../../assets/pacote3.jpg")} />
-              <PacoteTextoView>
-                <NomePacote>Pacote casual 2</NomePacote>
-                <ValorPacote>R$ 4000,00</ValorPacote>
-              </PacoteTextoView>
-            </PacoteView>
-          </TouchableHighlight>
-        </ScrollPacotes>
-      </AreaPacote>
+          <ScrollPacotes horizontal={true} showsHorizontalScrollIndicator={true}>
+            <TouchableHighlight
+              onPress={() =>
+                navigation.navigate("Pacote", {
+                  titulo: "Pacote casual 1",
+                  valor: "R$ 3000,00",
+                })
+              }
+            >
+              <PacoteView>
+                <FotoPacote source={require("../../../assets/pacote4.jpg")} />
+                <PacoteTextoView>
+                  <PacoteTexto>Pacote casual 1</PacoteTexto>
+                  <PacoteTexto>R$ 3000,00</PacoteTexto>
+                </PacoteTextoView>
+              </PacoteView>
+            </TouchableHighlight>
+
+            <TouchableHighlight
+              onPress={() =>
+                navigation.navigate("Pacote", {
+                  titulo: "Pacote casual 2",
+                  valor: "R$ 4000,00",
+                })
+              }
+            >
+              <PacoteView>
+                <FotoPacote source={require("../../../assets/pacote3.jpg")} />
+                <PacoteTextoView>
+                  <PacoteTexto>Pacote casual 2</PacoteTexto>
+                  <PacoteTexto>R$ 4000,00</PacoteTexto>
+                </PacoteTextoView>
+              </PacoteView>
+            </TouchableHighlight>
+          </ScrollPacotes>
+        </AreaPacote>
+      </ScrollView>
     </Container>
   );
 }

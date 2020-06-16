@@ -11,19 +11,21 @@ export default function Locais({ navigation, route }) {
         <>
           <Titulo>Selecione um local</Titulo>
           <CidadesArea>
-            <CidadeBotao onPress={() => navigation.navigate("Pacotes")}>
+            <CidadeBotao onPress={() => navigation.navigate("Pacotes", { local: "Mauá" })}>
               <CidadeNome>Mauá</CidadeNome>
             </CidadeBotao>
 
-            <CidadeBotao onPress={() => navigation.navigate("Pacotes")}>
+            <CidadeBotao onPress={() => navigation.navigate("Pacotes", { local: "Serrinha" })}>
               <CidadeNome>Serrinha</CidadeNome>
             </CidadeBotao>
 
-            <CidadeBotao onPress={() => navigation.navigate("Pacotes")}>
+            <CidadeBotao onPress={() => navigation.navigate("Pacotes", { local: "Capelinha" })}>
               <CidadeNome>Capelinha</CidadeNome>
             </CidadeBotao>
 
-            <CidadeBotao onPress={() => navigation.navigate("Pacotes")}>
+            <CidadeBotao
+              onPress={() => navigation.navigate("Pacotes", { local: "Engenheiro Passos" })}
+            >
               <CidadeNome>Engenheiro Passos</CidadeNome>
             </CidadeBotao>
           </CidadesArea>
@@ -32,15 +34,15 @@ export default function Locais({ navigation, route }) {
         <>
           <Titulo>Selecione um local</Titulo>
           <CidadesArea>
-            <CidadeBotao onPress={() => navigation.navigate("Pacotes")}>
+            <CidadeBotao onPress={() => navigation.navigate("Pacotes", { local: "Penedo" })}>
               <CidadeNome>Penedo</CidadeNome>
             </CidadeBotao>
 
-            <CidadeBotao onPress={() => navigation.navigate("Pacotes")}>
+            <CidadeBotao onPress={() => navigation.navigate("Pacotes", { local: "Maringá" })}>
               <CidadeNome>Maringá</CidadeNome>
             </CidadeBotao>
 
-            <CidadeBotao onPress={() => navigation.navigate("Pacotes")}>
+            <CidadeBotao onPress={() => navigation.navigate("Pacotes", { local: "Maromba" })}>
               <CidadeNome>Maromba</CidadeNome>
             </CidadeBotao>
           </CidadesArea>
