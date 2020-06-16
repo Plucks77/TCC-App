@@ -9,6 +9,7 @@ import {
   CidadeBotao,
   TituloContainer,
   Seta,
+  Cidade,
 } from "./styles";
 import global from "../../styles/global";
 
@@ -24,6 +25,8 @@ export default function Locais({ navigation, route }) {
             </Seta>
             <Titulo>Selecione um local</Titulo>
           </TituloContainer>
+
+          <Cidade>em {cidade}</Cidade>
 
           <CidadesArea>
             <CidadeBotao onPress={() => navigation.navigate("Pacotes", { local: "Mauá" })}>
@@ -47,7 +50,15 @@ export default function Locais({ navigation, route }) {
         </>
       ) : (
         <>
-          <Titulo>Selecione um local</Titulo>
+          <TituloContainer>
+            <Seta onPress={() => navigation.navigate("Cidades")}>
+              <FontAwesome name="arrow-left" size={35} color={global.text} />
+            </Seta>
+            <Titulo>Selecione um local</Titulo>
+          </TituloContainer>
+
+          <Cidade>em {cidade}</Cidade>
+
           <CidadesArea>
             <CidadeBotao onPress={() => navigation.navigate("Pacotes", { local: "Penedo" })}>
               <CidadeNome>Penedo</CidadeNome>

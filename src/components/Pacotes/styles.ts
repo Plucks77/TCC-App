@@ -30,7 +30,7 @@ export const Cidade = styled.Text`
   font-size: 15px;
   text-align: center;
   color: ${global.text};
-  font-weight: bold;
+  font-weight: 500;
   margin-bottom: 30px;
 `;
 

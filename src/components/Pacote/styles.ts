@@ -17,12 +17,17 @@ export const Seta = styled.TouchableOpacity`
   margin-left: 5px;
 `;
 
+export const Share = styled.TouchableOpacity`
+  margin-right: 5px;
+`;
+
 export const Titulo = styled.Text`
   font-size: 30px;
   text-align: center;
   color: ${global.text};
   font-weight: bold;
   margin-left: -5px;
+  margin-right: -5px;
   flex: 2;
 `;
 

@@ -28,7 +28,7 @@ export default function Pacotes({ navigation, route }) {
         </Seta>
         <Titulo>Pacotes</Titulo>
       </TituloContainer>
-      <Cidade>{route.params.local}</Cidade>
+      <Cidade>em {route.params.local}</Cidade>
 
       <ScrollView>
         <AreaPacote>
@@ -39,6 +39,7 @@ export default function Pacotes({ navigation, route }) {
                 navigation.navigate("Pacote", {
                   titulo: "Pacote de aventura 1",
                   valor: "R$ 1000,00",
+                  local: route.params.local,
                 })
               }
             >
@@ -56,6 +57,7 @@ export default function Pacotes({ navigation, route }) {
                 navigation.navigate("Pacote", {
                   titulo: "Pacote de aventura 2",
                   valor: "R$ 2000,00",
+                  local: route.params.local,
                 })
               }
             >
@@ -79,6 +81,7 @@ export default function Pacotes({ navigation, route }) {
                 navigation.navigate("Pacote", {
                   titulo: "Pacote casual 1",
                   valor: "R$ 3000,00",
+                  local: route.params.local,
                 })
               }
             >
@@ -96,6 +99,7 @@ export default function Pacotes({ navigation, route }) {
                 navigation.navigate("Pacote", {
                   titulo: "Pacote casual 2",
                   valor: "R$ 4000,00",
+                  local: route.params.local,
                 })
               }
             >

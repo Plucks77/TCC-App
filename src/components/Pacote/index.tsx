@@ -15,22 +15,26 @@ import {
   TextoContainer,
   CampoTexto,
   Seta,
+  Share,
   Cidade,
 } from "./styles";
 import global from "../../styles/global";
 
 export default function Pacote({ navigation, route }) {
-  const { titulo, valor } = route.params;
+  const { titulo, valor, local } = route.params;
   return (
     <Container>
       <TituloContainer>
-        <Seta onPress={() => console.log("Foda")}>
+        <Seta onPress={() => navigation.navigate("Pacotes")}>
           <FontAwesome name="arrow-left" size={35} color={global.text} />
         </Seta>
         <Titulo>{titulo}</Titulo>
+        <Share>
+          <FontAwesome name="share-alt" size={35} color={global.text} />
+        </Share>
       </TituloContainer>
 
-      <Cidade>Cidade</Cidade>
+      <Cidade>{local}</Cidade>
 
       <ViewFotos>
         <ScrollFotos horizontal={true} showsHorizontalScrollIndicator={true}>
@@ -59,7 +63,7 @@ export default function Pacote({ navigation, route }) {
       <Campo>
         <CampoTitulo>Preço</CampoTitulo>
         <TextoContainer>
-          <CampoTexto>R$ 1000</CampoTexto>
+          <CampoTexto>{valor}</CampoTexto>
         </TextoContainer>
       </Campo>
 
