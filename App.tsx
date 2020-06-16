@@ -51,20 +51,9 @@ export default function App() {
 
   return ready ? (
     <NavigationContainer>
-      <Stack.Navigator
-        headerMode="none"
-        initialRouteName={user_logado ? "Main" : "Login"}
-      >
-        <Stack.Screen
-          name="Login"
-          component={LoginStack}
-          options={{ gestureEnabled: false }}
-        />
-        <Stack.Screen
-          name="Main"
-          component={BottomTab}
-          options={{ gestureEnabled: false }}
-        />
+      <Stack.Navigator headerMode="none" initialRouteName={user_logado ? "Main" : "Login"}>
+        <Stack.Screen name="Login" component={LoginStack} options={{ gestureEnabled: false }} />
+        <Stack.Screen name="Main" component={BottomTab} options={{ gestureEnabled: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   ) : (
@@ -102,6 +91,7 @@ function BottomTab() {
         activeBackgroundColor: Globals.tab_menu,
         inactiveBackgroundColor: Globals.tab_menu,
         keyboardHidesTabBar: true,
+        showLabel: false,
         style: {
           borderTopWidth: 0,
           borderTopColor: "black",
@@ -121,18 +111,14 @@ function BottomTab() {
         name="Perfil"
         component={Perfil}
         options={{
-          tabBarIcon: ({ color, size }) => (
-            <FontAwesome name="user" size={size} color={color} />
-          ),
+          tabBarIcon: ({ color, size }) => <FontAwesome name="user" size={size} color={color} />,
         }}
       />
       <Tab.Screen
         name="Configurações"
         component={Configuracoes}
         options={{
-          tabBarIcon: ({ color, size }) => (
-            <FontAwesome name="cog" size={size} color={color} />
-          ),
+          tabBarIcon: ({ color, size }) => <FontAwesome name="cog" size={size} color={color} />,
         }}
       />
     </Tab.Navigator>
