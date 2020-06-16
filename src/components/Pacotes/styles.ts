@@ -7,13 +7,23 @@ export const Container = styled.View`
   background-color: ${global.background};
 `;
 
-export const Titulo = styled.Text`
+export const TituloContainer = styled.View`
   margin-top: 50px;
+  flex-direction: row;
+  margin-bottom: 5px;
+`;
+
+export const Titulo = styled.Text`
   font-size: 30px;
   text-align: center;
   color: ${global.text};
   font-weight: bold;
-  margin-bottom: 5px;
+  margin-left: -5px;
+  flex: 2;
+`;
+
+export const Seta = styled.TouchableOpacity`
+  margin-left: 5px;
 `;
 
 export const Cidade = styled.Text`
@@ -21,7 +31,7 @@ export const Cidade = styled.Text`
   text-align: center;
   color: ${global.text};
   font-weight: bold;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 `;
 
 export const AreaPacote = styled.View`

@@ -1,7 +1,16 @@
 import React from "react";
-import { TouchableOpacity } from "react-native";
+import { FontAwesome } from "@expo/vector-icons";
 
-import { Container, Titulo, CidadesArea, CidadeNome, CidadeBotao } from "./styles";
+import {
+  Container,
+  Titulo,
+  CidadesArea,
+  CidadeNome,
+  CidadeBotao,
+  TituloContainer,
+  Seta,
+} from "./styles";
+import global from "../../styles/global";
 
 export default function Locais({ navigation, route }) {
   const { cidade } = route.params;
@@ -9,7 +18,13 @@ export default function Locais({ navigation, route }) {
     <Container>
       {cidade === "Resende" ? (
         <>
-          <Titulo>Selecione um local</Titulo>
+          <TituloContainer>
+            <Seta onPress={() => navigation.navigate("Cidades")}>
+              <FontAwesome name="arrow-left" size={35} color={global.text} />
+            </Seta>
+            <Titulo>Selecione um local</Titulo>
+          </TituloContainer>
+
           <CidadesArea>
             <CidadeBotao onPress={() => navigation.navigate("Pacotes", { local: "Mauá" })}>
               <CidadeNome>Mauá</CidadeNome>

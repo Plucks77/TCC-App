@@ -7,12 +7,22 @@ export const Container = styled.View`
   background-color: ${global.background};
 `;
 
-export const Titulo = styled.Text`
+export const TituloContainer = styled.View`
   margin-top: 50px;
+  flex-direction: row;
+`;
+
+export const Titulo = styled.Text`
+  flex: 2;
+  margin-left: -5px;
   font-size: 30px;
   text-align: center;
   color: ${global.text};
   font-weight: bold;
+`;
+
+export const Seta = styled.TouchableOpacity`
+  margin-left: 5px;
 `;
 
 export const CidadesArea = styled.View`

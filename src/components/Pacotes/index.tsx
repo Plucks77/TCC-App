@@ -1,9 +1,13 @@
 import React from "react";
 import { TouchableHighlight, ScrollView } from "react-native";
+import { FontAwesome } from "@expo/vector-icons";
+
+import global from "../../styles/global";
 
 import {
   Container,
   Titulo,
+  Seta,
   AreaPacote,
   Categoria,
   ScrollPacotes,
@@ -12,13 +16,18 @@ import {
   PacoteView,
   PacoteTextoView,
   Cidade,
+  TituloContainer,
 } from "./styles";
 
 export default function Pacotes({ navigation, route }) {
-  console.log(route.params);
   return (
     <Container>
-      <Titulo>Pacotes</Titulo>
+      <TituloContainer>
+        <Seta onPress={() => navigation.navigate("Locais")}>
+          <FontAwesome name="arrow-left" size={35} color={global.text} />
+        </Seta>
+        <Titulo>Pacotes</Titulo>
+      </TituloContainer>
       <Cidade>{route.params.local}</Cidade>
 
       <ScrollView>
