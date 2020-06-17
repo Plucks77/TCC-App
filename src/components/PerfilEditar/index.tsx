@@ -18,8 +18,35 @@ import {
   BotaoArea,
 } from "./styles";
 
+interface User {
+  id: string;
+  username: string;
+  tel: string;
+}
+
 export default function PerfilEditar({ navigation, route }) {
-  const user = route.params.user;
+  const [user, setUser] = useState<User>();
+  const [token, setToken] = useState("");
+
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+
+  useEffect(() => {
+    AsyncStorage.getItem("token").then((token) => setToken(token));
+    setUser(route.params.user);
+  }, []);
+
+  async function handleSalvar() {
+    api
+      .put(`edit/${user.id}`, user, config)
+      .then((res) => {
+        if (res.status === 200) {
+          navigation.navigate("Perfil");
+        }
+      })
+      .catch((erro) => console.log(erro));
+  }
 
   return (
     <Container>
@@ -32,13 +59,21 @@ export default function PerfilEditar({ navigation, route }) {
 
       <ViewInfos>
         <Texto>Nome:</Texto>
-        <Input>{user.username}</Input>
+        <Input
+          autoCapitalize="words"
+          value={user?.username}
+          onChangeText={(t) => setUser({ ...user, username: t })}
+        />
         <Texto>Telefone:</Texto>
-        <Input>{user.tel}</Input>
+        <Input
+          keyboardType="phone-pad"
+          value={user?.tel}
+          onChangeText={(t) => setUser({ ...user, tel: t })}
+        />
       </ViewInfos>
 
       <BotaoArea>
-        <Botao texto="Salvar" props={() => {}} />
+        <Botao texto="Salvar" props={() => handleSalvar()} />
       </BotaoArea>
     </Container>
   );

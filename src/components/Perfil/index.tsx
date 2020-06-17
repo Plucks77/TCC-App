@@ -18,7 +18,7 @@ import {
 } from "./styles";
 
 export default function Perfil({ navigation }) {
-  const [user, setUser] = useState({ username: "", email: "", tel: "" });
+  const [user, setUser] = useState({ id: "", username: "", email: "", tel: "" });
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
@@ -29,8 +29,8 @@ export default function Perfil({ navigation }) {
         headers: { Authorization: `Bearer ${tokem}` },
       };
       const response = await api.get(`/user/${user_id}`, config);
-      const { username, email, tel } = response.data;
-      setUser({ username, email, tel });
+      const { id, username, email, tel } = response.data;
+      setUser({ id, username, email, tel });
       setReady(true);
     }
     getData();
