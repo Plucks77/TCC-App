@@ -20,6 +20,7 @@ import Perfil from "./components/Perfil";
 import Configuracoes from "./components/Configuracoes";
 import EsqueciSenha from "./components/EsqueciSenha";
 import Idiomas from "./components/Idiomas";
+import PerfilEditar from "./components/PerfilEditar";
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -83,6 +84,15 @@ function ConfiguracaoStack() {
   );
 }
 
+function PerfilStack() {
+  return (
+    <Stack.Navigator headerMode="none">
+      <Stack.Screen name="Perfil" component={Perfil} />
+      <Stack.Screen name="PerfilEditar" component={PerfilEditar} />
+    </Stack.Navigator>
+  );
+}
+
 function LoginStack() {
   return (
     <Stack.Navigator headerMode="none">
@@ -120,7 +130,7 @@ function BottomTab() {
       />
       <Tab.Screen
         name="Perfil"
-        component={Perfil}
+        component={PerfilStack}
         options={{
           tabBarIcon: ({ color, size }) => <FontAwesome name="user" size={size} color={color} />,
         }}
