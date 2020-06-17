@@ -16,20 +16,27 @@ export const Titulo = styled.Text`
   margin-bottom: 20px;
 `;
 
+export const Icone = styled.View`
+  align-items: center;
+  margin-top: 50px;
+`;
+
 export const ViewInfos = styled.ScrollView.attrs(() => ({
   alignItems: "center",
 }))`
   margin-top: 25px;
-  flex: 1;
 `;
 
 export const Texto = styled.Text`
   font-size: 18px;
+  font-weight: 500;
   color: ${global.text};
   margin-left: 10px;
 `;
 
-export const Input = styled.TextInput`
+export const Input = styled.TextInput.attrs(() => ({
+  editable: false,
+}))`
   font-size: 18px;
   color: ${global.text};
   margin-bottom: 20px;
@@ -41,6 +48,11 @@ export const Input = styled.TextInput`
   border-color: #818be7;
 `;
 
+export const BotoesContainer = styled.View`
+  align-items: center;
+  margin-top: 10px;
+`;
+
 export const BotaoArea = styled.View`
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 `;
