@@ -6,13 +6,24 @@ export const Container = styled.View`
   background-color: ${global.background};
 `;
 
+export const TituloContainer = styled.View`
+  flex-direction: row;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  align-items: center;
+`;
+
+export const Seta = styled.TouchableOpacity`
+  margin-left: 10px;
+`;
+
 export const Titulo = styled.Text`
   font-size: 36px;
   font-weight: bold;
   color: ${global.text};
   text-align: center;
-  margin-top: 50px;
-  margin-bottom: 50px;
+  flex: 2;
+  margin-left: -10px;
 `;
 
 export const OpcoesContainer = styled.View`
