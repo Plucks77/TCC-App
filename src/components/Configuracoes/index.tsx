@@ -20,7 +20,7 @@ export default function Configuracoes({ navigation }) {
           <Icone>
             <FontAwesome name="language" size={25} color={global.text} />
           </Icone>
-          <Texto>Idioma</Texto>
+          <Texto>Alterar idioma</Texto>
         </Opcao>
 
         <Opcao onPress={() => handleWhatsapp()}>
