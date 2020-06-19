@@ -19,13 +19,6 @@ export default function Locais({ navigation, route }) {
     <Container>
       {cidade === "Resende" ? (
         <>
-          <TituloContainer>
-            <Seta onPress={() => navigation.navigate("Cidades")}>
-              <FontAwesome name="arrow-left" size={35} color={global.text} />
-            </Seta>
-            <Titulo>Selecione um local</Titulo>
-          </TituloContainer>
-
           <Cidade>em {cidade}</Cidade>
 
           <CidadesArea>
@@ -50,13 +43,6 @@ export default function Locais({ navigation, route }) {
         </>
       ) : (
         <>
-          <TituloContainer>
-            <Seta onPress={() => navigation.navigate("Cidades")}>
-              <FontAwesome name="arrow-left" size={35} color={global.text} />
-            </Seta>
-            <Titulo>Selecione um local</Titulo>
-          </TituloContainer>
-
           <Cidade>em {cidade}</Cidade>
 
           <CidadesArea>

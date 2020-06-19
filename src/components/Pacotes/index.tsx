@@ -22,12 +22,6 @@ import {
 export default function Pacotes({ navigation, route }) {
   return (
     <Container>
-      <TituloContainer>
-        <Seta onPress={() => navigation.navigate("Locais")}>
-          <FontAwesome name="arrow-left" size={35} color={global.text} />
-        </Seta>
-        <Titulo>Pacotes</Titulo>
-      </TituloContainer>
       <Cidade>em {route.params.local}</Cidade>
 
       <ScrollView>

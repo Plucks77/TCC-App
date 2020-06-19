@@ -24,16 +24,6 @@ export default function Pacote({ navigation, route }) {
   const { titulo, valor, local } = route.params;
   return (
     <Container>
-      <TituloContainer>
-        <Seta onPress={() => navigation.navigate("Pacotes")}>
-          <FontAwesome name="arrow-left" size={35} color={global.text} />
-        </Seta>
-        <Titulo>{titulo}</Titulo>
-        <Share>
-          <FontAwesome name="share-alt" size={35} color={global.text} />
-        </Share>
-      </TituloContainer>
-
       <Cidade>{local}</Cidade>
 
       <ViewFotos>

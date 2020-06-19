@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import { createStackNavigator } from "@react-navigation/stack";
+import { createStackNavigator, HeaderTitle } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesome } from "@expo/vector-icons";
@@ -21,6 +21,8 @@ import Configuracoes from "./components/Configuracoes";
 import EsqueciSenha from "./components/EsqueciSenha";
 import Idiomas from "./components/Idiomas";
 import PerfilEditar from "./components/PerfilEditar";
+import CidadesProposta from "./components/Cidades/CidadesProposta";
+import { TouchableOpacity, TouchableHighlight } from "react-native-gesture-handler";
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -66,11 +68,69 @@ export default function App() {
 
 function PrincipalStack() {
   return (
-    <Stack.Navigator headerMode="none">
-      <Stack.Screen name="Cidades" component={Cidades} />
-      <Stack.Screen name="Locais" component={Locais} />
-      <Stack.Screen name="Pacotes" component={Pacotes} />
-      <Stack.Screen name="Pacote" component={Pacote} />
+    <Stack.Navigator
+      headerMode="screen"
+      screenOptions={{
+        headerTintColor: "white",
+        headerTitleAlign: "center",
+        headerStyle: {
+          backgroundColor: "rgba(78, 140, 15, 0.9)",
+          borderBottomWidth: 0,
+        },
+      }}
+    >
+      <Stack.Screen
+        name="Cidades"
+        component={CidadesProposta}
+        options={{
+          title: "Escolha uma cidade",
+          headerTitleStyle: {
+            fontWeight: "bold",
+            fontSize: 20,
+          },
+        }}
+      />
+      <Stack.Screen
+        name="Locais"
+        component={Locais}
+        options={{
+          title: "Escolha um local",
+          headerTitleStyle: {
+            fontWeight: "bold",
+            fontSize: 20,
+          },
+          headerBackTitle: "Cidades",
+        }}
+      />
+      <Stack.Screen
+        name="Pacotes"
+        component={Pacotes}
+        options={{
+          title: "Pacotes",
+          headerTitleStyle: {
+            fontWeight: "bold",
+            fontSize: 20,
+          },
+          headerBackTitle: "Locais",
+        }}
+      />
+      <Stack.Screen
+        name="Pacote"
+        component={Pacote}
+        options={{
+          title: "Pacote",
+          headerTitleStyle: {
+            fontWeight: "bold",
+            fontSize: 20,
+          },
+          headerBackTitle: "Pacotes",
+          headerRight: () => (
+            <TouchableHighlight style={{ paddingRight: 15 }}>
+              <FontAwesome name="share-alt" size={25} color="white" />
+            </TouchableHighlight>
+          ),
+        }}
+      />
     </Stack.Navigator>
   );
 }

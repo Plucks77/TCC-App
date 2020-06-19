@@ -26,9 +26,10 @@ export const Seta = styled.TouchableOpacity`
 `;
 
 export const Cidade = styled.Text`
-  color: ${global.text};
+  color: ${global.background};
   text-align: center;
   font-weight: 500;
+  background: rgba(78, 140, 15, 0.9);
 `;
 
 export const CidadesArea = styled.View`
