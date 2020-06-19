@@ -9,6 +9,7 @@ import { AsyncStorage } from "react-native";
 import LottieView from "lottie-react-native";
 
 import Globals from "./styles/global";
+import { palette } from "./styles/global";
 
 import Login from "./components/Login";
 import Cadastro from "./components/Cadastro";
@@ -71,11 +72,14 @@ function PrincipalStack() {
     <Stack.Navigator
       headerMode="screen"
       screenOptions={{
-        headerTintColor: "white",
+        headerTintColor: palette.white,
         headerTitleAlign: "center",
+        headerBackTitleVisible: false,
         headerStyle: {
-          backgroundColor: "rgba(78, 140, 15, 0.9)",
+          backgroundColor: palette.primary,
           borderBottomWidth: 0,
+          elevation: 0, // remove shadow on Android
+          shadowOpacity: 0, // remove shadow on iOS
         },
       }}
     >
@@ -126,7 +130,7 @@ function PrincipalStack() {
           headerBackTitle: "Pacotes",
           headerRight: () => (
             <TouchableHighlight style={{ paddingRight: 15 }}>
-              <FontAwesome name="share-alt" size={25} color="white" />
+              <FontAwesome name="share-alt" size={25} color={palette.white} />
             </TouchableHighlight>
           ),
         }}
@@ -167,15 +171,15 @@ function BottomTab() {
   return (
     <Tab.Navigator
       tabBarOptions={{
-        activeTintColor: "black",
-        inactiveTintColor: Globals.tab_menu_secundary,
-        activeBackgroundColor: Globals.tab_menu,
-        inactiveBackgroundColor: Globals.tab_menu,
+        activeTintColor: palette.secundary,
+        inactiveTintColor: palette.white,
+        activeBackgroundColor: palette.primary,
+        inactiveBackgroundColor: palette.primary,
         keyboardHidesTabBar: true,
         showLabel: false,
         style: {
           borderTopWidth: 0,
-          borderTopColor: "black",
+          borderTopColor: palette.secundary,
         },
       }}
     >

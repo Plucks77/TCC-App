@@ -1,55 +1,50 @@
 import styled from "styled-components/native";
-import global from "../../styles/global";
+import { palette } from "../../styles/global";
 
 export const Container = styled.View`
   display: flex;
   flex: 1;
-  background-color: ${global.background};
-`;
-
-export const TituloContainer = styled.View`
-  margin-top: 50px;
-  flex-direction: row;
-`;
-
-export const Titulo = styled.Text`
-  flex: 2;
-  margin-left: -5px;
-  font-size: 30px;
-  text-align: center;
-  color: ${global.text};
-  font-weight: bold;
-`;
-
-export const Seta = styled.TouchableOpacity`
-  margin-left: 5px;
+  background-color: ${palette.white};
 `;
 
 export const Cidade = styled.Text`
-  color: ${global.background};
+  color: ${palette.white};
   text-align: center;
   font-weight: 500;
-  background: rgba(78, 140, 15, 0.9);
+  background: ${palette.primary};
 `;
 
-export const CidadesArea = styled.View`
-  flex: 1;
-  justify-content: space-evenly;
-  align-items: center;
-`;
+export const CidadesArea = styled.ScrollView.attrs(() => ({
+  contentContainerStyle: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "space-evenly",
+  },
+}))``;
 
-export const CidadeBotao = styled.TouchableOpacity`
-  background: ${global.buttonLight};
-  border: 2px solid ${global.button};
-  width: 300px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
+export const CidadeBotao = styled.TouchableOpacity``;
+
+export const CidadeFoto = styled.ImageBackground.attrs(() => ({
+  borderRadius: 25,
+  resizeMode: "stretch",
+}))`
+  width: 350px;
+  height: 110px;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-  border-radius: 20px;
+  shadow-opacity: 1;
+  shadow-radius: 1px;
+  shadow-color: black;
+  shadow-offset: 0px 0px;
+  elevation: 1;
 `;
 
 export const CidadeNome = styled.Text`
+  color: ${palette.white};
   font-size: 25px;
-  color: ${global.text};
+  margin-left: 10px;
+  text-shadow-radius: 5px;
+  text-shadow-color: black;
+  text-shadow-offset: 0px 0px;
 `;

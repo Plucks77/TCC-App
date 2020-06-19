@@ -1,16 +1,6 @@
 import React from "react";
 import { FontAwesome } from "@expo/vector-icons";
-
-import {
-  Container,
-  Titulo,
-  CidadesArea,
-  CidadeNome,
-  CidadeBotao,
-  TituloContainer,
-  Seta,
-  Cidade,
-} from "./styles";
+import { Container, CidadesArea, CidadeFoto, CidadeNome, CidadeBotao, Cidade } from "./styles";
 import global from "../../styles/global";
 
 export default function Locais({ navigation, route }) {
@@ -22,22 +12,32 @@ export default function Locais({ navigation, route }) {
           <Cidade>em {cidade}</Cidade>
 
           <CidadesArea>
-            <CidadeBotao onPress={() => navigation.navigate("Pacotes", { local: "Mauá" })}>
-              <CidadeNome>Mauá</CidadeNome>
+            <CidadeBotao
+              onPress={() => navigation.navigate("Pacotes", { local: "Visconde de Mauá" })}
+            >
+              <CidadeFoto source={require("../../../assets/locais/maua.jpg")}>
+                <CidadeNome>Visconde de Mauá</CidadeNome>
+              </CidadeFoto>
             </CidadeBotao>
 
             <CidadeBotao onPress={() => navigation.navigate("Pacotes", { local: "Serrinha" })}>
-              <CidadeNome>Serrinha</CidadeNome>
+              <CidadeFoto source={require("../../../assets/locais/serrinha.jpg")}>
+                <CidadeNome>Serrinha</CidadeNome>
+              </CidadeFoto>
             </CidadeBotao>
 
             <CidadeBotao onPress={() => navigation.navigate("Pacotes", { local: "Capelinha" })}>
-              <CidadeNome>Capelinha</CidadeNome>
+              <CidadeFoto source={require("../../../assets/locais/capelinha.jpg")}>
+                <CidadeNome>Capelinha</CidadeNome>
+              </CidadeFoto>
             </CidadeBotao>
 
             <CidadeBotao
               onPress={() => navigation.navigate("Pacotes", { local: "Engenheiro Passos" })}
             >
-              <CidadeNome>Engenheiro Passos</CidadeNome>
+              <CidadeFoto source={require("../../../assets/locais/engpassos.jpg")}>
+                <CidadeNome>Engenherio Passos</CidadeNome>
+              </CidadeFoto>
             </CidadeBotao>
           </CidadesArea>
         </>
@@ -46,16 +46,24 @@ export default function Locais({ navigation, route }) {
           <Cidade>em {cidade}</Cidade>
 
           <CidadesArea>
-            <CidadeBotao onPress={() => navigation.navigate("Pacotes", { local: "Penedo" })}>
-              <CidadeNome>Penedo</CidadeNome>
+            <CidadeBotao
+              onPress={() => navigation.navigate("Pacotes", { local: "Visconde de Mauá" })}
+            >
+              <CidadeFoto source={require("../../../assets/locais/penedo.jpg")}>
+                <CidadeNome>Penedo</CidadeNome>
+              </CidadeFoto>
             </CidadeBotao>
 
-            <CidadeBotao onPress={() => navigation.navigate("Pacotes", { local: "Maringá" })}>
-              <CidadeNome>Maringá</CidadeNome>
+            <CidadeBotao onPress={() => navigation.navigate("Pacotes", { local: "Serrinha" })}>
+              <CidadeFoto source={require("../../../assets/locais/maringa.jpg")}>
+                <CidadeNome>Maringá</CidadeNome>
+              </CidadeFoto>
             </CidadeBotao>
 
-            <CidadeBotao onPress={() => navigation.navigate("Pacotes", { local: "Maromba" })}>
-              <CidadeNome>Maromba</CidadeNome>
+            <CidadeBotao onPress={() => navigation.navigate("Pacotes", { local: "Capelinha" })}>
+              <CidadeFoto source={require("../../../assets/locais/maromba.jpg")}>
+                <CidadeNome>Maromba</CidadeNome>
+              </CidadeFoto>
             </CidadeBotao>
           </CidadesArea>
         </>
