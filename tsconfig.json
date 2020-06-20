@@ -11,7 +11,17 @@
       {
         "name": "typescript-styled-plugin",
         "lint": {
-          "validProperties": ["resize-mode"]
+          "validProperties": [
+            "resize-mode",
+            "shadow-opacity",
+            "shadow-radius",
+            "shadow-color",
+            "shadow-offset",
+            "text-shadow-radius",
+            "text-shadow-color",
+            "text-shadow-offset",
+            "elevation"
+          ]
         }
       }
     ]

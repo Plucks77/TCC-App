@@ -59,8 +59,7 @@ export const DescricaoContainer = styled.View`
   background: #e5e5e5e5;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
-  padding-top: 25px;
-  margin-top: -20px;
+  padding-top: 5px;
   z-index: 5;
 `;
 
