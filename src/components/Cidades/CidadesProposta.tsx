@@ -1,16 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Feather } from "@expo/vector-icons";
-import {
-  Animated,
-  Image,
-  View,
-  Text,
-  Button,
-  LayoutAnimation,
-  Platform,
-  UIManager,
-  TouchableHighlight,
-} from "react-native";
+import { LayoutAnimation, Platform, UIManager } from "react-native";
 import {
   Container,
   CidadeContainer,
@@ -21,7 +11,9 @@ import {
   DescricaoContainer,
   DescricaoTexto,
   DescricaoBotao,
+  DescricaoBotaoContainer,
   DescricaoBotaoTexto,
+  DescricaoBotaoIcone,
 } from "./CidadesPropostaStyles";
 
 if (Platform.OS === "android" && UIManager.setLayoutAnimationEnabledExperimental) {
@@ -31,6 +23,8 @@ if (Platform.OS === "android" && UIManager.setLayoutAnimationEnabledExperimental
 export default function CidadesProposta({ navigation }) {
   const [resendeVisible, setResendeVisible] = useState(false);
   const [itatiaiaVisible, setItatiaiaVisible] = useState(false);
+
+  const scrollView = useRef(null);
 
   const toggleResende = () => {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
@@ -45,8 +39,16 @@ export default function CidadesProposta({ navigation }) {
   };
 
   return (
-    <Container>
-      <Image style={{ position: "absolute" }} source={require("../../../assets/vector1.png")} />
+    <Container
+      ref={scrollView}
+      onContentSizeChange={() => {
+        itatiaiaVisible && scrollView.current.scrollToEnd();
+      }}
+    >
+      {/* <Image
+        style={{ position: "absolute", zIndex: -5 }}
+        source={require("../../../assets/vector1.png")}
+      /> */}
       <CidadesContainer>
         <CidadeContainer onPress={toggleResende}>
           <>
@@ -74,7 +76,12 @@ export default function CidadesProposta({ navigation }) {
                 <DescricaoBotao
                   onPress={() => navigation.navigate("Locais", { cidade: "Resende" })}
                 >
-                  <DescricaoBotaoTexto>Ver locais</DescricaoBotaoTexto>
+                  <DescricaoBotaoContainer>
+                    <DescricaoBotaoTexto>Ver locais</DescricaoBotaoTexto>
+                    <DescricaoBotaoIcone>
+                      <Feather name="arrow-right-circle" size={25} color="white" />
+                    </DescricaoBotaoIcone>
+                  </DescricaoBotaoContainer>
                 </DescricaoBotao>
               </DescricaoContainer>
             )}
@@ -105,13 +112,23 @@ export default function CidadesProposta({ navigation }) {
                 <DescricaoBotao
                   onPress={() => navigation.navigate("Locais", { cidade: "Itatiaia" })}
                 >
-                  <DescricaoBotaoTexto>Ver locais</DescricaoBotaoTexto>
+                  <DescricaoBotaoContainer>
+                    <DescricaoBotaoTexto>Ver locais</DescricaoBotaoTexto>
+                    <DescricaoBotaoIcone>
+                      <Feather name="arrow-right-circle" size={25} color="white" />
+                    </DescricaoBotaoIcone>
+                  </DescricaoBotaoContainer>
                 </DescricaoBotao>
               </DescricaoContainer>
             )}
           </>
         </CidadeContainer>
       </CidadesContainer>
+
+      {/* <Image
+        style={{ position: "absolute", bottom: 0, zIndex: -5 }}
+        source={require("../../../assets/vector2.png")}
+      /> */}
     </Container>
   );
 }

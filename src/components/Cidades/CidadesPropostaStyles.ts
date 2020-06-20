@@ -2,13 +2,13 @@ import styled from "styled-components/native";
 import global from "../../styles/global";
 
 export const Container = styled.ScrollView.attrs(() => ({
+  showsVerticalScrollIndicator: false,
   contentContainerStyle: {},
 }))``;
 
 export const CidadesContainer = styled.View`
   flex: 1;
   justify-content: space-evenly;
-  margin-bottom: 10px;
 `;
 
 export const CidadeContainer = styled.TouchableOpacity.attrs(() => ({
@@ -17,16 +17,17 @@ export const CidadeContainer = styled.TouchableOpacity.attrs(() => ({
   align-items: center;
   justify-content: center;
   margin-top: 20px;
+  margin-bottom: 10px;
 `;
 
 export const Imagem = styled.ImageBackground.attrs(() => ({
-  borderRadius: 25,
+  borderRadius: 5,
   resizeMode: "stretch",
 }))`
   width: 350px;
   height: 200px;
   flex-direction: column;
-
+  z-index: 10;
   shadow-opacity: 1;
   shadow-radius: 1px;
   shadow-color: black;
@@ -36,7 +37,7 @@ export const Imagem = styled.ImageBackground.attrs(() => ({
 
 export const CidadeNome = styled.Text`
   color: white;
-  flex: 2;
+  flex: 1;
   margin-top: 50px;
   font-size: 25px;
   margin-left: 10px;
@@ -46,7 +47,6 @@ export const CidadeNome = styled.Text`
 `;
 
 export const SetaContainer = styled.View`
-  background: rgba(108, 134, 140, 0.15);
   width: 350px;
   height: 80px;
   border-radius: 25px;
@@ -56,16 +56,18 @@ export const SetaContainer = styled.View`
 
 export const DescricaoContainer = styled.View`
   width: 350px;
-  background: rgba(78, 140, 15, 0.9);
+  background: #e5e5e5e5;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   padding-top: 25px;
   margin-top: -20px;
-  z-index: -5;
+  z-index: 5;
 `;
 
 export const DescricaoTexto = styled.Text`
-  color: white;
+  color: #122624;
+  font-size: 14px;
+  font-weight: 500;
   padding: 10px;
 `;
 
@@ -74,12 +76,24 @@ export const DescricaoBotao = styled.TouchableOpacity`
   height: 30px;
   border-radius: 5px;
   align-self: center;
-  justify-content: center;
-  align-items: center;
+  flex-direction: row;
   background: rgba(78, 140, 15, 1);
+`;
+
+export const DescricaoBotaoContainer = styled.View`
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
 `;
 
 export const DescricaoBotaoTexto = styled.Text`
   color: white;
   font-weight: bold;
+  flex: 1;
+  text-align: center;
+  margin-left: 10px;
+`;
+
+export const DescricaoBotaoIcone = styled.View`
+  margin-right: 10px;
 `;
