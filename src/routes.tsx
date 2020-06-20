@@ -72,15 +72,9 @@ function PrincipalStack() {
     <Stack.Navigator
       headerMode="screen"
       screenOptions={{
-        headerTintColor: palette.white,
+        headerTintColor: palette.secundary,
         headerTitleAlign: "center",
         headerBackTitleVisible: false,
-        headerStyle: {
-          backgroundColor: palette.primary,
-          borderBottomWidth: 0,
-          elevation: 0, // remove shadow on Android
-          shadowOpacity: 0, // remove shadow on iOS
-        },
       }}
     >
       <Stack.Screen
@@ -172,15 +166,8 @@ function BottomTab() {
     <Tab.Navigator
       tabBarOptions={{
         activeTintColor: palette.secundary,
-        inactiveTintColor: palette.white,
-        activeBackgroundColor: palette.primary,
-        inactiveBackgroundColor: palette.primary,
         keyboardHidesTabBar: true,
         showLabel: false,
-        style: {
-          borderTopWidth: 0,
-          borderTopColor: palette.secundary,
-        },
       }}
     >
       <Tab.Screen
