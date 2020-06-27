@@ -14,7 +14,7 @@ import {
   PacoteTexto,
 } from "./styles";
 
-export default function Categorias() {
+export default function Categorias({ navigation, route }) {
   const [c1y, setC1y] = useState<number>();
   const [c2y, setC2y] = useState<number>();
   const [c3y, setC3y] = useState<number>();
@@ -32,6 +32,7 @@ export default function Categorias() {
     c3.current.measure((fx, fy, width, height, px, py) => {
       setC3y(py - height - 80);
     });
+    navigation.setOptions({ title: route.params.local });
   }, []);
 
   function handleScroll(y: number) {
