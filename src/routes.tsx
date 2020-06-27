@@ -8,14 +8,13 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import { AsyncStorage } from "react-native";
 import LottieView from "lottie-react-native";
 
-import Globals from "./styles/global";
 import { palette } from "./styles/global";
 
 import Login from "./components/Login";
 import Cadastro from "./components/Cadastro";
 import Locais from "./components/Locais";
 import Cidades from "./components/Cidades";
-import Pacotes from "./components/Pacotes";
+import Categorias from "./components/Categorias";
 import Pacote from "./components/Pacote";
 import Perfil from "./components/Perfil";
 import Configuracoes from "./components/Configuracoes";
@@ -101,10 +100,10 @@ function PrincipalStack() {
         }}
       />
       <Stack.Screen
-        name="Pacotes"
-        component={Pacotes}
+        name="Categorias"
+        component={Categorias}
         options={{
-          title: "Pacotes",
+          title: "Visconde de Mauá",
           headerTitleStyle: {
             fontWeight: "bold",
             fontSize: 20,
