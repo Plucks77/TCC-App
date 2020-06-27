@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { TouchableOpacity, View } from "react-native";
-
+import { useHeaderHeight } from "@react-navigation/stack";
 import {
   Container,
   MenuContainer,
@@ -22,15 +22,17 @@ export default function Categorias({ navigation, route }) {
   const c1 = useRef(null);
   const c2 = useRef(null);
   const c3 = useRef(null);
+  const headerHeight = useHeaderHeight();
+
   useEffect(() => {
     c1.current.measure((fx, fy, width, height, px, py) => {
-      setC1y(py - height - 80);
+      setC1y(py - height - headerHeight - 20);
     });
     c2.current.measure((fx, fy, width, height, px, py) => {
-      setC2y(py - height - 80);
+      setC2y(py - height - headerHeight - 20);
     });
     c3.current.measure((fx, fy, width, height, px, py) => {
-      setC3y(py - height - 80);
+      setC3y(py - height - headerHeight - 20);
     });
     navigation.setOptions({ title: route.params.local });
   }, []);
