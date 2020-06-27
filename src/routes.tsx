@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import { createStackNavigator, HeaderTitle } from "@react-navigation/stack";
+import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesome } from "@expo/vector-icons";
@@ -21,7 +21,7 @@ import Configuracoes from "./components/Configuracoes";
 import EsqueciSenha from "./components/EsqueciSenha";
 import Idiomas from "./components/Idiomas";
 import PerfilEditar from "./components/PerfilEditar";
-import { TouchableOpacity, TouchableHighlight } from "react-native-gesture-handler";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -121,9 +121,9 @@ function PrincipalStack() {
           },
           headerBackTitle: "Pacotes",
           headerRight: () => (
-            <TouchableHighlight style={{ paddingRight: 15 }}>
-              <FontAwesome name="share-alt" size={25} color={palette.white} />
-            </TouchableHighlight>
+            <TouchableOpacity style={{ paddingRight: 15 }}>
+              <FontAwesome name="share-alt" size={25} color={palette.secundary} />
+            </TouchableOpacity>
           ),
         }}
       />
