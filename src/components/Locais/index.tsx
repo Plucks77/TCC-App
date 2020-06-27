@@ -9,31 +9,31 @@ export default function Locais({ navigation, route }) {
     <Container>
       {cidade === "Resende" ? (
         <>
-          <Cidade>em {cidade}</Cidade>
+          <Cidade>{cidade}</Cidade>
 
           <CidadesArea>
             <CidadeBotao
-              onPress={() => navigation.navigate("Pacotes", { local: "Visconde de Mauá" })}
+              onPress={() => navigation.navigate("Categorias", { local: "Visconde de Mauá" })}
             >
               <CidadeFoto source={require("../../../assets/locais/maua.jpg")}>
                 <CidadeNome>Visconde de Mauá</CidadeNome>
               </CidadeFoto>
             </CidadeBotao>
 
-            <CidadeBotao onPress={() => navigation.navigate("Pacotes", { local: "Serrinha" })}>
+            <CidadeBotao onPress={() => navigation.navigate("Categorias", { local: "Serrinha" })}>
               <CidadeFoto source={require("../../../assets/locais/serrinha.jpg")}>
                 <CidadeNome>Serrinha</CidadeNome>
               </CidadeFoto>
             </CidadeBotao>
 
-            <CidadeBotao onPress={() => navigation.navigate("Pacotes", { local: "Capelinha" })}>
+            <CidadeBotao onPress={() => navigation.navigate("Categorias", { local: "Capelinha" })}>
               <CidadeFoto source={require("../../../assets/locais/capelinha.jpg")}>
                 <CidadeNome>Capelinha</CidadeNome>
               </CidadeFoto>
             </CidadeBotao>
 
             <CidadeBotao
-              onPress={() => navigation.navigate("Pacotes", { local: "Engenheiro Passos" })}
+              onPress={() => navigation.navigate("Categorias", { local: "Engenheiro Passos" })}
             >
               <CidadeFoto source={require("../../../assets/locais/engpassos.jpg")}>
                 <CidadeNome>Engenherio Passos</CidadeNome>
@@ -47,20 +47,20 @@ export default function Locais({ navigation, route }) {
 
           <CidadesArea>
             <CidadeBotao
-              onPress={() => navigation.navigate("Pacotes", { local: "Visconde de Mauá" })}
+              onPress={() => navigation.navigate("Categorias", { local: "Visconde de Mauá" })}
             >
               <CidadeFoto source={require("../../../assets/locais/penedo.jpg")}>
                 <CidadeNome>Penedo</CidadeNome>
               </CidadeFoto>
             </CidadeBotao>
 
-            <CidadeBotao onPress={() => navigation.navigate("Pacotes", { local: "Serrinha" })}>
+            <CidadeBotao onPress={() => navigation.navigate("Categorias", { local: "Serrinha" })}>
               <CidadeFoto source={require("../../../assets/locais/maringa.jpg")}>
                 <CidadeNome>Maringá</CidadeNome>
               </CidadeFoto>
             </CidadeBotao>
 
-            <CidadeBotao onPress={() => navigation.navigate("Pacotes", { local: "Capelinha" })}>
+            <CidadeBotao onPress={() => navigation.navigate("Categorias", { local: "Capelinha" })}>
               <CidadeFoto source={require("../../../assets/locais/maromba.jpg")}>
                 <CidadeNome>Maromba</CidadeNome>
               </CidadeFoto>

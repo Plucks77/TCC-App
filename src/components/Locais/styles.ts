@@ -2,16 +2,14 @@ import styled from "styled-components/native";
 import { palette } from "../../styles/global";
 
 export const Container = styled.View`
-  display: flex;
   flex: 1;
   background-color: ${palette.white};
 `;
 
 export const Cidade = styled.Text`
-  color: ${palette.white};
+  color: ${palette.secundary};
   text-align: center;
   font-weight: 500;
-  background: ${palette.primary};
 `;
 
 export const CidadesArea = styled.ScrollView.attrs(() => ({
@@ -25,7 +23,7 @@ export const CidadesArea = styled.ScrollView.attrs(() => ({
 export const CidadeBotao = styled.TouchableOpacity``;
 
 export const CidadeFoto = styled.ImageBackground.attrs(() => ({
-  borderRadius: 25,
+  borderRadius: 5,
   resizeMode: "stretch",
 }))`
   width: 350px;
