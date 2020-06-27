@@ -4,34 +4,34 @@ import { FontAwesome } from "@expo/vector-icons";
 import Botao from "../Botao";
 import {
   Container,
-  TituloContainer,
-  Titulo,
   ScrollFotos,
   Imagem,
-  ViewFotos,
   ViewBotao,
   Campo,
   CampoTitulo,
   TextoContainer,
   CampoTexto,
-  Seta,
-  Share,
-  Cidade,
+  LikeContainer,
 } from "./styles";
-import global from "../../styles/global";
+import global, { palette } from "../../styles/global";
+import { useEffect } from "react";
 
 export default function Pacote({ navigation, route }) {
   const { titulo, valor, local } = route.params;
+
+  useEffect(() => {
+    navigation.setOptions({ title: titulo });
+  }, []);
+
   return (
     <Container>
-      <Cidade>{local}</Cidade>
-
-      <ViewFotos>
-        <ScrollFotos horizontal={true} showsHorizontalScrollIndicator={true}>
-          <Imagem source={require("../../../assets/pacote1.jpg")} />
-          <Imagem source={require("../../../assets/pacote2.jpg")} />
-        </ScrollFotos>
-      </ViewFotos>
+      <LikeContainer>
+        <FontAwesome name="heart" size={30} color={palette.white} />
+      </LikeContainer>
+      <ScrollFotos horizontal={true} showsHorizontalScrollIndicator={true}>
+        <Imagem source={require("../../../assets/pacote1.jpg")} />
+        <Imagem source={require("../../../assets/pacote2.jpg")} />
+      </ScrollFotos>
 
       <Campo>
         <CampoTitulo>Descrição</CampoTitulo>
@@ -47,13 +47,14 @@ export default function Pacote({ navigation, route }) {
         <CampoTitulo>Guia</CampoTitulo>
         <TextoContainer>
           <CampoTexto>Mário Roberto da Silva</CampoTexto>
+          <CampoTexto>Um guia muito bom por ter nascido e morado na cidade por 40 anos</CampoTexto>
         </TextoContainer>
       </Campo>
 
       <Campo>
         <CampoTitulo>Preço</CampoTitulo>
         <TextoContainer>
-          <CampoTexto>{valor}</CampoTexto>
+          <CampoTexto>R$ {valor}</CampoTexto>
         </TextoContainer>
       </Campo>
 

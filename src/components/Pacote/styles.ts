@@ -1,5 +1,7 @@
 import styled from "styled-components/native";
-import global from "../../styles/global";
+import global, { palette } from "../../styles/global";
+import { Dimensions } from "react-native";
+const WIDTH = Dimensions.get("window").width;
 
 export const Container = styled.ScrollView`
   display: flex;
@@ -7,56 +9,28 @@ export const Container = styled.ScrollView`
   background-color: ${global.background};
 `;
 
-export const TituloContainer = styled.View`
-  flex-direction: row;
-  margin-top: 50px;
-  margin-bottom: 5px;
-`;
+export const ScrollFotos = styled.ScrollView.attrs(() => ({
+  contentContainerStyle: {
+    marginBottom: 20,
+    marginRight: 5,
+  },
+}))``;
 
-export const Seta = styled.TouchableOpacity`
-  margin-left: 5px;
-`;
-
-export const Share = styled.TouchableOpacity`
-  margin-right: 5px;
-`;
-
-export const Titulo = styled.Text`
-  font-size: 30px;
-  text-align: center;
-  color: ${global.text};
-  font-weight: bold;
-  margin-left: -5px;
-  margin-right: -5px;
-  flex: 2;
-`;
-
-export const Cidade = styled.Text`
-  text-align: center;
-  color: ${global.text};
-  font-weight: 500;
-  margin-bottom: 40px;
-`;
-
-export const ScrollFotos = styled.ScrollView``;
-
-export const ViewFotos = styled.View`
-  margin-bottom: 20px;
-  margin-left: 5px;
-  margin-right: 5px;
+export const LikeContainer = styled.TouchableOpacity`
+  position: absolute;
+  top: 30px;
+  left: ${WIDTH - 40}px;
+  z-index: 30;
 `;
 
 export const Imagem = styled.Image`
-  width: 330px;
+  width: ${WIDTH}px;
   height: 150px;
   resize-mode: stretch;
-  margin-left: 10px;
-  margin-right: 10px;
-  border-radius: 10px;
 `;
 
 export const Campo = styled.View`
-  margin-bottom: 5px;
+  margin-bottom: 15px;
 `;
 export const CampoTitulo = styled.Text`
   font-weight: 500;
@@ -67,13 +41,11 @@ export const CampoTitulo = styled.Text`
 `;
 
 export const TextoContainer = styled.View`
-  padding: 10px 10px 10px 60px;
-  background: ${global.buttonLight};
-  border: 2px solid ${global.button};
+  padding: 10px 10px 10px 20px;
+  background: ${palette.lightGray};
+  border: 1px solid ${palette.secundary};
   border-left-width: 0;
-  margin-right: 40px;
-  margin-left: -40px;
-  border-radius: 30px;
+  border-right-width: 0;
 `;
 
 export const CampoTexto = styled.Text`
