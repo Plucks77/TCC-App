@@ -20,7 +20,9 @@ export const CidadesArea = styled.ScrollView.attrs(() => ({
   },
 }))``;
 
-export const CidadeBotao = styled.TouchableOpacity``;
+export const CidadeBotao = styled.TouchableOpacity.attrs(() => ({
+  activeOpacity: 0.8,
+}))``;
 
 export const CidadeFoto = styled.ImageBackground.attrs(() => ({
   borderRadius: 5,
