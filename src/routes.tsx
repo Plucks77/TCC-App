@@ -21,7 +21,6 @@ import Configuracoes from "./components/Configuracoes";
 import EsqueciSenha from "./components/EsqueciSenha";
 import Idiomas from "./components/Idiomas";
 import PerfilEditar from "./components/PerfilEditar";
-import CidadesProposta from "./components/Cidades/CidadesProposta";
 import { TouchableOpacity, TouchableHighlight } from "react-native-gesture-handler";
 
 const Drawer = createDrawerNavigator();
@@ -78,7 +77,7 @@ function PrincipalStack() {
     >
       <Stack.Screen
         name="Cidades"
-        component={CidadesProposta}
+        component={Cidades}
         options={{
           title: "Escolha uma cidade",
           headerTitleStyle: {
