@@ -36,7 +36,7 @@ export default function Categorias({ navigation, route }) {
   }, []);
 
   function handleScroll(y: number) {
-    console.log(y);
+    // console.log(y);
     scrollView.current.scrollTo({ x: 0, y, animated: true });
   }
 
@@ -57,7 +57,15 @@ export default function Categorias({ navigation, route }) {
       <CategoriasContainer ref={scrollView}>
         <CategoriaContainer>
           <CategoriaNome ref={c1}>Aventura</CategoriaNome>
-          <PacoteContainer onPress={() => console.log("Coé")}>
+          <PacoteContainer
+            onPress={() =>
+              navigation.navigate("Pacote", {
+                titulo: "Pacote 1",
+                valor: 1000,
+                local: route.params.local,
+              })
+            }
+          >
             <PacoteFoto source={require("../../../assets/pacotes/pacote1.jpg")} />
             <PacoteTextoContainer>
               <PacoteTexto>Pacote 1</PacoteTexto>
@@ -65,7 +73,15 @@ export default function Categorias({ navigation, route }) {
             </PacoteTextoContainer>
           </PacoteContainer>
 
-          <PacoteContainer>
+          <PacoteContainer
+            onPress={() =>
+              navigation.navigate("Pacote", {
+                titulo: "Pacote 2",
+                valor: 2000,
+                local: route.params.local,
+              })
+            }
+          >
             <PacoteFoto source={require("../../../assets/pacotes/pacote1.jpg")} />
             <PacoteTextoContainer>
               <PacoteTexto>Pacote 2</PacoteTexto>
@@ -76,7 +92,15 @@ export default function Categorias({ navigation, route }) {
 
         <CategoriaContainer>
           <CategoriaNome ref={c2}>Ação</CategoriaNome>
-          <PacoteContainer>
+          <PacoteContainer
+            onPress={() =>
+              navigation.navigate("Pacote", {
+                titulo: "Pacote 3",
+                valor: 3000,
+                local: route.params.local,
+              })
+            }
+          >
             <PacoteFoto source={require("../../../assets/pacotes/pacote1.jpg")} />
             <PacoteTextoContainer>
               <PacoteTexto>Pacote 3</PacoteTexto>
@@ -84,7 +108,15 @@ export default function Categorias({ navigation, route }) {
             </PacoteTextoContainer>
           </PacoteContainer>
 
-          <PacoteContainer>
+          <PacoteContainer
+            onPress={() =>
+              navigation.navigate("Pacote", {
+                titulo: "Pacote 4",
+                valor: 4000,
+                local: route.params.local,
+              })
+            }
+          >
             <PacoteFoto source={require("../../../assets/pacotes/pacote1.jpg")} />
             <PacoteTextoContainer>
               <PacoteTexto>Pacote 4</PacoteTexto>
@@ -92,7 +124,15 @@ export default function Categorias({ navigation, route }) {
             </PacoteTextoContainer>
           </PacoteContainer>
 
-          <PacoteContainer>
+          <PacoteContainer
+            onPress={() =>
+              navigation.navigate("Pacote", {
+                titulo: "Pacote 5",
+                valor: 5000,
+                local: route.params.local,
+              })
+            }
+          >
             <PacoteFoto source={require("../../../assets/pacotes/pacote1.jpg")} />
             <PacoteTextoContainer>
               <PacoteTexto>Pacote 5</PacoteTexto>
@@ -103,7 +143,15 @@ export default function Categorias({ navigation, route }) {
 
         <CategoriaContainer>
           <CategoriaNome ref={c3}>Casual</CategoriaNome>
-          <PacoteContainer>
+          <PacoteContainer
+            onPress={() =>
+              navigation.navigate("Pacote", {
+                titulo: "Pacote 6",
+                valor: 6000,
+                local: route.params.local,
+              })
+            }
+          >
             <PacoteFoto source={require("../../../assets/pacotes/pacote1.jpg")} />
             <PacoteTextoContainer>
               <PacoteTexto>Pacote 6</PacoteTexto>
@@ -111,7 +159,15 @@ export default function Categorias({ navigation, route }) {
             </PacoteTextoContainer>
           </PacoteContainer>
 
-          <PacoteContainer>
+          <PacoteContainer
+            onPress={() =>
+              navigation.navigate("Pacote", {
+                titulo: "Pacote 7",
+                valor: 7000,
+                local: route.params.local,
+              })
+            }
+          >
             <PacoteFoto source={require("../../../assets/pacotes/pacote1.jpg")} />
             <PacoteTextoContainer>
               <PacoteTexto>Pacote 7</PacoteTexto>
@@ -119,7 +175,15 @@ export default function Categorias({ navigation, route }) {
             </PacoteTextoContainer>
           </PacoteContainer>
 
-          <PacoteContainer>
+          <PacoteContainer
+            onPress={() =>
+              navigation.navigate("Pacote", {
+                titulo: "Pacote 8",
+                valor: 8000,
+                local: route.params.local,
+              })
+            }
+          >
             <PacoteFoto source={require("../../../assets/pacotes/pacote1.jpg")} />
             <PacoteTextoContainer>
               <PacoteTexto>Pacote 8</PacoteTexto>
