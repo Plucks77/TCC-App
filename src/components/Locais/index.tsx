@@ -1,10 +1,10 @@
 import React from "react";
-import { FontAwesome } from "@expo/vector-icons";
+
 import { Container, CidadesArea, CidadeFoto, CidadeNome, CidadeBotao, Cidade } from "./styles";
-import global from "../../styles/global";
 
 export default function Locais({ navigation, route }) {
   const { cidade } = route.params;
+
   return (
     <Container>
       {cidade === "Resende" ? (
@@ -46,21 +46,19 @@ export default function Locais({ navigation, route }) {
           <Cidade>em {cidade}</Cidade>
 
           <CidadesArea>
-            <CidadeBotao
-              onPress={() => navigation.navigate("Categorias", { local: "Visconde de Mauá" })}
-            >
+            <CidadeBotao onPress={() => navigation.navigate("Categorias", { local: "Penedo" })}>
               <CidadeFoto source={require("../../../assets/locais/penedo.jpg")}>
                 <CidadeNome>Penedo</CidadeNome>
               </CidadeFoto>
             </CidadeBotao>
 
-            <CidadeBotao onPress={() => navigation.navigate("Categorias", { local: "Serrinha" })}>
+            <CidadeBotao onPress={() => navigation.navigate("Categorias", { local: "Maringá" })}>
               <CidadeFoto source={require("../../../assets/locais/maringa.jpg")}>
                 <CidadeNome>Maringá</CidadeNome>
               </CidadeFoto>
             </CidadeBotao>
 
-            <CidadeBotao onPress={() => navigation.navigate("Categorias", { local: "Capelinha" })}>
+            <CidadeBotao onPress={() => navigation.navigate("Categorias", { local: "Maromba" })}>
               <CidadeFoto source={require("../../../assets/locais/maromba.jpg")}>
                 <CidadeNome>Maromba</CidadeNome>
               </CidadeFoto>
