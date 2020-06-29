@@ -1,17 +1,18 @@
 import styled from "styled-components/native";
 import global from "../../styles/global";
+import { palette } from "../../styles/global";
 
 export const Container = styled.SafeAreaView`
   display: flex;
   flex: 1;
-  background-color: ${global.background};
+  background-color: ${palette.white};
 `;
 
 export const LogoView = styled.View`
   justify-content: center;
   align-items: center;
   margin-bottom: 50px;
-  margin-top: 40px;
+  margin-top: 5px;
 `;
 
 export const Logo = styled.Image`
@@ -34,8 +35,8 @@ export const Input = styled.TextInput`
   width: 310px;
   height: 40px;
   border: 2px;
-  border-color: ${global.button};
-  color: ${global.text};
+  border-color: ${palette.secundary};
+  color: ${palette.secundary};
   font-size: 20px;
   padding-left: 35px;
   border-radius: 10px;
@@ -43,13 +44,13 @@ export const Input = styled.TextInput`
 
 export const Erro = styled.Text`
   font-weight: bold;
-  color: ${global.error};
+  color: ${palette.error};
   text-align: center;
   margin-top: 5px;
 `;
 
 export const Texto = styled.Text`
-  color: ${global.text};
+  color: ${palette.secundary};
   font-weight: normal;
   margin-top: 15px;
 `;

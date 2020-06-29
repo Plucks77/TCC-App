@@ -16,8 +16,6 @@ import Botao from "../Botao";
 import global from "../../styles/global";
 import {
   Container,
-  TituloArea,
-  Seta,
   TextoArea,
   Texto,
   BotaoArea,
@@ -31,14 +29,10 @@ const emailSchema = yup.object({
   email: yup
     .string()
     .required("O endereço de email é necessário!")
-    .test(
-      "valida-email",
-      "Por favor, digite um enderço de email válido!",
-      (val) => {
-        var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-        return re.test(val);
-      }
-    ),
+    .test("valida-email", "Por favor, digite um enderço de email válido!", (val) => {
+      var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+      return re.test(val);
+    }),
 });
 
 export default function EsqueciSenha({ navigation }) {
@@ -63,16 +57,10 @@ export default function EsqueciSenha({ navigation }) {
       {!enviado ? (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <KeyboardAvoidingView behavior="position">
-            <TituloArea>
-              <Seta onPress={() => navigation.navigate("Login")}>
-                <FontAwesome name="arrow-left" size={35} color={global.text} />
-              </Seta>
-              <View style={{ flex: 2 }} />
-            </TituloArea>
             <TextoArea>
               <Texto>
-                Informe o endereço de e-mail da conta cadastrada para que
-                possamos enviar um link de redefinição de senha
+                Informe o endereço de e-mail da conta cadastrada para que possamos enviar um link de
+                redefinição de senha
               </Texto>
             </TextoArea>
             <Formik
@@ -110,24 +98,14 @@ export default function EsqueciSenha({ navigation }) {
         </TouchableWithoutFeedback>
       ) : (
         <ViewEnviado>
-          <TituloArea>
-            <Seta onPress={() => navigation.navigate("Login")}>
-              <FontAwesome name="arrow-left" size={35} color={global.text} />
-            </Seta>
-            <View style={{ flex: 2 }} />
-          </TituloArea>
           <Texto>
-            Enviamos um e-mail para o endereço {endereco} contendo as
-            informações para redefinir a senha.
+            Enviamos um e-mail para o endereço {endereco} contendo as informações para redefinir a
+            senha.
           </Texto>
         </ViewEnviado>
       )}
     </Container>
   ) : (
-    <LottieView
-      source={require("../../../assets/loading.json")}
-      autoPlay
-      loop
-    />
+    <LottieView source={require("../../../assets/loading.json")} autoPlay loop />
   );
 }

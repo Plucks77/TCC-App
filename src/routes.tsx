@@ -156,7 +156,13 @@ function PerfilStack() {
 
 function LoginStack() {
   return (
-    <Stack.Navigator headerMode="none">
+    <Stack.Navigator
+      screenOptions={{
+        headerTintColor: palette.secundary,
+        headerTitleAlign: "center",
+        headerBackTitleVisible: false,
+      }}
+    >
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Cadastro" component={Cadastro} />
       <Stack.Screen name="Esqueci minha senha" component={EsqueciSenha} />

@@ -29,20 +29,17 @@ import {
   ViewBotao,
 } from "./styles";
 import global from "../../styles/global";
+import { palette } from "../../styles/global";
 ///^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 ///^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const loginSchema = yup.object({
   email: yup
     .string()
     .required("O endereço de email é necessário!")
-    .test(
-      "valida-email",
-      "Por favor, digite um enderço de email válido!",
-      (val) => {
-        var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-        return re.test(val);
-      }
-    ),
+    .test("valida-email", "Por favor, digite um enderço de email válido!", (val) => {
+      var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+      return re.test(val);
+    }),
   password: yup
     .string()
     .required("A senha é necessária!")
@@ -72,10 +69,7 @@ export default function Login({ navigation }) {
         .post("/login", { email, password })
         .then(async (response) => {
           await AsyncStorage.setItem("token", response.data.token.toString());
-          await AsyncStorage.setItem(
-            "user_id",
-            response.data.user_id.toString()
-          );
+          await AsyncStorage.setItem("user_id", response.data.user_id.toString());
           navigation.navigate("Main");
           setUser({ email: "", password: "" });
         })
@@ -99,10 +93,7 @@ export default function Login({ navigation }) {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <KeyboardAvoidingView behavior="position">
           <LogoView>
-            <Logo
-              source={require("../../../assets/LOGO.png")}
-              resizeMode="contain"
-            />
+            <Logo source={require("../../../assets/LOGO.png")} resizeMode="contain" />
           </LogoView>
           <Formik
             initialValues={{ email: user.email, password: user.password }}
@@ -122,11 +113,11 @@ export default function Login({ navigation }) {
                       marginTop: 7,
                       paddingLeft: 6,
                     }}
-                    color={global.text}
+                    color={palette.secundary}
                   />
                   <Input
                     placeholder="Email"
-                    placeholderTextColor={global.text}
+                    placeholderTextColor={palette.secundary}
                     onChangeText={props.handleChange("email")}
                     value={props.values.email}
                     onBlur={props.handleBlur("email")}
@@ -146,20 +137,18 @@ export default function Login({ navigation }) {
                       marginTop: 7,
                       paddingLeft: 6,
                     }}
-                    color={global.text}
+                    color={palette.secundary}
                   />
                   <Input
                     placeholder="Senha"
-                    placeholderTextColor={global.text}
+                    placeholderTextColor={palette.secundary}
                     onChangeText={props.handleChange("password")}
                     value={props.values.password}
                     onBlur={props.handleBlur("password")}
                     secureTextEntry={showPassword ? false : true}
                     maxLength={50}
                   />
-                  <TouchableWithoutFeedback
-                    onPress={() => setShowPassword(!showPassword)}
-                  >
+                  <TouchableWithoutFeedback onPress={() => setShowPassword(!showPassword)}>
                     <Entypo
                       name={showPassword ? "eye-with-line" : "eye"}
                       size={25}
@@ -169,7 +158,7 @@ export default function Login({ navigation }) {
                         marginTop: 7,
                         paddingRight: 6,
                       }}
-                      color={global.text}
+                      color={palette.secundary}
                     />
                   </TouchableWithoutFeedback>
                   <Erro>{props.touched.password && props.errors.password}</Erro>
@@ -177,13 +166,8 @@ export default function Login({ navigation }) {
                 <ViewBotao>
                   <Botao texto="Entrar" props={props.handleSubmit} />
                 </ViewBotao>
-                <Botao
-                  texto="Fazer cadastro"
-                  props={() => navigation.navigate("Cadastro")}
-                />
-                <TouchableOpacity
-                  onPress={() => navigation.navigate("Esqueci minha senha")}
-                >
+                <Botao texto="Fazer cadastro" props={() => navigation.navigate("Cadastro")} />
+                <TouchableOpacity onPress={() => navigation.navigate("Esqueci minha senha")}>
                   <Texto>Esqueci minha senha</Texto>
                 </TouchableOpacity>
               </AreaInputs>
@@ -193,10 +177,6 @@ export default function Login({ navigation }) {
       </TouchableWithoutFeedback>
     </Container>
   ) : (
-    <LottieView
-      source={require("../../../assets/loading.json")}
-      autoPlay
-      loop
-    />
+    <LottieView source={require("../../../assets/loading.json")} autoPlay loop />
   );
 }

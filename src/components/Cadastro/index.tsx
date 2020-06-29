@@ -1,12 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  View,
-  Text,
-  AsyncStorage,
-  Keyboard,
-  TouchableWithoutFeedback,
-  Alert,
-} from "react-native";
+import { View, Text, AsyncStorage, Keyboard, TouchableWithoutFeedback, Alert } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { TextInputMask } from "react-native-masked-text";
 import LottieView from "lottie-react-native";
@@ -16,18 +9,7 @@ import { Entypo } from "@expo/vector-icons";
 import global from "../../styles/global";
 import Botao from "../Botao";
 import api from "../../api";
-import {
-  Container,
-  Input,
-  TituloArea,
-  Titulo,
-  Campos,
-  Seta,
-  InputMask,
-  Erro,
-  ViewInput,
-  ScrollCampos,
-} from "./styles";
+import { Container, Input, Campos, InputMask, Erro, ViewInput, ScrollCampos } from "./styles";
 
 const cadastroSchema = yup.object({
   nome: yup
@@ -37,14 +19,10 @@ const cadastroSchema = yup.object({
   email: yup
     .string()
     .required("O endereço de email é necessário!")
-    .test(
-      "valida-email",
-      "Por favor, digite um enderço de email válido!",
-      (val) => {
-        var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-        return re.test(val);
-      }
-    ),
+    .test("valida-email", "Por favor, digite um enderço de email válido!", (val) => {
+      var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+      return re.test(val);
+    }),
   senha: yup
     .string()
     .required("A senha é necessária!")
@@ -52,9 +30,7 @@ const cadastroSchema = yup.object({
   confirmaSenha: yup
     .string()
     .required("Digite a mesma senha de cima!")
-    .test("passwords-match", "Verifique se digitou a mesma senha!", function (
-      value
-    ) {
+    .test("passwords-match", "Verifique se digitou a mesma senha!", function (value) {
       return this.parent.senha === value;
     }),
   tel: yup
@@ -78,11 +54,7 @@ export default function Cadastro({ navigation }) {
     setReady(false);
     setUser({ nome, email, senha, conf_senha, tel });
 
-    const envtel = tel
-      .replace(" ", "")
-      .replace("-", "")
-      .replace("(", "")
-      .replace(")", "");
+    const envtel = tel.replace(" ", "").replace("-", "").replace("(", "").replace(")", "");
     try {
       await api
         .post("/register", {
@@ -93,25 +65,16 @@ export default function Cadastro({ navigation }) {
         })
         .then(async (response) => {
           await AsyncStorage.setItem("token", response.data.token.toString());
-          await AsyncStorage.setItem(
-            "user_id",
-            response.data.user.id.toString()
-          );
+          await AsyncStorage.setItem("user_id", response.data.user.id.toString());
           navigation.navigate("Main");
           setUser({ nome: "", email: "", senha: "", conf_senha: "", tel: "" });
         })
         .catch((error) => {
           if (error.response.data.erro.constraint === "users_username_unique") {
-            Alert.alert(
-              "Oooops...",
-              "Este nome de usuário já está cadastrado!"
-            );
+            Alert.alert("Oooops...", "Este nome de usuário já está cadastrado!");
           }
           if (error.response.data.erro.constraint === "users_email_unique") {
-            Alert.alert(
-              "Oooops...",
-              "Este endereço de e-mail já está cadastrado!"
-            );
+            Alert.alert("Oooops...", "Este endereço de e-mail já está cadastrado!");
           }
         });
     } catch (e) {
@@ -122,18 +85,12 @@ export default function Cadastro({ navigation }) {
   const [isKeyboardVisible, setKeyboardVisible] = useState(false);
 
   useEffect(() => {
-    const keyboardDidShowListener = Keyboard.addListener(
-      "keyboardDidShow",
-      () => {
-        setKeyboardVisible(true); // seta o state dizendo que o teclado ta aberto
-      }
-    );
-    const keyboardDidHideListener = Keyboard.addListener(
-      "keyboardDidHide",
-      () => {
-        setKeyboardVisible(false); // seta o state dizendo que o teclado ta fechado
-      }
-    );
+    const keyboardDidShowListener = Keyboard.addListener("keyboardDidShow", () => {
+      setKeyboardVisible(true); // seta o state dizendo que o teclado ta aberto
+    });
+    const keyboardDidHideListener = Keyboard.addListener("keyboardDidHide", () => {
+      setKeyboardVisible(false); // seta o state dizendo que o teclado ta fechado
+    });
 
     return () => {
       keyboardDidHideListener.remove();
@@ -145,14 +102,6 @@ export default function Cadastro({ navigation }) {
     <Container>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={{ flex: 1 }}>
-          <TituloArea>
-            <Seta onPress={() => navigation.navigate("Login")}>
-              <FontAwesome name="arrow-left" size={35} color={global.text} />
-            </Seta>
-            <Titulo>Cadastro</Titulo>
-            <View style={{ flex: 1 }} />
-          </TituloArea>
-
           <Formik
             initialValues={{
               nome: user.nome,
@@ -215,9 +164,7 @@ export default function Cadastro({ navigation }) {
                       clearTextOnFocus={false}
                       maxLength={50}
                     />
-                    <TouchableWithoutFeedback
-                      onPress={() => setShowPassword(!showPassword)}
-                    >
+                    <TouchableWithoutFeedback onPress={() => setShowPassword(!showPassword)}>
                       <Entypo
                         name={showPassword ? "eye-with-line" : "eye"}
                         size={25}
@@ -243,9 +190,7 @@ export default function Cadastro({ navigation }) {
                       onBlur={props.handleBlur("confirmaSenha")}
                       maxLength={50}
                     />
-                    <TouchableWithoutFeedback
-                      onPress={() => setShowPassword(!showPassword)}
-                    >
+                    <TouchableWithoutFeedback onPress={() => setShowPassword(!showPassword)}>
                       <Entypo
                         name={showPassword ? "eye-with-line" : "eye"}
                         size={25}
@@ -258,10 +203,7 @@ export default function Cadastro({ navigation }) {
                         color={global.text}
                       />
                     </TouchableWithoutFeedback>
-                    <Erro>
-                      {props.touched.confirmaSenha &&
-                        props.errors.confirmaSenha}
-                    </Erro>
+                    <Erro>{props.touched.confirmaSenha && props.errors.confirmaSenha}</Erro>
                   </ViewInput>
 
                   <ViewInput>
@@ -292,10 +234,6 @@ export default function Cadastro({ navigation }) {
       </TouchableWithoutFeedback>
     </Container>
   ) : (
-    <LottieView
-      source={require("../../../assets/loading.json")}
-      autoPlay
-      loop
-    />
+    <LottieView source={require("../../../assets/loading.json")} autoPlay loop />
   );
 }
