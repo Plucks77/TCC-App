@@ -1,10 +1,10 @@
 import React from "react";
 import { FontAwesome } from "@expo/vector-icons";
+import Swiper from "react-native-swiper";
 
 import Botao from "../Botao";
 import {
   Container,
-  ScrollFotos,
   Imagem,
   ViewBotao,
   Campo,
@@ -28,11 +28,16 @@ export default function Pacote({ navigation, route }) {
       <LikeContainer>
         <FontAwesome name="heart" size={30} color={palette.white} />
       </LikeContainer>
-      <ScrollFotos horizontal={true} showsHorizontalScrollIndicator={true}>
+
+      <Swiper
+        style={{ height: 150, marginBottom: 10 }}
+        showsButtons={false}
+        activeDotColor="white"
+        dotColor="gray"
+      >
         <Imagem source={require("../../../assets/pacote1.jpg")} />
         <Imagem source={require("../../../assets/pacote2.jpg")} />
-      </ScrollFotos>
-
+      </Swiper>
       <Campo>
         <CampoTitulo>Descrição</CampoTitulo>
         <TextoContainer>
@@ -42,7 +47,6 @@ export default function Pacote({ navigation, route }) {
           </CampoTexto>
         </TextoContainer>
       </Campo>
-
       <Campo>
         <CampoTitulo>Guia</CampoTitulo>
         <TextoContainer>
@@ -50,14 +54,12 @@ export default function Pacote({ navigation, route }) {
           <CampoTexto>Um guia muito bom por ter nascido e morado na cidade por 40 anos</CampoTexto>
         </TextoContainer>
       </Campo>
-
       <Campo>
         <CampoTitulo>Preço</CampoTitulo>
         <TextoContainer>
           <CampoTexto>R$ {valor}</CampoTexto>
         </TextoContainer>
       </Campo>
-
       <ViewBotao>
         <Botao texto="Comprar" props={null} />
       </ViewBotao>

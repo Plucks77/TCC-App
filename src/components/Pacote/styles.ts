@@ -9,13 +9,6 @@ export const Container = styled.ScrollView`
   background-color: ${global.background};
 `;
 
-export const ScrollFotos = styled.ScrollView.attrs(() => ({
-  contentContainerStyle: {
-    marginBottom: 20,
-    marginRight: 5,
-  },
-}))``;
-
 export const LikeContainer = styled.TouchableOpacity`
   position: absolute;
   top: 30px;
