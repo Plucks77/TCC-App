@@ -5,7 +5,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesome } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
-import { AsyncStorage } from "react-native";
+import { Feather } from "@expo/vector-icons";
+import { AsyncStorage, Platform } from "react-native";
 import LottieView from "lottie-react-native";
 
 import { palette } from "./styles/global";
@@ -122,7 +123,11 @@ function PrincipalStack() {
           headerBackTitle: "Pacotes",
           headerRight: () => (
             <TouchableOpacity style={{ paddingRight: 15 }}>
-              <FontAwesome name="share-alt" size={25} color={palette.secundary} />
+              <Feather
+                name={Platform.OS === "ios" ? "share" : "share-2"}
+                size={25}
+                color={palette.secundary}
+              />
             </TouchableOpacity>
           ),
         }}
