@@ -74,6 +74,10 @@ function PrincipalStack() {
         headerTintColor: palette.secundary,
         headerTitleAlign: "center",
         headerBackTitleVisible: false,
+        headerTitleStyle: {
+          fontWeight: "bold",
+          fontSize: 20,
+        },
       }}
     >
       <Stack.Screen
@@ -81,10 +85,6 @@ function PrincipalStack() {
         component={Cidades}
         options={{
           title: "Escolha uma cidade",
-          headerTitleStyle: {
-            fontWeight: "bold",
-            fontSize: 20,
-          },
         }}
       />
       <Stack.Screen
@@ -92,11 +92,6 @@ function PrincipalStack() {
         component={Locais}
         options={{
           title: "Escolha um local",
-          headerTitleStyle: {
-            fontWeight: "bold",
-            fontSize: 20,
-          },
-          headerBackTitle: "Cidades",
         }}
       />
       <Stack.Screen
@@ -104,11 +99,6 @@ function PrincipalStack() {
         component={Categorias}
         options={{
           title: "Visconde de Mauá",
-          headerTitleStyle: {
-            fontWeight: "bold",
-            fontSize: 20,
-          },
-          headerBackTitle: "Locais",
         }}
       />
       <Stack.Screen
@@ -116,11 +106,6 @@ function PrincipalStack() {
         component={Pacote}
         options={{
           title: "Pacote",
-          headerTitleStyle: {
-            fontWeight: "bold",
-            fontSize: 20,
-          },
-          headerBackTitle: "Pacotes",
           headerRight: () => (
             <TouchableOpacity style={{ paddingRight: 15 }}>
               <Feather
@@ -138,8 +123,22 @@ function PrincipalStack() {
 
 function ConfiguracaoStack() {
   return (
-    <Stack.Navigator headerMode="none">
-      <Stack.Screen name="Configuracoes" component={Configuracoes} />
+    <Stack.Navigator
+      screenOptions={{
+        headerTintColor: palette.secundary,
+        headerTitleAlign: "center",
+        headerBackTitleVisible: false,
+        headerTitleStyle: {
+          fontSize: 20,
+          fontWeight: "bold",
+        },
+      }}
+    >
+      <Stack.Screen
+        name="Configuracoes"
+        component={Configuracoes}
+        options={{ title: "Configurações" }}
+      />
       <Stack.Screen name="Idiomas" component={Idiomas} />
     </Stack.Navigator>
   );
@@ -163,7 +162,7 @@ function LoginStack() {
         headerBackTitleVisible: false,
       }}
     >
-      <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
       <Stack.Screen name="Cadastro" component={Cadastro} />
       <Stack.Screen name="Esqueci minha senha" component={EsqueciSenha} />
     </Stack.Navigator>

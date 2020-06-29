@@ -1,18 +1,10 @@
 import styled from "styled-components/native";
 import global from "../../styles/global";
+import { palette } from "../../styles/global";
 
 export const Container = styled.View`
   flex: 1;
-  background-color: ${global.background};
-`;
-
-export const Titulo = styled.Text`
-  font-size: 36px;
-  font-weight: bold;
-  color: ${global.text};
-  text-align: center;
-  margin-top: 50px;
-  margin-bottom: 50px;
+  background-color: ${palette.white};
 `;
 
 export const OpcoesContainer = styled.View`
@@ -22,8 +14,7 @@ export const OpcoesContainer = styled.View`
 `;
 
 export const Opcao = styled.TouchableOpacity`
-  background: ${global.buttonLight};
-  border: 2px solid ${global.button};
+  background: ${palette.primary};
   border-radius: 20px;
   width: 300px;
   height: 50px;
@@ -37,7 +28,7 @@ export const Icone = styled.View`
 `;
 
 export const Texto = styled.Text`
-  color: ${global.text};
+  color: ${palette.white};
   font-weight: 500;
   font-size: 24px;
   flex: 2;

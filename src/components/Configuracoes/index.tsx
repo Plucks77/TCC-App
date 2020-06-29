@@ -2,8 +2,9 @@ import React from "react";
 import { FontAwesome } from "@expo/vector-icons";
 
 import global from "../../styles/global";
+import { palette } from "../../styles/global";
 
-import { Container, Texto, Titulo, OpcoesContainer, Opcao, Icone } from "./styles";
+import { Container, Texto, OpcoesContainer, Opcao, Icone } from "./styles";
 import { Linking } from "react-native";
 
 export default function Configuracoes({ navigation }) {
@@ -13,26 +14,24 @@ export default function Configuracoes({ navigation }) {
   }
   return (
     <Container>
-      <Titulo>Configurações</Titulo>
-
       <OpcoesContainer>
         <Opcao onPress={() => navigation.navigate("Idiomas")}>
           <Icone>
-            <FontAwesome name="language" size={25} color={global.text} />
+            <FontAwesome name="language" size={25} color={palette.white} />
           </Icone>
           <Texto>Alterar idioma</Texto>
         </Opcao>
 
         <Opcao onPress={() => handleWhatsapp()}>
           <Icone>
-            <FontAwesome name="whatsapp" size={25} color={global.text} />
+            <FontAwesome name="whatsapp" size={25} color={palette.white} />
           </Icone>
           <Texto>Fale conosco</Texto>
         </Opcao>
 
         <Opcao>
           <Icone>
-            <FontAwesome name="file-text" size={25} color={global.text} />
+            <FontAwesome name="file-text" size={25} color={palette.white} />
           </Icone>
           <Texto>Manual</Texto>
         </Opcao>

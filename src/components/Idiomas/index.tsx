@@ -4,27 +4,11 @@ import { Image } from "react-native";
 
 import global from "../../styles/global";
 
-import {
-  Container,
-  Titulo,
-  TituloContainer,
-  Seta,
-  OpcoesContainer,
-  Opcao,
-  Icone,
-  Texto,
-} from "./styles";
+import { Container, OpcoesContainer, Opcao, Icone, Texto } from "./styles";
 
 export default function Idiomas({ navigation }) {
   return (
     <Container>
-      <TituloContainer>
-        <Seta onPress={() => navigation.navigate("Configuracoes")}>
-          <FontAwesome name="arrow-left" size={30} color={global.text} />
-        </Seta>
-        <Titulo>Idiomas</Titulo>
-      </TituloContainer>
-
       <OpcoesContainer>
         <Opcao onPress={() => navigation.navigate("Idiomas")}>
           <Icone>
