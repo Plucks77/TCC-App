@@ -146,9 +146,23 @@ function ConfiguracaoStack() {
 
 function PerfilStack() {
   return (
-    <Stack.Navigator headerMode="none">
+    <Stack.Navigator
+      screenOptions={{
+        headerTintColor: palette.secundary,
+        headerTitleAlign: "center",
+        headerBackTitleVisible: false,
+        headerTitleStyle: {
+          fontSize: 20,
+          fontWeight: "bold",
+        },
+      }}
+    >
       <Stack.Screen name="Perfil" component={Perfil} />
-      <Stack.Screen name="PerfilEditar" component={PerfilEditar} />
+      <Stack.Screen
+        name="PerfilEditar"
+        component={PerfilEditar}
+        options={{ title: "Editar perfil" }}
+      />
     </Stack.Navigator>
   );
 }

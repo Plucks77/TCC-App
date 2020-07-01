@@ -5,17 +5,9 @@ import { FontAwesome } from "@expo/vector-icons";
 
 import api from "../../api";
 import Botao from "../Botao";
-import global from "../../styles/global";
-import {
-  Container,
-  Titulo,
-  ViewInfos,
-  Texto,
-  Input,
-  BotoesContainer,
-  BotaoArea,
-  Icone,
-} from "./styles";
+
+import { palette } from "../../styles/global";
+import { Container, ViewInfos, Texto, Input, BotoesContainer, BotaoArea, Icone } from "./styles";
 
 export default function Perfil({ navigation }) {
   const [user, setUser] = useState({ id: "", username: "", email: "", tel: "" });
@@ -38,9 +30,8 @@ export default function Perfil({ navigation }) {
 
   return ready ? (
     <Container>
-      {/* <Titulo>Perfil</Titulo> */}
       <Icone>
-        <FontAwesome name="user-o" size={72} color={global.text} />
+        <FontAwesome name="user-o" size={72} color={palette.secundary} />
       </Icone>
       <ViewInfos>
         <Texto>Nome:</Texto>
