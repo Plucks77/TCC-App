@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { createDrawerNavigator } from "@react-navigation/drawer";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -24,21 +23,22 @@ import Idiomas from "./components/Idiomas";
 import PerfilEditar from "./components/PerfilEditar";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 export default function App() {
   const [ready, setReady] = useState(false);
   const [user_logado, setLogado] = useState(null);
+  const [userToken, setUserToken] = useState(null);
 
   //verificar se está logado
   useEffect(() => {
     async function logado() {
-      const tokem = await AsyncStorage.getItem("token");
+      const token = await AsyncStorage.getItem("token");
       const user_id = await AsyncStorage.getItem("user_id");
 
-      if (tokem && user_id) {
+      if (token && user_id) {
+        setUserToken(token);
         return true;
       } else {
         return false;

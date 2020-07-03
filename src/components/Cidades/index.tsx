@@ -1,6 +1,7 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Feather } from "@expo/vector-icons";
-import { LayoutAnimation, Platform, UIManager } from "react-native";
+import { AppLoading } from "expo";
+import { LayoutAnimation, Platform, UIManager, AsyncStorage, Text } from "react-native";
 import {
   Container,
   CidadeContainer,
@@ -15,120 +16,99 @@ import {
   DescricaoBotaoTexto,
   DescricaoBotaoIcone,
 } from "./styles";
+import api from "../../api";
 
 if (Platform.OS === "android" && UIManager.setLayoutAnimationEnabledExperimental) {
   UIManager.setLayoutAnimationEnabledExperimental(true);
 }
 
-export default function CidadesProposta({ navigation }) {
-  const [resendeVisible, setResendeVisible] = useState(false);
-  const [itatiaiaVisible, setItatiaiaVisible] = useState(false);
+interface City {
+  id: number;
+  name: string;
+  description: string;
+  image_url: string;
+}
+
+export default function CidadesProposta({ navigation, route }) {
+  const [cities, setCities] = useState<City[]>([]);
+  const [cityVisible, setCityVisible] = useState(0);
+  const [ready, setReady] = useState(false);
+
+  const config = {
+    headers: { Authorization: `Bearer ${AsyncStorage.getItem("token")}` },
+  };
+
+  useEffect(() => {
+    if (route.params?.userToken) {
+      console.log(route.params?.userToken);
+    }
+  }, [route.params?.userToken]);
+
+  useEffect(() => {
+    api
+      .get("/cities", config)
+      .then((res) => {
+        setCities(res.data);
+        setReady(true);
+      })
+      .catch((erro) => {
+        console.log(erro);
+      });
+  }, []);
 
   const scrollView = useRef(null);
 
-  const toggleResende = () => {
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-    setResendeVisible(!resendeVisible);
-    setItatiaiaVisible(false);
+  const toggleCity = (id: number) => {
+    if (id === cityVisible) {
+      setCityVisible(0);
+    } else {
+      LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+      setCityVisible(id);
+    }
   };
 
-  const toggleItatiaia = () => {
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-    setItatiaiaVisible(!itatiaiaVisible);
-    setResendeVisible(false);
-  };
-
-  return (
-    <Container
-      ref={scrollView}
-      onContentSizeChange={() => {
-        itatiaiaVisible && scrollView.current.scrollToEnd();
-      }}
-    >
-      {/* <Image
-        style={{ position: "absolute", zIndex: -5 }}
-        source={require("../../../assets/vector1.png")}
-      /> */}
+  return ready ? (
+    <Container ref={scrollView}>
       <CidadesContainer>
-        <CidadeContainer onPress={toggleResende}>
-          <>
-            <Imagem source={require("../../../assets/Resende2.jpg")}>
-              <CidadeNome>Resende</CidadeNome>
-              <SetaContainer>
-                <Feather
-                  name={resendeVisible ? "arrow-up-circle" : "arrow-down-circle"}
-                  size={30}
-                  color="white"
-                />
-              </SetaContainer>
-            </Imagem>
-            {resendeVisible && (
-              <DescricaoContainer>
-                <DescricaoTexto>
-                  Localizada às margens da Rodovia Presidente Dutra (BR-116), que liga o Rio de
-                  Janeiro a São Paulo, Resende é uma das mais belas cidades turísticas da Região das
-                  Agulhas Negras, no sul do Estado do Rio. Portanto, se você procura paz,
-                  tranquilidade, belos cenários com natureza exuberante e preservada com suas matas,
-                  rios, cachoeiras, ar puro, o canto dos pássaros e diversidade de fauna e flora,
-                  você encontrou o seu lugar.
-                </DescricaoTexto>
+        {cities.map((city) => (
+          <CidadeContainer key={city.id} onPress={() => toggleCity(city.id)}>
+            <>
+              <Imagem
+                source={{
+                  uri: city.image_url,
+                }}
+              >
+                <CidadeNome>{city.name}</CidadeNome>
+                <SetaContainer>
+                  <Feather
+                    name={cityVisible === city.id ? "arrow-up-circle" : "arrow-down-circle"}
+                    size={30}
+                    color="white"
+                  />
+                </SetaContainer>
+              </Imagem>
+              {cityVisible === city.id && (
+                <DescricaoContainer>
+                  <DescricaoTexto>{city.description}</DescricaoTexto>
 
-                <DescricaoBotao
-                  onPress={() => navigation.navigate("Locais", { cidade: "Resende" })}
-                >
-                  <DescricaoBotaoContainer>
-                    <DescricaoBotaoTexto>Ver locais</DescricaoBotaoTexto>
-                    <DescricaoBotaoIcone>
-                      <Feather name="arrow-right-circle" size={25} color="white" />
-                    </DescricaoBotaoIcone>
-                  </DescricaoBotaoContainer>
-                </DescricaoBotao>
-              </DescricaoContainer>
-            )}
-          </>
-        </CidadeContainer>
-
-        <CidadeContainer onPress={toggleItatiaia}>
-          <>
-            <Imagem source={require("../../../assets/Itatiaia2.jpg")}>
-              <CidadeNome>Itatiaia</CidadeNome>
-              <SetaContainer>
-                <Feather
-                  name={itatiaiaVisible ? "arrow-up-circle" : "arrow-down-circle"}
-                  size={30}
-                  color="white"
-                />
-              </SetaContainer>
-            </Imagem>
-            {itatiaiaVisible && (
-              <DescricaoContainer>
-                <DescricaoTexto>
-                  Itatiaia é um município brasileiro do Estado do Rio de Janeiro. Localiza-se a uma
-                  latitude 22º29'29" sul e a uma longitude 44º33'33" oeste. Sua população estimada
-                  em 2014 era de 29996 habitantes. Situa-se na divisa dos estados do Rio de Janeiro
-                  e Minas Gerais, na Serra da Mantiqueira.
-                </DescricaoTexto>
-
-                <DescricaoBotao
-                  onPress={() => navigation.navigate("Locais", { cidade: "Itatiaia" })}
-                >
-                  <DescricaoBotaoContainer>
-                    <DescricaoBotaoTexto>Ver locais</DescricaoBotaoTexto>
-                    <DescricaoBotaoIcone>
-                      <Feather name="arrow-right-circle" size={25} color="white" />
-                    </DescricaoBotaoIcone>
-                  </DescricaoBotaoContainer>
-                </DescricaoBotao>
-              </DescricaoContainer>
-            )}
-          </>
-        </CidadeContainer>
+                  <DescricaoBotao
+                    onPress={() => navigation.navigate("Locais", { cidade: city.name })}
+                  >
+                    <DescricaoBotaoContainer>
+                      <DescricaoBotaoTexto>Ver locais</DescricaoBotaoTexto>
+                      <DescricaoBotaoIcone>
+                        <Feather name="arrow-right-circle" size={25} color="white" />
+                      </DescricaoBotaoIcone>
+                    </DescricaoBotaoContainer>
+                  </DescricaoBotao>
+                </DescricaoContainer>
+              )}
+            </>
+          </CidadeContainer>
+        ))}
       </CidadesContainer>
-
-      {/* <Image
-        style={{ position: "absolute", bottom: 0, zIndex: -5 }}
-        source={require("../../../assets/vector2.png")}
-      /> */}
     </Container>
+  ) : (
+    <AppLoading />
   );
 }
