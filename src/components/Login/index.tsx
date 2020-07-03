@@ -66,7 +66,7 @@ export default function Login({ navigation }) {
     setUser({ email, password });
     try {
       await api
-        .post("/login", { email, password })
+        .post("/user/login", { email, password })
         .then(async (response) => {
           await AsyncStorage.setItem("token", response.data.token.toString());
           await AsyncStorage.setItem("user_id", response.data.user_id.toString());
