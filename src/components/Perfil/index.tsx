@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { AsyncStorage } from "react-native";
 import LottieView from "lottie-react-native";
 import { FontAwesome } from "@expo/vector-icons";
 
+import { useAuth } from "../../contexts/auth";
 import api from "../../api";
 import Botao from "../Botao";
 
@@ -10,17 +10,14 @@ import { palette } from "../../styles/global";
 import { Container, ViewInfos, Texto, Input, BotoesContainer, BotaoArea, Icone } from "./styles";
 
 export default function Perfil({ navigation }) {
+  const { signOut, user: contextUser } = useAuth();
+
   const [user, setUser] = useState({ id: "", username: "", email: "", tel: "" });
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
     async function getData() {
-      const tokem = await AsyncStorage.getItem("token");
-      const user_id = await AsyncStorage.getItem("user_id");
-      const config = {
-        headers: { Authorization: `Bearer ${tokem}` },
-      };
-      const response = await api.get(`/user/${user_id}`, config);
+      const response = await api.get(`/user/${contextUser}`);
       const { id, username, email, tel } = response.data;
       setUser({ id, username, email, tel });
       setReady(true);
@@ -59,7 +56,7 @@ export default function Perfil({ navigation }) {
         </BotaoArea>
 
         <BotaoArea>
-          <Botao texto="Sair" props={() => navigation.navigate("Login")} />
+          <Botao texto="Sair" props={() => signOut} />
         </BotaoArea>
       </BotoesContainer>
     </Container>

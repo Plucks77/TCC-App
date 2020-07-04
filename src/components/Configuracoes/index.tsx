@@ -1,13 +1,14 @@
 import React from "react";
 import { FontAwesome } from "@expo/vector-icons";
 
-import global from "../../styles/global";
+import { useAuth } from "../../contexts/auth";
 import { palette } from "../../styles/global";
 
 import { Container, Texto, OpcoesContainer, Opcao, Icone } from "./styles";
 import { Linking } from "react-native";
 
 export default function Configuracoes({ navigation }) {
+  const { signOut } = useAuth();
   function handleWhatsapp() {
     const text = "Tenho a seguinte dúvida sobre o aplicativo ValeTour:  ";
     Linking.openURL(`whatsapp://send?phone=55 24 992859059&text=${text}`);
@@ -29,7 +30,7 @@ export default function Configuracoes({ navigation }) {
           <Texto>Fale conosco</Texto>
         </Opcao>
 
-        <Opcao>
+        <Opcao onPress={() => signOut()}>
           <Icone>
             <FontAwesome name="file-text" size={25} color={palette.white} />
           </Icone>

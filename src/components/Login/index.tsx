@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
-  AsyncStorage,
   Alert,
   KeyboardAvoidingView,
   TouchableOpacity,
@@ -10,12 +9,14 @@ import {
 
 import { MaterialIcons } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
-import api from "../../api";
+
 import { Formik } from "formik";
 import LottieView from "lottie-react-native";
 import * as yup from "yup";
 
+import { useAuth } from "../../contexts/auth";
 import Botao from "../Botao";
+import { palette } from "../../styles/global";
 
 import {
   Container,
@@ -28,8 +29,7 @@ import {
   LogoView,
   ViewBotao,
 } from "./styles";
-import global from "../../styles/global";
-import { palette } from "../../styles/global";
+
 ///^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 ///^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const loginSchema = yup.object({
@@ -47,45 +47,25 @@ const loginSchema = yup.object({
 });
 
 export default function Login({ navigation }) {
+  const { signIn } = useAuth();
+
   const [ready, setReady] = useState(true);
   const [user, setUser] = useState({ email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
 
-  useEffect(() => {
-    setReady(false);
-    async function RemoveDados() {
-      await AsyncStorage.removeItem("token");
-      await AsyncStorage.removeItem("user_id");
-    }
-    RemoveDados();
-    setReady(true);
-  }, []);
-
   async function login(email, password) {
     setReady(false);
     setUser({ email, password });
-    try {
-      await api
-        .post("/user/login", { email, password })
-        .then(async (response) => {
-          await AsyncStorage.setItem("token", response.data.token.toString());
-          await AsyncStorage.setItem("user_id", response.data.user_id.toString());
-          navigation.navigate("Main");
-          setUser({ email: "", password: "" });
-        })
-        .catch((error) => {
-          const erro = error.response.data[0].field;
-          if (erro === "password") {
-            Alert.alert("Oooops...", "Senha incorreta!");
-          }
-          if (erro === "email") {
-            Alert.alert("Oooops...", "Verifique se digitou o email correto!");
-          }
-        });
-    } catch (e) {
-      console.log(e);
+    const response = await signIn(email, password);
+
+    if (response === "email") {
+      setReady(true);
+      Alert.alert("Oooops...", "Verifique se digitou o email correto!");
     }
-    setReady(true);
+    if (response === "password") {
+      setReady(true);
+      Alert.alert("Oooops...", "Senha incorreta!");
+    }
   }
 
   return ready ? (
