@@ -2,6 +2,9 @@ import React, { useRef, useState, useEffect } from "react";
 import { Feather } from "@expo/vector-icons";
 import { AppLoading } from "expo";
 import { LayoutAnimation, Platform, UIManager, AsyncStorage, Text } from "react-native";
+
+import api from "../../api";
+
 import {
   Container,
   CidadeContainer,
@@ -16,7 +19,6 @@ import {
   DescricaoBotaoTexto,
   DescricaoBotaoIcone,
 } from "./styles";
-import api from "../../api";
 
 if (Platform.OS === "android" && UIManager.setLayoutAnimationEnabledExperimental) {
   UIManager.setLayoutAnimationEnabledExperimental(true);
@@ -34,19 +36,19 @@ export default function CidadesProposta({ navigation, route }) {
   const [cityVisible, setCityVisible] = useState(0);
   const [ready, setReady] = useState(false);
 
-  const config = {
-    headers: { Authorization: `Bearer ${AsyncStorage.getItem("token")}` },
-  };
+  // const config = {
+  //   headers: { Authorization: `Bearer ${AsyncStorage.getItem("token")}` },
+  // };
 
-  useEffect(() => {
-    if (route.params?.userToken) {
-      console.log(route.params?.userToken);
-    }
-  }, [route.params?.userToken]);
+  // useEffect(() => {
+  //   if (route.params?.userToken) {
+  //     console.log(route.params?.userToken);
+  //   }
+  // }, [route.params?.userToken]);
 
   useEffect(() => {
     api
-      .get("/cities", config)
+      .get("/cities")
       .then((res) => {
         setCities(res.data);
         setReady(true);
@@ -92,7 +94,9 @@ export default function CidadesProposta({ navigation, route }) {
                   <DescricaoTexto>{city.description}</DescricaoTexto>
 
                   <DescricaoBotao
-                    onPress={() => navigation.navigate("Locais", { cidade: city.name })}
+                    onPress={() =>
+                      navigation.navigate("Locais", { city_id: city.id, city_name: city.name })
+                    }
                   >
                     <DescricaoBotaoContainer>
                       <DescricaoBotaoTexto>Ver locais</DescricaoBotaoTexto>

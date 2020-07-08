@@ -1,71 +1,51 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import LottieView from "lottie-react-native";
 
-import { Container, CidadesArea, CidadeFoto, CidadeNome, CidadeBotao, Cidade } from "./styles";
+import api from "../../api";
+
+import { Container, LocalsArea, LocalFoto, LocalNome, LocalBotao, Cidade } from "./styles";
+
+interface Local {
+  id: number;
+  name: string;
+  image_url: string;
+}
 
 export default function Locais({ navigation, route }) {
-  const { cidade } = route.params;
+  const [locals, setLocals] = useState<Local[]>([]);
+  const [ready, setReady] = useState(false);
+  const { city_id, city_name } = route.params;
 
-  return (
+  useEffect(() => {
+    api
+      .get<Local[]>(`local/city/${city_id}`)
+      .then((res) => {
+        setLocals(res.data);
+        setReady(true);
+      })
+      .catch((erro) => {
+        console.log(erro);
+      });
+  }, []);
+
+  return ready ? (
     <Container>
-      {cidade === "Resende" ? (
-        <>
-          <Cidade>{cidade}</Cidade>
+      <Cidade>{city_name}</Cidade>
 
-          <CidadesArea>
-            <CidadeBotao
-              onPress={() => navigation.navigate("Categorias", { local: "Visconde de Mauá" })}
-            >
-              <CidadeFoto source={require("../../../assets/locais/maua.jpg")}>
-                <CidadeNome>Visconde de Mauá</CidadeNome>
-              </CidadeFoto>
-            </CidadeBotao>
-
-            <CidadeBotao onPress={() => navigation.navigate("Categorias", { local: "Serrinha" })}>
-              <CidadeFoto source={require("../../../assets/locais/serrinha.jpg")}>
-                <CidadeNome>Serrinha</CidadeNome>
-              </CidadeFoto>
-            </CidadeBotao>
-
-            <CidadeBotao onPress={() => navigation.navigate("Categorias", { local: "Capelinha" })}>
-              <CidadeFoto source={require("../../../assets/locais/capelinha.jpg")}>
-                <CidadeNome>Capelinha</CidadeNome>
-              </CidadeFoto>
-            </CidadeBotao>
-
-            <CidadeBotao
-              onPress={() => navigation.navigate("Categorias", { local: "Engenheiro Passos" })}
-            >
-              <CidadeFoto source={require("../../../assets/locais/engpassos.jpg")}>
-                <CidadeNome>Engenherio Passos</CidadeNome>
-              </CidadeFoto>
-            </CidadeBotao>
-          </CidadesArea>
-        </>
-      ) : (
-        <>
-          <Cidade>em {cidade}</Cidade>
-
-          <CidadesArea>
-            <CidadeBotao onPress={() => navigation.navigate("Categorias", { local: "Penedo" })}>
-              <CidadeFoto source={require("../../../assets/locais/penedo.jpg")}>
-                <CidadeNome>Penedo</CidadeNome>
-              </CidadeFoto>
-            </CidadeBotao>
-
-            <CidadeBotao onPress={() => navigation.navigate("Categorias", { local: "Maringá" })}>
-              <CidadeFoto source={require("../../../assets/locais/maringa.jpg")}>
-                <CidadeNome>Maringá</CidadeNome>
-              </CidadeFoto>
-            </CidadeBotao>
-
-            <CidadeBotao onPress={() => navigation.navigate("Categorias", { local: "Maromba" })}>
-              <CidadeFoto source={require("../../../assets/locais/maromba.jpg")}>
-                <CidadeNome>Maromba</CidadeNome>
-              </CidadeFoto>
-            </CidadeBotao>
-          </CidadesArea>
-        </>
-      )}
+      <LocalsArea>
+        {locals.map((local) => (
+          <LocalBotao
+            key={local.id}
+            onPress={() => navigation.navigate("Categorias", { local: "Visconde de Mauá" })}
+          >
+            <LocalFoto source={{ uri: local.image_url }}>
+              <LocalNome>{local.name}</LocalNome>
+            </LocalFoto>
+          </LocalBotao>
+        ))}
+      </LocalsArea>
     </Container>
+  ) : (
+    <LottieView source={require("../../../assets/loading.json")} autoPlay loop />
   );
 }

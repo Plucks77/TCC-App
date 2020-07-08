@@ -12,7 +12,7 @@ export const Cidade = styled.Text`
   font-weight: 500;
 `;
 
-export const CidadesArea = styled.ScrollView.attrs(() => ({
+export const LocalsArea = styled.ScrollView.attrs(() => ({
   contentContainerStyle: {
     flex: 1,
     alignItems: "center",
@@ -20,11 +20,11 @@ export const CidadesArea = styled.ScrollView.attrs(() => ({
   },
 }))``;
 
-export const CidadeBotao = styled.TouchableOpacity.attrs(() => ({
+export const LocalBotao = styled.TouchableOpacity.attrs(() => ({
   activeOpacity: 0.8,
 }))``;
 
-export const CidadeFoto = styled.ImageBackground.attrs(() => ({
+export const LocalFoto = styled.ImageBackground.attrs(() => ({
   borderRadius: 5,
   resizeMode: "stretch",
 }))`
@@ -40,7 +40,7 @@ export const CidadeFoto = styled.ImageBackground.attrs(() => ({
   elevation: 1;
 `;
 
-export const CidadeNome = styled.Text`
+export const LocalNome = styled.Text`
   color: ${palette.white};
   font-size: 25px;
   margin-left: 10px;
