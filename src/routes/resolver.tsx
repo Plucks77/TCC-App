@@ -11,11 +11,7 @@ const Routes: React.FC = () => {
   const { singned, loading } = useAuth();
 
   if (loading) {
-    return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text>Carregando...</Text>
-      </View>
-    );
+    return <AppLoading />;
   }
 
   return singned ? <AppRoutes /> : <AuthRoutes />;
