@@ -36,7 +36,9 @@ export default function Locais({ navigation, route }) {
         {locals.map((local) => (
           <LocalBotao
             key={local.id}
-            onPress={() => navigation.navigate("Categorias", { local: "Visconde de Mauá" })}
+            onPress={() =>
+              navigation.navigate("Categorias", { local_id: local.id, local_name: local.name })
+            }
           >
             <LocalFoto source={{ uri: local.image_url }}>
               <LocalNome>{local.name}</LocalNome>
