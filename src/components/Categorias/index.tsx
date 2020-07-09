@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
-import { TouchableOpacity, View } from "react-native";
+import { TouchableOpacity, View, Text } from "react-native";
+import LottieView from "lottie-react-native";
 
 import api from "../../api";
 
@@ -28,6 +29,7 @@ interface Pacote {
 export default function Categorias({ navigation, route }) {
   const [pacotes, setPacotes] = useState<Pacote[]>([]);
   const [categories, setCategories] = useState([]);
+  const [ready, setReady] = useState(false);
   const { local_id, local_name } = route.params;
   const scrollView = useRef(null);
 
@@ -38,6 +40,7 @@ export default function Categorias({ navigation, route }) {
       .get<Pacote[]>(`/pacote/local/${local_id}`)
       .then((res) => {
         setPacotes(res.data);
+        setReady(true);
       })
       .catch((erro) => {
         console.log(erro);
@@ -67,7 +70,15 @@ export default function Categorias({ navigation, route }) {
     positions = positions.sort();
   }
 
-  return (
+  if (ready && pacotes.length === 0) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <Text style={{ fontSize: 16 }}>Nenhum pacote encontrado 🙁</Text>
+      </View>
+    );
+  }
+
+  return ready ? (
     <Container>
       <MenuContainer>
         {categories.map((categorie, i) => (
@@ -100,5 +111,7 @@ export default function Categorias({ navigation, route }) {
         ))}
       </CategoriasContainer>
     </Container>
+  ) : (
+    <LottieView source={require("../../../assets/loading.json")} autoPlay loop />
   );
 }
