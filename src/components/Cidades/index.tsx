@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { Feather } from "@expo/vector-icons";
-import { AppLoading } from "expo";
-import { LayoutAnimation, Platform, UIManager, AsyncStorage, Text } from "react-native";
+import ShimmerPlaceHolder from "react-native-shimmer-placeholder";
+import { LayoutAnimation, Platform, UIManager } from "react-native";
 
 import api from "../../api";
 
@@ -35,16 +35,6 @@ export default function CidadesProposta({ navigation, route }) {
   const [cities, setCities] = useState<City[]>([]);
   const [cityVisible, setCityVisible] = useState(0);
   const [ready, setReady] = useState(false);
-
-  // const config = {
-  //   headers: { Authorization: `Bearer ${AsyncStorage.getItem("token")}` },
-  // };
-
-  // useEffect(() => {
-  //   if (route.params?.userToken) {
-  //     console.log(route.params?.userToken);
-  //   }
-  // }, [route.params?.userToken]);
 
   useEffect(() => {
     api
@@ -113,6 +103,16 @@ export default function CidadesProposta({ navigation, route }) {
       </CidadesContainer>
     </Container>
   ) : (
-    <AppLoading />
+    <ShimmerPlaceHolder
+      autoRun={true}
+      style={{
+        width: 350,
+        height: 200,
+        backgroundColor: "lightgray",
+        borderRadius: 5,
+        alignSelf: "center",
+        marginTop: 20,
+      }}
+    />
   );
 }

@@ -4663,6 +4663,10 @@ react-native-screens@~2.2.0:
   dependencies:
     debounce "^1.2.0"
 
+"react-native-shimmer-placeholder@https://github.com/tomzaku/react-native-shimmer-placeholder.git#expo":
+  version "1.0.31"
+  resolved "https://github.com/tomzaku/react-native-shimmer-placeholder.git#b7078ea211f006ce4ff50946cfe472ff59bf203e"
+
 react-native-svg@11.0.1:
   version "11.0.1"
   resolved "https://registry.yarnpkg.com/react-native-svg/-/react-native-svg-11.0.1.tgz#e92e7e9f9cb2604333fd5014fd4edcf62fea6496"
