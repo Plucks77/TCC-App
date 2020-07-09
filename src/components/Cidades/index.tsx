@@ -103,16 +103,29 @@ export default function CidadesProposta({ navigation, route }) {
       </CidadesContainer>
     </Container>
   ) : (
-    <ShimmerPlaceHolder
-      autoRun={true}
-      style={{
-        width: 350,
-        height: 200,
-        backgroundColor: "lightgray",
-        borderRadius: 5,
-        alignSelf: "center",
-        marginTop: 20,
-      }}
-    />
+    <>
+      <ShimmerPlaceHolder
+        autoRun={true}
+        style={{
+          width: 350,
+          height: 200,
+          backgroundColor: "lightgray",
+          borderRadius: 5,
+          alignSelf: "center",
+          marginTop: 20,
+        }}
+      />
+      <ShimmerPlaceHolder
+        autoRun={true}
+        style={{
+          width: 350,
+          height: 200,
+          backgroundColor: "lightgray",
+          borderRadius: 5,
+          alignSelf: "center",
+          marginTop: 20,
+        }}
+      />
+    </>
   );
 }
