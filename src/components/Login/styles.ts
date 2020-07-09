@@ -1,10 +1,10 @@
 import styled from "styled-components/native";
-import global from "../../styles/global";
 import { palette } from "../../styles/global";
 
 export const Container = styled.SafeAreaView`
   display: flex;
   flex: 1;
+
   background-color: ${palette.white};
 `;
 
@@ -12,7 +12,7 @@ export const LogoView = styled.View`
   justify-content: center;
   align-items: center;
   margin-bottom: 50px;
-  margin-top: 5px;
+  margin-top: 50px;
 `;
 
 export const Logo = styled.Image`
