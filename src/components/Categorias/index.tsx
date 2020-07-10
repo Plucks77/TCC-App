@@ -24,6 +24,7 @@ interface Pacote {
   price: number;
   category_name: string;
   image_url: string;
+  guia_id: number;
 }
 
 export default function Categorias({ navigation, route }) {
@@ -98,7 +99,12 @@ export default function Categorias({ navigation, route }) {
             {pacotes.map(
               (pacote) =>
                 pacote.category_name === categorie && (
-                  <PacoteContainer key={pacote.id} onPress={() => {}}>
+                  <PacoteContainer
+                    key={pacote.id}
+                    onPress={() => {
+                      navigation.navigate("Pacote", { pacote: pacote });
+                    }}
+                  >
                     <PacoteFoto source={{ uri: pacote.image_url }} />
                     <PacoteTextoContainer>
                       <PacoteTexto>{pacote.name}</PacoteTexto>

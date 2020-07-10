@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesome } from "@expo/vector-icons";
 import Swiper from "react-native-swiper";
+import { Text } from "react-native";
+import * as LocalAuthentication from "expo-local-authentication";
+
+import api from "../../api";
+import { palette } from "../../styles/global";
 
 import Botao from "../Botao";
 import {
@@ -13,17 +18,44 @@ import {
   CampoTexto,
   LikeContainer,
 } from "./styles";
-import global, { palette } from "../../styles/global";
-import { useEffect } from "react";
+
+interface PacoteInterface {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  category_name: string;
+  image_url: string;
+  guia_id: number;
+}
+
+interface Guia {
+  id: number;
+  name: string;
+  description: string;
+  media: number;
+  tel: string;
+}
 
 export default function Pacote({ navigation, route }) {
-  const { titulo, valor, local } = route.params;
+  const [guia, setGuia] = useState<Guia>();
+  const [ready, setReady] = useState(false);
+  const { pacote }: { pacote: PacoteInterface } = route.params;
 
   useEffect(() => {
-    navigation.setOptions({ title: titulo });
+    navigation.setOptions({ title: pacote.name });
+    api
+      .get(`/guia/${pacote.guia_id}`)
+      .then((res) => {
+        setGuia(res.data);
+        setReady(true);
+      })
+      .catch((erro) => {
+        console.log(erro);
+      });
   }, []);
 
-  return (
+  return ready ? (
     <Container>
       <LikeContainer>
         <FontAwesome name="heart" size={30} color={palette.white} />
@@ -41,28 +73,35 @@ export default function Pacote({ navigation, route }) {
       <Campo>
         <CampoTitulo>Descrição</CampoTitulo>
         <TextoContainer>
-          <CampoTexto>
-            Passeio piriri pororo dia 25 começa hás 09:00 passa pelo parara pororo e vai pelo bla
-            bla bla.
-          </CampoTexto>
+          <CampoTexto>{pacote.description}</CampoTexto>
         </TextoContainer>
       </Campo>
       <Campo>
         <CampoTitulo>Guia</CampoTitulo>
         <TextoContainer>
-          <CampoTexto>Mário Roberto da Silva</CampoTexto>
-          <CampoTexto>Um guia muito bom por ter nascido e morado na cidade por 40 anos</CampoTexto>
+          <CampoTexto>{guia.name}</CampoTexto>
+          <CampoTexto>{guia.description}</CampoTexto>
         </TextoContainer>
       </Campo>
       <Campo>
         <CampoTitulo>Preço</CampoTitulo>
         <TextoContainer>
-          <CampoTexto>R$ {valor}</CampoTexto>
+          <CampoTexto>R$ {pacote.price}</CampoTexto>
         </TextoContainer>
       </Campo>
       <ViewBotao>
-        <Botao texto="Comprar" props={null} />
+        <Botao
+          texto="Comprar"
+          props={() =>
+            LocalAuthentication.authenticateAsync({
+              promptMessage: `Compra no valor de R$ ${pacote.price}`,
+              cancelLabel: "Cancelar",
+            })
+          }
+        />
       </ViewBotao>
     </Container>
+  ) : (
+    <Text>Carregando...</Text>
   );
 }
