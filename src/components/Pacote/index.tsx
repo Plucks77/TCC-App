@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesome } from "@expo/vector-icons";
 import Swiper from "react-native-swiper";
-import { Text } from "react-native";
+import ShimmerPlaceHolder from "react-native-shimmer-placeholder";
 import * as LocalAuthentication from "expo-local-authentication";
+import { Dimensions } from "react-native";
+import { useHeaderHeight } from "@react-navigation/stack";
 
 import api from "../../api";
 import { palette } from "../../styles/global";
@@ -41,6 +43,8 @@ export default function Pacote({ navigation, route }) {
   const [guia, setGuia] = useState<Guia>();
   const [ready, setReady] = useState(false);
   const { pacote }: { pacote: PacoteInterface } = route.params;
+  const HEADERHEIGHT = useHeaderHeight();
+  const HEIGHT = Dimensions.get("window").height - HEADERHEIGHT - 100;
 
   useEffect(() => {
     navigation.setOptions({ title: pacote.name });
@@ -102,6 +106,18 @@ export default function Pacote({ navigation, route }) {
       </ViewBotao>
     </Container>
   ) : (
-    <Text>Carregando...</Text>
+    <>
+      <ShimmerPlaceHolder
+        autoRun={true}
+        style={{
+          width: 350,
+          height: HEIGHT,
+          backgroundColor: "lightgray",
+          borderRadius: 5,
+          alignSelf: "center",
+          marginTop: 20,
+        }}
+      />
+    </>
   );
 }

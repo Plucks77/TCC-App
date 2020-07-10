@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import LottieView from "lottie-react-native";
+import ShimmerPlaceHolder from "react-native-shimmer-placeholder";
 
 import api from "../../api";
 
@@ -48,6 +48,40 @@ export default function Locais({ navigation, route }) {
       </LocalsArea>
     </Container>
   ) : (
-    <LottieView source={require("../../../assets/loading.json")} autoPlay loop />
+    <>
+      <ShimmerPlaceHolder
+        autoRun={true}
+        style={{
+          width: 350,
+          height: 110,
+          backgroundColor: "lightgray",
+          borderRadius: 5,
+          alignSelf: "center",
+          marginTop: 20,
+        }}
+      />
+      <ShimmerPlaceHolder
+        autoRun={true}
+        style={{
+          width: 350,
+          height: 110,
+          backgroundColor: "lightgray",
+          borderRadius: 5,
+          alignSelf: "center",
+          marginTop: 20,
+        }}
+      />
+      <ShimmerPlaceHolder
+        autoRun={true}
+        style={{
+          width: 350,
+          height: 110,
+          backgroundColor: "lightgray",
+          borderRadius: 5,
+          alignSelf: "center",
+          marginTop: 20,
+        }}
+      />
+    </>
   );
 }

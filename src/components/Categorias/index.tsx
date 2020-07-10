@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { TouchableOpacity, View, Text } from "react-native";
-import LottieView from "lottie-react-native";
+import ShimmerPlaceHolder from "react-native-shimmer-placeholder";
 
 import api from "../../api";
 
@@ -118,6 +118,40 @@ export default function Categorias({ navigation, route }) {
       </CategoriasContainer>
     </Container>
   ) : (
-    <LottieView source={require("../../../assets/loading.json")} autoPlay loop />
+    <>
+      <ShimmerPlaceHolder
+        autoRun={true}
+        style={{
+          width: 350,
+          height: 150,
+          backgroundColor: "lightgray",
+          borderRadius: 5,
+          alignSelf: "center",
+          marginTop: 20,
+        }}
+      />
+      <ShimmerPlaceHolder
+        autoRun={true}
+        style={{
+          width: 350,
+          height: 150,
+          backgroundColor: "lightgray",
+          borderRadius: 5,
+          alignSelf: "center",
+          marginTop: 20,
+        }}
+      />
+      <ShimmerPlaceHolder
+        autoRun={true}
+        style={{
+          width: 350,
+          height: 150,
+          backgroundColor: "lightgray",
+          borderRadius: 5,
+          alignSelf: "center",
+          marginTop: 20,
+        }}
+      />
+    </>
   );
 }
