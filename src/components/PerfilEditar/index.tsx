@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesome } from "@expo/vector-icons";
-import { AsyncStorage } from "react-native";
 
+import { useAuth } from "../../contexts/auth";
 import api from "../../api";
-
-import global from "../../styles/global";
 import Botao from "../Botao";
 
 import { Container, ViewInfos, Texto, Input, BotaoArea } from "./styles";
@@ -17,20 +15,15 @@ interface User {
 
 export default function PerfilEditar({ navigation, route }) {
   const [user, setUser] = useState<User>();
-  const [token, setToken] = useState("");
-
-  const config = {
-    headers: { Authorization: `Bearer ${token}` },
-  };
+  const { user: user_id } = useAuth();
 
   useEffect(() => {
-    AsyncStorage.getItem("token").then((token) => setToken(token));
     setUser(route.params.user);
   }, []);
 
   async function handleSalvar() {
     api
-      .put(`edit/${user.id}`, user, config)
+      .put(`/user/edit/${user_id}`, user)
       .then((res) => {
         if (res.status === 200) {
           navigation.navigate("Perfil");
