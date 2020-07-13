@@ -16,4 +16,5 @@ export const palette = {
   white: "#FFFFFF",
   lightGray: "rgba(108,134,140,0.15)",
   error: "#E86868",
+  favorite: "#D15151",
 };

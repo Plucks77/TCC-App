@@ -7,6 +7,7 @@ import { Dimensions } from "react-native";
 import { useHeaderHeight } from "@react-navigation/stack";
 
 import api from "../../api";
+import { useAuth } from "../../contexts/auth";
 import { palette } from "../../styles/global";
 
 import Botao from "../Botao";
@@ -42,7 +43,9 @@ interface Guia {
 export default function Pacote({ navigation, route }) {
   const [guia, setGuia] = useState<Guia>();
   const [ready, setReady] = useState(false);
+  const [favorited, setFavorited] = useState(false);
   const { pacote }: { pacote: PacoteInterface } = route.params;
+  const { user } = useAuth();
   const HEADERHEIGHT = useHeaderHeight();
   const HEIGHT = Dimensions.get("window").height - HEADERHEIGHT - 100;
 
@@ -59,10 +62,26 @@ export default function Pacote({ navigation, route }) {
       });
   }, []);
 
+  useEffect(() => {
+    api.post("/favorited", { user_id: user, pacote_id: pacote.id }).then((res) => {
+      setFavorited(res.data);
+    });
+  }, []);
+
+  async function handleFavorite() {
+    setFavorited(true);
+    await api.post("/user/pacote/favorite", { user_id: user, pacote_id: pacote.id });
+  }
+
+  async function handleUnfavorite() {
+    setFavorited(false);
+    await api.post("/unfavorite", { user_id: user, pacote_id: pacote.id });
+  }
+
   return ready ? (
     <Container>
-      <LikeContainer>
-        <FontAwesome name="heart" size={30} color={palette.white} />
+      <LikeContainer onPress={favorited ? handleUnfavorite : handleFavorite}>
+        <FontAwesome name="heart" size={30} color={favorited ? palette.favorite : palette.white} />
       </LikeContainer>
 
       <Swiper
