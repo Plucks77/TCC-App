@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from "@react-native-community/async-storage";
 
 import api from "../api";
 import * as auth from "../services/auth";
@@ -8,6 +8,7 @@ interface AuthContextData {
   singned: boolean;
   user: Response | string | null;
   signIn(email, password): Promise<Response | string>;
+  register(username, email, password, tel): Promise<Response2 | string>;
   signOut(): void;
   loading: boolean;
 }
@@ -15,6 +16,17 @@ interface AuthContextData {
 interface Response {
   token: string;
   user_id: string;
+}
+
+interface Response2 {
+  token: string;
+
+  user: {
+    id: string;
+    email: string;
+    username: string;
+    tel: string;
+  };
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
@@ -52,6 +64,20 @@ export const AuthProvider: React.FC = ({ children }) => {
     return response;
   }
 
+  async function register(username, email, password, tel) {
+    const response = await auth.register(username, email, password, tel);
+
+    if (typeof response !== "string") {
+      setUser(response.user.id);
+
+      api.defaults.headers.Authorization = `Bearer ${response.token}`;
+
+      await AsyncStorage.setItem("@Valetour:user.id", JSON.stringify(response.user.id));
+      await AsyncStorage.setItem("@Valetour:token", JSON.stringify(response.token));
+    }
+    return response;
+  }
+
   async function signOut() {
     setUser(null);
     await AsyncStorage.removeItem("@Valetour:user_id");
@@ -59,7 +85,7 @@ export const AuthProvider: React.FC = ({ children }) => {
   }
 
   return (
-    <AuthContext.Provider value={{ singned: !!user, user, signIn, signOut, loading }}>
+    <AuthContext.Provider value={{ singned: !!user, user, signIn, signOut, register, loading }}>
       {children}
     </AuthContext.Provider>
   );
