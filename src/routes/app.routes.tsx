@@ -14,6 +14,7 @@ import Perfil from "../components/Perfil";
 import Configuracoes from "../components/Configuracoes";
 import Idiomas from "../components/Idiomas";
 import PerfilEditar from "../components/PerfilEditar";
+import ListaFavoritos from "../components/ListaFavoritos";
 
 import { palette } from "../styles/global";
 
@@ -127,6 +128,44 @@ function ConfiguracaoStack() {
   );
 }
 
+function FavotieStack() {
+  return (
+    <AppStack.Navigator
+      screenOptions={{
+        headerTintColor: palette.secundary,
+        headerTitleAlign: "center",
+        headerBackTitleVisible: false,
+        headerTitleStyle: {
+          fontSize: 20,
+          fontWeight: "bold",
+        },
+      }}
+    >
+      <AppStack.Screen
+        name="Favoritos"
+        component={ListaFavoritos}
+        options={{ title: "Favoritos" }}
+      />
+      <AppStack.Screen
+        name="PacoteFavorito"
+        component={Pacote}
+        options={{
+          title: "Pacote",
+          headerRight: () => (
+            <TouchableOpacity style={{ paddingRight: 15 }}>
+              <Feather
+                name={Platform.OS === "ios" ? "share" : "share-2"}
+                size={25}
+                color={palette.secundary}
+              />
+            </TouchableOpacity>
+          ),
+        }}
+      />
+    </AppStack.Navigator>
+  );
+}
+
 function BottomTab() {
   return (
     <AppBottomTab.Navigator
@@ -143,6 +182,14 @@ function BottomTab() {
           tabBarIcon: ({ color, size }) => (
             <FontAwesome5 name="suitcase-rolling" size={size} color={color} />
           ),
+        }}
+      />
+
+      <AppBottomTab.Screen
+        name="Favoritos"
+        component={FavotieStack}
+        options={{
+          tabBarIcon: ({ color, size }) => <FontAwesome name="heart" size={size} color={color} />,
         }}
       />
       <AppBottomTab.Screen
