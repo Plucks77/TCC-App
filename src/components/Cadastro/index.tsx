@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, AsyncStorage, Keyboard, TouchableWithoutFeedback, Alert } from "react-native";
-import { FontAwesome } from "@expo/vector-icons";
+import { View, Keyboard, TouchableWithoutFeedback, Alert } from "react-native";
 import { TextInputMask } from "react-native-masked-text";
 import LottieView from "lottie-react-native";
 import { Formik } from "formik";
 import * as yup from "yup";
 import { Entypo } from "@expo/vector-icons";
-import global from "../../styles/global";
+import { palette } from "../../styles/global";
+
 import Botao from "../Botao";
-import api from "../../api";
+import { useAuth } from "../../contexts/auth";
+
 import { Container, Input, Campos, InputMask, Erro, ViewInput, ScrollCampos } from "./styles";
 
 const cadastroSchema = yup.object({
@@ -41,6 +42,7 @@ const cadastroSchema = yup.object({
 
 export default function Cadastro({ navigation }) {
   const [ready, setReady] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
   const [user, setUser] = useState({
     nome: "",
     email: "",
@@ -48,39 +50,24 @@ export default function Cadastro({ navigation }) {
     conf_senha: "",
     tel: "",
   });
-  const [showPassword, setShowPassword] = useState(false);
+  const { register } = useAuth();
 
   async function handleCadastro(nome, email, senha, conf_senha, tel) {
     setReady(false);
     setUser({ nome, email, senha, conf_senha, tel });
 
     const envtel = tel.replace(" ", "").replace("-", "").replace("(", "").replace(")", "");
-    try {
-      await api
-        .post("/register", {
-          username: nome,
-          email,
-          password: senha,
-          tel: envtel,
-        })
-        .then(async (response) => {
-          await AsyncStorage.setItem("token", response.data.token.toString());
-          await AsyncStorage.setItem("user_id", response.data.user.id.toString());
-          navigation.navigate("Main");
-          setUser({ nome: "", email: "", senha: "", conf_senha: "", tel: "" });
-        })
-        .catch((error) => {
-          if (error.response.data.erro.constraint === "users_username_unique") {
-            Alert.alert("Oooops...", "Este nome de usuário já está cadastrado!");
-          }
-          if (error.response.data.erro.constraint === "users_email_unique") {
-            Alert.alert("Oooops...", "Este endereço de e-mail já está cadastrado!");
-          }
-        });
-    } catch (e) {
-      console.log(e);
+
+    const response = await register(nome, email, senha, envtel);
+
+    if (response === "user") {
+      setReady(true);
+      Alert.alert("Oooops...", "Usuário informado já está cadastrado!");
     }
-    setReady(true);
+    if (response === "email") {
+      setReady(true);
+      Alert.alert("Oooops...", "E-mail informado já está cadastrado!");
+    }
   }
   const [isKeyboardVisible, setKeyboardVisible] = useState(false);
 
@@ -127,7 +114,7 @@ export default function Cadastro({ navigation }) {
                   <ViewInput>
                     <Input
                       placeholder="Nome"
-                      placeholderTextColor={global.text}
+                      placeholderTextColor={palette.secundary}
                       autoCapitalize="words"
                       autoCorrect={false}
                       value={props.values.nome}
@@ -141,7 +128,7 @@ export default function Cadastro({ navigation }) {
                   <ViewInput>
                     <Input
                       placeholder="Email"
-                      placeholderTextColor={global.text}
+                      placeholderTextColor={palette.secundary}
                       keyboardType="email-address"
                       autoCapitalize="none"
                       autoCorrect={false}
@@ -156,7 +143,7 @@ export default function Cadastro({ navigation }) {
                   <ViewInput>
                     <Input
                       placeholder="Senha"
-                      placeholderTextColor={global.text}
+                      placeholderTextColor={palette.secundary}
                       secureTextEntry={showPassword ? false : true}
                       value={props.values.senha}
                       onChangeText={props.handleChange("senha")}
@@ -174,7 +161,7 @@ export default function Cadastro({ navigation }) {
                           marginTop: 7,
                           paddingRight: 7,
                         }}
-                        color={global.text}
+                        color={palette.secundary}
                       />
                     </TouchableWithoutFeedback>
                     <Erro>{props.touched.senha && props.errors.senha}</Erro>
@@ -183,7 +170,7 @@ export default function Cadastro({ navigation }) {
                   <ViewInput>
                     <Input
                       placeholder="Confirme sua senha"
-                      placeholderTextColor={global.text}
+                      placeholderTextColor={palette.secundary}
                       secureTextEntry={showPassword ? false : true}
                       value={props.values.confirmaSenha}
                       onChangeText={props.handleChange("confirmaSenha")}
@@ -200,7 +187,7 @@ export default function Cadastro({ navigation }) {
                           marginTop: 7,
                           paddingRight: 7,
                         }}
-                        color={global.text}
+                        color={palette.secundary}
                       />
                     </TouchableWithoutFeedback>
                     <Erro>{props.touched.confirmaSenha && props.errors.confirmaSenha}</Erro>
@@ -215,7 +202,7 @@ export default function Cadastro({ navigation }) {
                         dddMask: "(99) ",
                       }}
                       placeholder="Telefone"
-                      placeholderTextColor={global.text}
+                      placeholderTextColor={palette.secundary}
                       maxLength={15}
                       value={props.values.tel}
                       onChangeText={props.handleChange("tel")}
