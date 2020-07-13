@@ -56,7 +56,7 @@ export default function Perfil({ navigation }) {
         </BotaoArea>
 
         <BotaoArea>
-          <Botao texto="Sair" props={() => signOut} />
+          <Botao texto="Sair" props={() => signOut()} />
         </BotaoArea>
       </BotoesContainer>
     </Container>
