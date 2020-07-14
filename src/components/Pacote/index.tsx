@@ -40,7 +40,12 @@ interface Guia {
   tel: string;
 }
 
+interface Foto {
+  image_url: string;
+}
+
 export default function Pacote({ navigation, route }) {
+  const [fotos, setFotos] = useState<Foto[]>([]);
   const [guia, setGuia] = useState<Guia>();
   const [ready, setReady] = useState(false);
   const [favorited, setFavorited] = useState(false);
@@ -68,6 +73,12 @@ export default function Pacote({ navigation, route }) {
     });
   }, []);
 
+  useEffect(() => {
+    api.get(`/fotos/pacote/${pacote.id}`).then((res) => {
+      setFotos(res.data);
+    });
+  }, []);
+
   async function handleFavorite() {
     setFavorited(true);
     await api.post("/user/pacote/favorite", { user_id: user, pacote_id: pacote.id });
@@ -90,8 +101,9 @@ export default function Pacote({ navigation, route }) {
         activeDotColor="white"
         dotColor="gray"
       >
-        <Imagem source={require("../../../assets/pacote1.jpg")} />
-        <Imagem source={require("../../../assets/pacote2.jpg")} />
+        {fotos.map((foto, i) => (
+          <Imagem key={i} source={{ uri: foto.image_url }} />
+        ))}
       </Swiper>
       <Campo>
         <CampoTitulo>Descrição</CampoTitulo>
