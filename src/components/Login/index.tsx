@@ -144,9 +144,13 @@ export default function Login({ navigation }) {
                   <Erro>{props.touched.password && props.errors.password}</Erro>
                 </ViewInput>
                 <ViewBotao>
-                  <Botao texto="Entrar" props={props.handleSubmit} />
+                  <Botao texto="Entrar" props={props.handleSubmit} primary={true} />
                 </ViewBotao>
-                <Botao texto="Fazer cadastro" props={() => navigation.navigate("Cadastro")} />
+                <Botao
+                  texto="Fazer cadastro"
+                  props={() => navigation.navigate("Cadastro")}
+                  primary={false}
+                />
                 <TouchableOpacity onPress={() => navigation.navigate("Esqueci minha senha")}>
                   <Texto>Esqueci minha senha</Texto>
                 </TouchableOpacity>
