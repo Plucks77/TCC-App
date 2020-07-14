@@ -44,19 +44,20 @@ export default function Perfil({ navigation }) {
           <Botao
             texto="Alterar informações"
             props={() => navigation.navigate("PerfilEditar", { user })}
+            primary={true}
           />
         </BotaoArea>
 
         <BotaoArea>
-          <Botao texto="Trocar e-mail" props={null} />
+          <Botao texto="Trocar e-mail" props={null} primary={true} />
         </BotaoArea>
 
         <BotaoArea>
-          <Botao texto="Trocar senha" props={null} />
+          <Botao texto="Trocar senha" props={null} primary={true} />
         </BotaoArea>
 
         <BotaoArea>
-          <Botao texto="Sair" props={() => signOut()} />
+          <Botao texto="Sair" props={() => signOut()} primary={true} />
         </BotaoArea>
       </BotoesContainer>
     </Container>

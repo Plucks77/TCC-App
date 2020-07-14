@@ -50,7 +50,7 @@ export default function PerfilEditar({ navigation, route }) {
       </ViewInfos>
 
       <BotaoArea>
-        <Botao texto="Salvar" props={() => handleSalvar()} />
+        <Botao texto="Salvar" props={() => handleSalvar()} primary={true} />
       </BotaoArea>
     </Container>
   );
