@@ -3,7 +3,7 @@ import { palette } from "../../styles/global";
 
 export const Container = styled.ScrollView.attrs(() => ({
   flex: 1,
-  marginTop: 10,
+  paddingTop: 10,
   backgroundColor: palette.white,
 }))``;
 
