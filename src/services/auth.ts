@@ -1,11 +1,11 @@
 import api from "../api";
 
-interface Response {
+interface ResponseSignIn {
   token: string;
   user_id: string;
 }
 
-interface Response2 {
+interface ResponseRegister {
   token: string;
 
   user: {
@@ -18,7 +18,7 @@ interface Response2 {
 
 export async function signIn(email, password) {
   try {
-    const response = await api.post<Response>("/user/login", { email, password });
+    const response = await api.post<ResponseSignIn>("/user/login", { email, password });
     return response.data;
   } catch (e) {
     if (e.response.data[0].field === "email") {
@@ -31,7 +31,7 @@ export async function signIn(email, password) {
 
 export async function register(username, email, password, tel) {
   try {
-    const response = await api.post<Response2>("/user/register", {
+    const response = await api.post<ResponseRegister>("/user/register", {
       username,
       email,
       password,

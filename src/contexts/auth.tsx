@@ -7,18 +7,18 @@ import * as auth from "../services/auth";
 interface AuthContextData {
   singned: boolean;
   user: Response | string | null;
-  signIn(email, password): Promise<Response | string>;
-  register(username, email, password, tel): Promise<Response2 | string>;
+  signIn(email, password): Promise<ResponseSignIn | string>;
+  register(username, email, password, tel): Promise<ResponseRegister | string>;
   signOut(): void;
   loading: boolean;
 }
 
-interface Response {
+interface ResponseSignIn {
   token: string;
   user_id: string;
 }
 
-interface Response2 {
+interface ResponseRegister {
   token: string;
 
   user: {
