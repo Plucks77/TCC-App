@@ -1,8 +1,7 @@
 import styled from "styled-components/native";
-import global from "../../styles/global";
 import { palette } from "../../styles/global";
+
 export const Container = styled.SafeAreaView`
-  display: flex;
   flex: 1;
   background-color: ${palette.white};
 `;
@@ -19,11 +18,13 @@ export const Texto = styled.Text`
   text-align: center;
 `;
 
-export const ViewInput = styled.View`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+export const Campos = styled.KeyboardAvoidingView`
   align-items: center;
+  justify-content: center;
+`;
+
+export const ViewInput = styled.View`
+  flex-direction: column;
 `;
 
 export const Input = styled.TextInput`
@@ -33,7 +34,7 @@ export const Input = styled.TextInput`
   border-color: ${palette.secundary};
   color: ${palette.secundary};
   font-size: 20px;
-  padding-left: 15px;
+  padding-left: 35px;
   border-radius: 10px;
 `;
 

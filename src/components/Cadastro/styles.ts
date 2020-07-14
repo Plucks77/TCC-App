@@ -1,9 +1,7 @@
 import styled from "styled-components/native";
-import global from "../../styles/global";
 import { palette } from "../../styles/global";
 
 export const Container = styled.SafeAreaView`
-  display: flex;
   flex: 1;
   background-color: ${palette.white};
 `;
@@ -19,7 +17,6 @@ export const Campos = styled.KeyboardAvoidingView`
 `;
 
 export const ViewInput = styled.View`
-  display: flex;
   flex-direction: column;
   margin-bottom: 15px;
 `;
