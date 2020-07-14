@@ -4,11 +4,11 @@ import { TextInputMask } from "react-native-masked-text";
 import LottieView from "lottie-react-native";
 import { Formik } from "formik";
 import * as yup from "yup";
-import { Entypo } from "@expo/vector-icons";
-import { palette } from "../../styles/global";
+import { Entypo, MaterialIcons, FontAwesome } from "@expo/vector-icons";
 
 import Botao from "../Botao";
 import { useAuth } from "../../contexts/auth";
+import { palette } from "../../styles/global";
 
 import { Container, Input, Campos, InputMask, Erro, ViewInput, ScrollCampos } from "./styles";
 
@@ -112,6 +112,16 @@ export default function Cadastro({ navigation }) {
               <ScrollCampos>
                 <Campos aberto={isKeyboardVisible}>
                   <ViewInput>
+                    <FontAwesome
+                      name="user"
+                      size={25}
+                      style={{
+                        position: "absolute",
+                        marginTop: 8,
+                        paddingLeft: 6,
+                      }}
+                      color={palette.secundary}
+                    />
                     <Input
                       placeholder="Nome"
                       placeholderTextColor={palette.secundary}
@@ -126,6 +136,16 @@ export default function Cadastro({ navigation }) {
                   </ViewInput>
 
                   <ViewInput>
+                    <MaterialIcons
+                      name="email"
+                      size={25}
+                      style={{
+                        position: "absolute",
+                        marginTop: 8,
+                        paddingLeft: 6,
+                      }}
+                      color={palette.secundary}
+                    />
                     <Input
                       placeholder="Email"
                       placeholderTextColor={palette.secundary}
@@ -141,6 +161,16 @@ export default function Cadastro({ navigation }) {
                   </ViewInput>
 
                   <ViewInput>
+                    <MaterialIcons
+                      name="lock"
+                      size={25}
+                      style={{
+                        position: "absolute",
+                        marginTop: 8,
+                        paddingLeft: 6,
+                      }}
+                      color={palette.secundary}
+                    />
                     <Input
                       placeholder="Senha"
                       placeholderTextColor={palette.secundary}
@@ -168,6 +198,16 @@ export default function Cadastro({ navigation }) {
                   </ViewInput>
 
                   <ViewInput>
+                    <MaterialIcons
+                      name="lock"
+                      size={25}
+                      style={{
+                        position: "absolute",
+                        marginTop: 8,
+                        paddingLeft: 6,
+                      }}
+                      color={palette.secundary}
+                    />
                     <Input
                       placeholder="Confirme sua senha"
                       placeholderTextColor={palette.secundary}
@@ -194,6 +234,16 @@ export default function Cadastro({ navigation }) {
                   </ViewInput>
 
                   <ViewInput>
+                    <MaterialIcons
+                      name="local-phone"
+                      size={25}
+                      style={{
+                        position: "absolute",
+                        marginTop: 8,
+                        paddingLeft: 6,
+                      }}
+                      color={palette.secundary}
+                    />
                     <TextInputMask
                       type={"cel-phone"}
                       options={{
@@ -212,7 +262,7 @@ export default function Cadastro({ navigation }) {
                     <Erro>{props.touched.tel && props.errors.tel}</Erro>
                   </ViewInput>
 
-                  <Botao texto="Cadastrar" props={props.handleSubmit} />
+                  <Botao texto="Cadastrar" props={props.handleSubmit} primary={true} />
                 </Campos>
               </ScrollCampos>
             )}

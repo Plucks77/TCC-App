@@ -31,7 +31,7 @@ export const Input = styled.TextInput`
   border-color: ${palette.secundary};
   color: ${palette.secundary};
   font-size: 20px;
-  padding-left: 15px;
+  padding-left: 35px;
   border-radius: 10px;
 `;
 export const InputMask = {
@@ -41,7 +41,7 @@ export const InputMask = {
   borderColor: palette.secundary,
   color: palette.secundary,
   fontSize: 20,
-  paddingLeft: 15,
+  paddingLeft: 35,
   borderRadius: 10,
 };
 
