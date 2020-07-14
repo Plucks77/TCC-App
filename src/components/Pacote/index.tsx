@@ -121,6 +121,7 @@ export default function Pacote({ navigation, route }) {
               cancelLabel: "Cancelar",
             })
           }
+          primary={true}
         />
       </ViewBotao>
     </Container>
