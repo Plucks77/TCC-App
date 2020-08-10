@@ -22,11 +22,13 @@ export default function PerfilEditar({ navigation, route }) {
   }, []);
 
   async function handleSalvar() {
+    const newTel = user.tel.replace("(", "").replace(")", "").replace(" ", "");
+    user.tel = newTel;
     api
       .put(`/user/edit/${user_id}`, user)
       .then((res) => {
         if (res.status === 200) {
-          navigation.navigate("Perfil");
+          navigation.navigate("Perfil", { updatedUser: true });
         }
       })
       .catch((erro) => console.log(erro));

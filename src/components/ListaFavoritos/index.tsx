@@ -55,8 +55,8 @@ export default function ListaFavoritos({ navigation }) {
   if (ready && pacotes.length === 0) {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text>Você ainda não favoritou um pacote 😕</Text>
-        <Text>Continue navegando e favorite um!</Text>
+        <Text style={{ fontSize: 15 }}>Você ainda não favoritou um pacote 😕</Text>
+        <Text style={{ fontSize: 15 }}>Continue navegando e favorite um!</Text>
       </View>
     );
   }

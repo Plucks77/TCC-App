@@ -30,7 +30,7 @@ export default function Configuracoes({ navigation }) {
           <Texto>Fale conosco</Texto>
         </Opcao>
 
-        <Opcao onPress={() => signOut()}>
+        <Opcao onPress={() => {}}>
           <Icone>
             <FontAwesome name="file-text" size={25} color={palette.white} />
           </Icone>

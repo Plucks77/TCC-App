@@ -89,6 +89,16 @@ export default function Pacote({ navigation, route }) {
     await api.post("/unfavorite", { user_id: user, pacote_id: pacote.id });
   }
 
+  async function handleFingerPrint() {
+    const response = await LocalAuthentication.authenticateAsync({
+      promptMessage: `Compra no valor de R$ ${pacote.price}`,
+      cancelLabel: "Cancelar",
+    });
+    if (response.success) {
+      console.log("Funcionou");
+    }
+  }
+
   return ready ? (
     <Container>
       <LikeContainer onPress={favorited ? handleUnfavorite : handleFavorite}>
@@ -125,16 +135,7 @@ export default function Pacote({ navigation, route }) {
         </TextoContainer>
       </Campo>
       <ViewBotao>
-        <Botao
-          texto="Comprar"
-          props={() =>
-            LocalAuthentication.authenticateAsync({
-              promptMessage: `Compra no valor de R$ ${pacote.price}`,
-              cancelLabel: "Cancelar",
-            })
-          }
-          primary={true}
-        />
+        <Botao texto="Comprar" props={() => handleFingerPrint()} primary={true} />
       </ViewBotao>
     </Container>
   ) : (

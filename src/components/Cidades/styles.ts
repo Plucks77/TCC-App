@@ -67,6 +67,7 @@ export const DescricaoTexto = styled.Text`
   color: #122624;
   font-size: 14px;
   font-weight: 500;
+  line-height: 21px;
   padding: 10px;
 `;
 

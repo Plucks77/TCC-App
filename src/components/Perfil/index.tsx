@@ -8,22 +8,28 @@ import Botao from "../Botao";
 
 import { palette } from "../../styles/global";
 import { Container, ViewInfos, Texto, Input, BotoesContainer, BotaoArea, Icone } from "./styles";
+import { useIsFocused } from "@react-navigation/native";
 
 export default function Perfil({ navigation }) {
   const { signOut, user: contextUser } = useAuth();
 
   const [user, setUser] = useState({ id: "", username: "", email: "", tel: "" });
   const [ready, setReady] = useState(false);
+  const isFocused = useIsFocused();
 
   useEffect(() => {
-    async function getData() {
-      const response = await api.get(`/user/${contextUser}`);
-      const { id, username, email, tel } = response.data;
-      setUser({ id, username, email, tel });
-      setReady(true);
+    if (isFocused) {
+      getData();
     }
-    getData();
-  }, []);
+  }, [isFocused]);
+
+  async function getData() {
+    const response = await api.get(`/user/${contextUser}`);
+    const { id, username, email, tel } = response.data;
+    const newTel = "(" + tel.substring(0, 2) + ") " + tel.substring(2);
+    setUser({ id, username, email, tel: newTel });
+    setReady(true);
+  }
 
   return ready ? (
     <Container>

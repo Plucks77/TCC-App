@@ -53,4 +53,6 @@ export const Erro = styled.Text`
 
 export const ViewEnviado = styled.View`
   flex: 1;
+  justify-content: center;
+  align-items: center;
 `;
