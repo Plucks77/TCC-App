@@ -30,6 +30,7 @@ interface PacoteInterface {
   category_name: string;
   image_url: string;
   guia_id: number;
+  date: string;
 }
 
 interface Guia {
@@ -53,6 +54,12 @@ export default function Pacote({ navigation, route }) {
   const { user } = useAuth();
   const HEADERHEIGHT = useHeaderHeight();
   const HEIGHT = Dimensions.get("window").height - HEADERHEIGHT - 100;
+
+  const arrayData = pacote.date.split("T");
+  const initialDia = arrayData[0];
+  const hora = arrayData[1];
+  const arrayDia = initialDia.split("-");
+  const dia = arrayDia[2] + "/" + arrayDia[1] + "/" + arrayDia[0];
 
   useEffect(() => {
     navigation.setOptions({ title: pacote.name });
@@ -119,6 +126,14 @@ export default function Pacote({ navigation, route }) {
         <CampoTitulo>Descrição</CampoTitulo>
         <TextoContainer>
           <CampoTexto>{pacote.description}</CampoTexto>
+        </TextoContainer>
+      </Campo>
+      <Campo>
+        <CampoTitulo>Data</CampoTitulo>
+        <TextoContainer>
+          <CampoTexto>
+            {dia} hás {hora}
+          </CampoTexto>
         </TextoContainer>
       </Campo>
       <Campo>

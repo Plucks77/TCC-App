@@ -25,6 +25,7 @@ interface Pacote {
   category_name: string;
   image_url: string;
   guia_id: number;
+  date: string;
 }
 
 export default function Categorias({ navigation, route }) {
