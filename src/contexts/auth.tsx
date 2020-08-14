@@ -10,7 +10,6 @@ interface AuthContextData {
   signIn(email, password): Promise<ResponseSignIn | string>;
   register(username, email, password, tel): Promise<ResponseRegister | string>;
   signOut(): void;
-  loading: boolean;
 }
 
 interface ResponseSignIn {
@@ -33,7 +32,6 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export const AuthProvider: React.FC = ({ children }) => {
   const [user, setUser] = useState<Response | string | null>(null);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function loadStoragedData() {
@@ -45,7 +43,6 @@ export const AuthProvider: React.FC = ({ children }) => {
 
         setUser(storaged_user_id);
       }
-      setLoading(false);
     }
     loadStoragedData();
   }, []);
@@ -85,7 +82,7 @@ export const AuthProvider: React.FC = ({ children }) => {
   }
 
   return (
-    <AuthContext.Provider value={{ singned: !!user, user, signIn, signOut, register, loading }}>
+    <AuthContext.Provider value={{ singned: !!user, user, signIn, signOut, register }}>
       {children}
     </AuthContext.Provider>
   );

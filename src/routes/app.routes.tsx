@@ -6,6 +6,8 @@ import { Feather } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
 
+import { usePurchase } from "../contexts/purchase";
+
 import Cidades from "../components/Cidades";
 import Locais from "../components/Locais";
 import Categorias from "../components/Categorias";
@@ -15,6 +17,7 @@ import Configuracoes from "../components/Configuracoes";
 import Idiomas from "../components/Idiomas";
 import PerfilEditar from "../components/PerfilEditar";
 import ListaFavoritos from "../components/ListaFavoritos";
+import Compras from "../components/Compras";
 
 import { palette } from "../styles/global";
 
@@ -166,8 +169,27 @@ function FavotieStack() {
   );
 }
 
-function BottomTab() {
+function PurchasedStack() {
   return (
+    <AppStack.Navigator
+      screenOptions={{
+        headerTintColor: palette.secundary,
+        headerTitleAlign: "center",
+        headerBackTitleVisible: false,
+        headerTitleStyle: {
+          fontSize: 20,
+          fontWeight: "bold",
+        },
+      }}
+    >
+      <AppStack.Screen name="Compras" component={Compras} options={{ title: "Compras" }} />
+    </AppStack.Navigator>
+  );
+}
+
+function BottomTab() {
+  const { hasPurchases } = usePurchase();
+  return !hasPurchases ? (
     <AppBottomTab.Navigator
       tabBarOptions={{
         activeTintColor: palette.secundary,
@@ -185,6 +207,53 @@ function BottomTab() {
         }}
       />
 
+      <AppBottomTab.Screen
+        name="Favoritos"
+        component={FavotieStack}
+        options={{
+          tabBarIcon: ({ color, size }) => <FontAwesome name="heart" size={size} color={color} />,
+        }}
+      />
+      <AppBottomTab.Screen
+        name="Perfil"
+        component={PerfilStack}
+        options={{
+          tabBarIcon: ({ color, size }) => <FontAwesome name="user" size={size} color={color} />,
+        }}
+      />
+      <AppBottomTab.Screen
+        name="Configurações"
+        component={ConfiguracaoStack}
+        options={{
+          tabBarIcon: ({ color, size }) => <FontAwesome name="cog" size={size} color={color} />,
+        }}
+      />
+    </AppBottomTab.Navigator>
+  ) : (
+    <AppBottomTab.Navigator
+      tabBarOptions={{
+        activeTintColor: palette.secundary,
+        keyboardHidesTabBar: true,
+        showLabel: false,
+      }}
+    >
+      <AppBottomTab.Screen
+        name="Compras"
+        component={PurchasedStack}
+        options={{
+          tabBarIcon: ({ color, size }) => <FontAwesome5 name="home" size={size} color={color} />,
+        }}
+      />
+
+      <AppBottomTab.Screen
+        name="Viagens"
+        component={PrincipalStack}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome5 name="suitcase-rolling" size={size} color={color} />
+          ),
+        }}
+      />
       <AppBottomTab.Screen
         name="Favoritos"
         component={FavotieStack}

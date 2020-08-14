@@ -3,14 +3,16 @@ import { FontAwesome } from "@expo/vector-icons";
 import Swiper from "react-native-swiper";
 import ShimmerPlaceHolder from "react-native-shimmer-placeholder";
 import * as LocalAuthentication from "expo-local-authentication";
-import { Dimensions } from "react-native";
+import { Dimensions, Modal, Text, View } from "react-native";
 import { useHeaderHeight } from "@react-navigation/stack";
 
 import api from "../../api";
 import { useAuth } from "../../contexts/auth";
+import { usePurchase } from "../../contexts/purchase";
 import { palette } from "../../styles/global";
 
 import Botao from "../Botao";
+import ModalCompraPacote from "../ModalCompraPacote";
 import {
   Container,
   Imagem,
@@ -50,8 +52,10 @@ export default function Pacote({ navigation, route }) {
   const [guia, setGuia] = useState<Guia>();
   const [ready, setReady] = useState(false);
   const [favorited, setFavorited] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const { pacote }: { pacote: PacoteInterface } = route.params;
   const { user } = useAuth();
+  const { changeHasPurchases } = usePurchase();
   const HEADERHEIGHT = useHeaderHeight();
   const HEIGHT = Dimensions.get("window").height - HEADERHEIGHT - 100;
 
@@ -102,12 +106,16 @@ export default function Pacote({ navigation, route }) {
       cancelLabel: "Cancelar",
     });
     if (response.success) {
-      console.log("Funcionou");
+      await api.post("/purchase", { user_id: user, pacote_id: pacote.id }).then((res) => {
+        changeHasPurchases(true);
+        setShowModal(true);
+      });
     }
   }
 
   return ready ? (
     <Container>
+      <ModalCompraPacote visible={showModal} setShowModal={setShowModal} />
       <LikeContainer onPress={favorited ? handleUnfavorite : handleFavorite}>
         <FontAwesome name="heart" size={30} color={favorited ? palette.favorite : palette.white} />
       </LikeContainer>
