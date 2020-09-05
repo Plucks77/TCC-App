@@ -1,11 +1,14 @@
 import styled from "styled-components/native";
+import { palette } from "../../styles/global";
 
-export const Container = styled.View`
+export const Container = styled.ScrollView.attrs(() => ({}))`
   flex: 1;
-  background: yellow;
+  color: ${palette.white};
 `;
 
-export const PacoteContainer = styled.View`
+export const PacoteContainer = styled.TouchableOpacity.attrs(() => ({
+  activeOpacity: 0.8,
+}))`
   margin-top: 10px;
   margin-bottom: 20px;
   justify-content: center;
@@ -24,11 +27,10 @@ export const Nome = styled.Text`
   position: absolute;
   top: 30%;
   left: 25px;
-  color: white;
-  shadow-opacity: 1;
-  shadow-radius: 1px;
-  shadow-color: black;
-  shadow-offset: 0px 0px;
+  color: ${palette.white};
+  text-shadow-radius: 5px;
+  text-shadow-color: black;
+  text-shadow-offset: 0px 0px;
 `;
 
 export const Data = styled.Text`
@@ -37,9 +39,8 @@ export const Data = styled.Text`
   position: absolute;
   bottom: 10px;
   right: 25px;
-  color: white;
-  shadow-opacity: 1;
-  shadow-radius: 1px;
-  shadow-color: black;
-  shadow-offset: 0px 0px;
+  color: ${palette.white};
+  text-shadow-radius: 5px;
+  text-shadow-color: black;
+  text-shadow-offset: 0px 0px;
 `;
