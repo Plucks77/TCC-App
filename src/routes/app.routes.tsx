@@ -182,7 +182,7 @@ function PurchasedStack() {
         },
       }}
     >
-      <AppStack.Screen name="Compras" component={Compras} options={{ title: "Compras" }} />
+      <AppStack.Screen name="Compras" component={Compras} options={{ title: "Meus pacotes" }} />
     </AppStack.Navigator>
   );
 }
