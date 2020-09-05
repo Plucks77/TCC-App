@@ -114,7 +114,7 @@ export default function Pacote({ navigation, route }) {
   }
 
   return ready ? (
-    <Container>
+    <Container style={showModal ? { opacity: 0.5 } : {}}>
       <ModalCompraPacote visible={showModal} setShowModal={setShowModal} />
       <LikeContainer onPress={favorited ? handleUnfavorite : handleFavorite}>
         <FontAwesome name="heart" size={30} color={favorited ? palette.favorite : palette.white} />
