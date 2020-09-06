@@ -14,8 +14,8 @@ const Routes: React.FC = () => {
   const { loading } = usePurchase();
 
   if (loading) {
-    return <AppLoading />;
-    //return <Text>Carregando...</Text>;
+    // return <AppLoading />;
+    return <Text>Carregando...</Text>;
   }
 
   return singned ? <AppRoutes /> : <AuthRoutes />;

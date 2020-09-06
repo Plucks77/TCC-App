@@ -18,6 +18,7 @@ import Idiomas from "../components/Idiomas";
 import PerfilEditar from "../components/PerfilEditar";
 import ListaFavoritos from "../components/ListaFavoritos";
 import Compras from "../components/Compras";
+import PacoteAtivo from "../components/PacoteAtivo";
 
 import { palette } from "../styles/global";
 
@@ -183,6 +184,7 @@ function PurchasedStack() {
       }}
     >
       <AppStack.Screen name="Compras" component={Compras} options={{ title: "Meus pacotes" }} />
+      <AppStack.Screen name="PacoteAtivo" component={PacoteAtivo} />
     </AppStack.Navigator>
   );
 }
