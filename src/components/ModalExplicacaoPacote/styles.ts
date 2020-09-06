@@ -35,10 +35,6 @@ export const ViewInterna = styled.View`
   padding: 35px;
   padding-bottom: 0px;
   align-items: center;
-  shadow-offset: {
-    width: 0;
-    height: 2;
-  }
   shadow-opacity: 0.25;
   shadow-radius: 3.84px;
   elevation: 5;

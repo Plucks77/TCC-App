@@ -17,7 +17,7 @@ interface pacote {
   image_url: string;
 }
 
-const Compras: React.FC = () => {
+function Compras({ navigation }) {
   const [compras, setCompras] = useState<pacote[]>([]);
   const [showModal, setShowModal] = useState(false);
   const { user } = useAuth();
@@ -35,19 +35,25 @@ const Compras: React.FC = () => {
       {compras.map((pacote) => (
         <PacoteContainer
           key={pacote.id}
-          onPress={() => (pacote.dias_restantes !== 0 ? setShowModal(true) : {})}
+          onPress={() =>
+            pacote.dias_restantes !== 0
+              ? setShowModal(true)
+              : navigation.navigate("PacoteAtivo", { pacote: pacote })
+          }
         >
           <Foto source={{ url: pacote.image_url }} />
           <Nome>{pacote.name}</Nome>
           {pacote.dias_restantes === 0 ? (
             <Data>hoje!</Data>
+          ) : pacote.dias_restantes !== 1 ? (
+            <Data> daqui a {pacote.dias_restantes} dias!</Data>
           ) : (
-            <Data> daqui a {pacote.dias_restantes} dias</Data>
+            <Data> amanhã!</Data>
           )}
         </PacoteContainer>
       ))}
     </Container>
   );
-};
+}
 
 export default Compras;
