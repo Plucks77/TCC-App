@@ -4814,6 +4814,13 @@ react-native-appearance@~0.3.3:
     invariant "^2.2.4"
     use-subscription "^1.0.0"
 
+react-native-custom-qr-codes-expo@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/react-native-custom-qr-codes-expo/-/react-native-custom-qr-codes-expo-2.2.0.tgz#0286713160d9db13c82718ba3c4786ac7dfeb076"
+  integrity sha512-NWZqkdyZfdYlZcCqejshWRJJik7MVl+9r8AvsPPRxXsKfdEaqalQ2sb78Zyh3BELnyqr3ptP7CSxjtXiN77SjA==
+  dependencies:
+    prop-types "^15.7.2"
+
 react-native-gesture-handler@~1.6.0:
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.6.1.tgz#678e2dce250ed66e93af409759be22cd6375dd17"
