@@ -46,10 +46,7 @@ function PacoteAtivo({ navigation, route }) {
     </Container>
   ) : (
     <QRCodeContainer>
-      <QRCode
-        content={`https://tcc-backend-turismo.herokuapp.com/purchase/confirm/user/${user_id}/pacote/${pacote.id}`}
-        size={310}
-      />
+      <QRCode content={user_id} size={310} />
       <Botao texto="Fechar" primary={true} props={() => setShowQRCode(false)} />
     </QRCodeContainer>
   );
