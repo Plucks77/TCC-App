@@ -15,6 +15,7 @@ interface pacote {
   date: string;
   dias_restantes: number;
   image_url: string;
+  guia_id: number;
 }
 
 function Compras({ navigation }) {
