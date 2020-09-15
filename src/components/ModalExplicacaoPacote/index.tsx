@@ -15,7 +15,7 @@ const ModalExplicacaoPacote: React.FC<props> = ({ visible, setShowModal }) => {
           <ViewInterna>
             <Titulo>Aguarde!</Titulo>
             <Texto>
-              No dia do pacote, quando clicar aqui você verá opções como escanear seu códio QR Code!
+              No dia do pacote, quando clicar aqui você poderá ver as opções dentro do pacote!
             </Texto>
             <Botao onPress={() => setShowModal(false)}>
               <BotaoTexto>Fechar</BotaoTexto>
