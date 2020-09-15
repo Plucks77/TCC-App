@@ -1,7 +1,8 @@
 import React from "react";
-import { Text } from "react-native";
+import { Alert, Text } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { QRCode } from "react-native-custom-qr-codes-expo";
+import * as Location from "expo-location";
 
 import api from "../../api";
 import { palette } from "../../styles/global";
@@ -17,6 +18,7 @@ interface pacote {
   date: string;
   dias_restantes: number;
   image_url: string;
+  guia_id: number;
 }
 
 function PacoteAtivo({ navigation, route }) {
@@ -40,7 +42,37 @@ function PacoteAtivo({ navigation, route }) {
           <Icone>
             <FontAwesome name="exclamation" size={24} color={palette.white} />
           </Icone>
-          <Botao texto="Me perdi" primary={true} props={null} />
+          <Botao
+            texto="Me perdi"
+            primary={true}
+            props={() =>
+              Alert.alert(
+                "Calma!",
+                "Clicando em ok, você enviará sua localização atual para o guia, para que ele possa ir até aí te buscar!",
+                [
+                  {
+                    text: "OK",
+                    onPress: async () => {
+                      await Location.requestPermissionsAsync();
+                      const location = await Location.getCurrentPositionAsync({});
+                      console.log(location.coords.latitude, location.coords.longitude);
+                      await api.post("/guia/send-notification", {
+                        guia_id: pacote.guia_id,
+                        user_id,
+                        x: location.coords.latitude,
+                        y: location.coords.longitude,
+                      });
+                    },
+                  },
+                  {
+                    text: "Cancelar",
+                    onPress: () => {},
+                  },
+                ],
+                { cancelable: false }
+              )
+            }
+          />
         </BotaoContainer>
       </BotoesContainer>
     </Container>
