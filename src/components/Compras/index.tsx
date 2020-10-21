@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { View, Text } from "react-native";
+import React, { useState, useCallback } from "react";
+import { useFocusEffect } from "@react-navigation/native";
+
 import { useAuth } from "../../contexts/auth";
 import api from "../../api";
-
-import ModalExplicacaoPacote from "../ModalExplicacaoPacote";
 import getDate from "../../services/dayCalculator";
+import ModalExplicacaoPacote from "../ModalExplicacaoPacote";
 
 import { Container, Data, Foto, Nome, PacoteContainer } from "./styles";
 
@@ -23,12 +23,20 @@ function Compras({ navigation }) {
   const [showModal, setShowModal] = useState(false);
   const { user } = useAuth();
 
-  useEffect(() => {
+    useFocusEffect(
+    useCallback(() => {     
+      getPurchases();
+    }, [])
+  );
+
+  function getPurchases() {
     api.get(`/purchases/user/${user}`).then((res) => {
       const compras = getDate(res.data);
       setCompras(compras);
-    });
-  }, []);
+    })
+  }
+
+  
 
   return (
     <Container style={showModal ? { opacity: 0.5 } : {}}>
@@ -42,7 +50,7 @@ function Compras({ navigation }) {
               : navigation.navigate("PacoteAtivo", { pacote: pacote })
           }
         >
-          <Foto source={{ url: pacote.image_url }} />
+          <Foto source={{ uri: pacote.image_url }} />
           <Nome>{pacote.name}</Nome>
           {pacote.dias_restantes === 0 ? (
             <Data>hoje!</Data>

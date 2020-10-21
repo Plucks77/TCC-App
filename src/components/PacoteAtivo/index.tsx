@@ -1,5 +1,5 @@
-import React from "react";
-import { Alert, Text } from "react-native";
+import React, {useState} from "react";
+import { Alert } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { QRCode } from "react-native-custom-qr-codes-expo";
 import * as Location from "expo-location";
@@ -8,7 +8,6 @@ import api from "../../api";
 import { palette } from "../../styles/global";
 import { Container, Foto, BotoesContainer, BotaoContainer, Icone, QRCodeContainer } from "./styles";
 import Botao from "../Botao";
-import { useState } from "react";
 import { useAuth } from "../../contexts/auth";
 
 interface pacote {
@@ -29,7 +28,7 @@ function PacoteAtivo({ navigation, route }) {
 
   return !showQRCode ? (
     <Container>
-      <Foto source={{ url: pacote.image_url }} />
+      <Foto source={{ uri: pacote.image_url }} />
       <BotoesContainer>
         <BotaoContainer>
           <Icone>

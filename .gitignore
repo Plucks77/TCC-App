@@ -10,5 +10,8 @@ npm-debug.*
 web-build/
 web-report/
 
+#Expo criou recentemente
+debug.log
+
 # macOS
 .DS_Store
