@@ -1,9 +1,9 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import Login from "../components/Login";
-import Cadastro from "../components/Cadastro";
-import EsqueciSenha from "../components/EsqueciSenha";
+import Login from "../pages/Login";
+import Cadastro from "../pages/Cadastro";
+import EsqueciSenha from "../pages/EsqueciSenha";
 
 import { palette } from "../styles/global";
 

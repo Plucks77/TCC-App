@@ -8,17 +8,17 @@ import { FontAwesome } from "@expo/vector-icons";
 
 import { usePurchase } from "../contexts/purchase";
 
-import Cidades from "../components/Cidades";
-import Locais from "../components/Locais";
-import Categorias from "../components/Categorias";
-import Pacote from "../components/Pacote";
-import Perfil from "../components/Perfil";
-import Configuracoes from "../components/Configuracoes";
-import Idiomas from "../components/Idiomas";
-import PerfilEditar from "../components/PerfilEditar";
-import ListaFavoritos from "../components/ListaFavoritos";
-import Compras from "../components/Compras";
-import PacoteAtivo from "../components/PacoteAtivo";
+import Cidades from "../pages/Cidades";
+import Locais from "../pages/Locais";
+import Categorias from "../pages/Categorias";
+import Pacote from "../pages/Pacote";
+import Perfil from "../pages/Perfil";
+import Configuracoes from "../pages/Configuracoes";
+import Idiomas from "../pages/Idiomas";
+import PerfilEditar from "../pages/PerfilEditar";
+import ListaFavoritos from "../pages/ListaFavoritos";
+import Compras from "../pages/Compras";
+import PacoteAtivo from "../pages/PacoteAtivo";
 
 import { palette } from "../styles/global";
 
