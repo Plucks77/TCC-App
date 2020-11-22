@@ -1,5 +1,6 @@
 import React from "react";
 import { Text, Modal, View, TouchableOpacity } from "react-native";
+import { FormattedMessage } from "react-intl";
 
 import { Container, Titulo, Texto, Botao, BotaoTexto, ViewExterna, ViewInterna } from "./styles";
 
@@ -14,10 +15,16 @@ const ModalCompraPacote: React.FC<props> = ({ visible, setShowModal }) => {
       <Modal animationType="slide" transparent={true} visible={visible}>
         <ViewExterna>
           <ViewInterna>
-            <Titulo>Sucesso!</Titulo>
-            <Texto>Você pode ver seu pacote comprado no novo menu que surgiu ali embaixo! </Texto>
+            <Titulo>
+              <FormattedMessage id="message.success" />
+            </Titulo>
+            <Texto>
+              <FormattedMessage id="message.menu" />
+            </Texto>
             <Botao onPress={() => setShowModal(false)}>
-              <BotaoTexto>Fechar</BotaoTexto>
+              <BotaoTexto>
+                <FormattedMessage id="message.close" />
+              </BotaoTexto>
             </Botao>
           </ViewInterna>
         </ViewExterna>

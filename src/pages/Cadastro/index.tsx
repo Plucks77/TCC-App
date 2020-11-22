@@ -5,6 +5,7 @@ import LottieView from "lottie-react-native";
 import { Formik } from "formik";
 import * as yup from "yup";
 import { Entypo, MaterialIcons, FontAwesome } from "@expo/vector-icons";
+import { FormattedMessage, useIntl } from "react-intl";
 
 import Botao from "../../components/Botao";
 import { useAuth } from "../../contexts/auth";
@@ -15,29 +16,37 @@ import { Container, Input, Campos, InputMask, Erro, ViewInput, ScrollCampos } fr
 const cadastroSchema = yup.object({
   nome: yup
     .string()
-    .required("Seu nome é necessário!")
-    .min(5, "Seu nome deve ter pelo menos 5 dígitos!"),
+    .required(((<FormattedMessage id="error_name_needed" />) as unknown) as string)
+    .min(5, ((<FormattedMessage id="error_name_digits" />) as unknown) as string),
   email: yup
     .string()
-    .required("O endereço de email é necessário!")
-    .test("valida-email", "Por favor, digite um enderço de email válido!", (val) => {
-      var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-      return re.test(val);
-    }),
+    .required(((<FormattedMessage id="error_email_needed" />) as unknown) as string)
+    .test(
+      "valida-email",
+      ((<FormattedMessage id="error_email_valid" />) as unknown) as string,
+      (val) => {
+        var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        return re.test(val);
+      }
+    ),
   senha: yup
     .string()
-    .required("A senha é necessária!")
-    .min(8, "Sua senha tem pelo menos 8 dígitos!"),
+    .required(((<FormattedMessage id="error_password_needed" />) as unknown) as string)
+    .min(8, ((<FormattedMessage id="error_password_valid" />) as unknown) as string),
   confirmaSenha: yup
     .string()
-    .required("Digite a mesma senha de cima!")
-    .test("passwords-match", "Verifique se digitou a mesma senha!", function (value) {
-      return this.parent.senha === value;
-    }),
+    .required(((<FormattedMessage id="error_confirm_password" />) as unknown) as string)
+    .test(
+      "passwords-match",
+      ((<FormattedMessage id="error_passwords_match" />) as unknown) as string,
+      function (value) {
+        return this.parent.senha === value;
+      }
+    ),
   tel: yup
     .string()
-    .required("Seu telefone é necessário!")
-    .min(14, "Seu telefone deve ter pelo menos 10 dígitos"),
+    .required(((<FormattedMessage id="error_phone_needed" />) as unknown) as string)
+    .min(14, ((<FormattedMessage id="error_phone_digits" />) as unknown) as string),
 });
 
 export default function Cadastro({ navigation }) {
@@ -51,6 +60,7 @@ export default function Cadastro({ navigation }) {
     tel: "",
   });
   const { register } = useAuth();
+  const intl = useIntl();
 
   async function handleCadastro(nome, email, senha, conf_senha, tel) {
     setReady(false);
@@ -62,11 +72,11 @@ export default function Cadastro({ navigation }) {
 
     if (response === "user") {
       setReady(true);
-      Alert.alert("Oooops...", "Usuário informado já está cadastrado!");
+      Alert.alert("Oooops...", intl.messages.error_user_already_registered as string);
     }
     if (response === "email") {
       setReady(true);
-      Alert.alert("Oooops...", "E-mail informado já está cadastrado!");
+      Alert.alert("Oooops...", intl.messages.error_email_already_registered as string);
     }
   }
   const [isKeyboardVisible, setKeyboardVisible] = useState(false);
@@ -123,7 +133,7 @@ export default function Cadastro({ navigation }) {
                       color={palette.secundary}
                     />
                     <Input
-                      placeholder="Nome"
+                      placeholder={intl.messages.profile_name}
                       placeholderTextColor={palette.secundary}
                       autoCapitalize="words"
                       autoCorrect={false}
@@ -147,7 +157,7 @@ export default function Cadastro({ navigation }) {
                       color={palette.secundary}
                     />
                     <Input
-                      placeholder="Email"
+                      placeholder={intl.messages.profile_email}
                       placeholderTextColor={palette.secundary}
                       keyboardType="email-address"
                       autoCapitalize="none"
@@ -172,7 +182,7 @@ export default function Cadastro({ navigation }) {
                       color={palette.secundary}
                     />
                     <Input
-                      placeholder="Senha"
+                      placeholder={intl.messages.password}
                       placeholderTextColor={palette.secundary}
                       secureTextEntry={showPassword ? false : true}
                       value={props.values.senha}
@@ -209,7 +219,7 @@ export default function Cadastro({ navigation }) {
                       color={palette.secundary}
                     />
                     <Input
-                      placeholder="Confirme sua senha"
+                      placeholder={intl.messages.confirm_password}
                       placeholderTextColor={palette.secundary}
                       secureTextEntry={showPassword ? false : true}
                       value={props.values.confirmaSenha}
@@ -251,7 +261,7 @@ export default function Cadastro({ navigation }) {
                         withDDD: true,
                         dddMask: "(99) ",
                       }}
-                      placeholder="Telefone"
+                      placeholder={intl.messages.profile_phone as string}
                       placeholderTextColor={palette.secundary}
                       maxLength={15}
                       value={props.values.tel}
@@ -262,7 +272,11 @@ export default function Cadastro({ navigation }) {
                     <Erro>{props.touched.tel && props.errors.tel}</Erro>
                   </ViewInput>
 
-                  <Botao texto="Cadastrar" props={props.handleSubmit} primary={true} />
+                  <Botao
+                    texto={intl.messages.register_user}
+                    props={props.handleSubmit}
+                    primary={true}
+                  />
                 </Campos>
               </ScrollCampos>
             )}

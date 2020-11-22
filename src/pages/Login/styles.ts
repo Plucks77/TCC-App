@@ -58,3 +58,14 @@ export const Texto = styled.Text`
 export const ViewBotao = styled.View`
   margin-bottom: 10px;
 `;
+
+export const AreaBandeiras = styled.View`
+flex-direction: row;
+`;
+
+export const LogoBandeira = styled.Image`
+  width: 25px;
+  height: 25px;
+  border-radius: 10px;
+  margin: 20px;
+`;

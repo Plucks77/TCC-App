@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { Feather } from "@expo/vector-icons";
 import ShimmerPlaceHolder from "react-native-shimmer-placeholder";
 import { LayoutAnimation, Platform, UIManager } from "react-native";
+import { FormattedMessage } from "react-intl";
 
 import api from "../../api";
 
@@ -81,7 +82,7 @@ export default function CidadesProposta({ navigation, route }) {
               </Imagem>
               {cityVisible === city.id && (
                 <DescricaoContainer>
-                  <DescricaoTexto>{city.description}</DescricaoTexto>
+                  <DescricaoTexto>{<FormattedMessage id="city.description" />}</DescricaoTexto>
 
                   <DescricaoBotao
                     onPress={() =>
@@ -89,7 +90,9 @@ export default function CidadesProposta({ navigation, route }) {
                     }
                   >
                     <DescricaoBotaoContainer>
-                      <DescricaoBotaoTexto>Ver locais</DescricaoBotaoTexto>
+                      <DescricaoBotaoTexto>
+                        <FormattedMessage id="places.showplaces" />
+                      </DescricaoBotaoTexto>
                       <DescricaoBotaoIcone>
                         <Feather name="arrow-right-circle" size={25} color="white" />
                       </DescricaoBotaoIcone>

@@ -1,6 +1,7 @@
 import React from "react";
 import { Modal } from "react-native";
 import { Container, Titulo, ViewExterna, ViewInterna, Texto, Botao, BotaoTexto } from "./styles";
+import { FormattedMessage } from "react-intl";
 
 interface props {
   visible: boolean;
@@ -13,12 +14,16 @@ const ModalExplicacaoPacote: React.FC<props> = ({ visible, setShowModal }) => {
       <Modal animationType="slide" transparent={true} visible={visible}>
         <ViewExterna>
           <ViewInterna>
-            <Titulo>Aguarde!</Titulo>
+            <Titulo>
+              <FormattedMessage id="message.wait" />
+            </Titulo>
             <Texto>
-              No dia do pacote, quando clicar aqui você poderá ver as opções dentro do pacote!
+              <FormattedMessage id="message.wait.text" />
             </Texto>
             <Botao onPress={() => setShowModal(false)}>
-              <BotaoTexto>Fechar</BotaoTexto>
+              <BotaoTexto>
+                <FormattedMessage id="message.close" />
+              </BotaoTexto>
             </Botao>
           </ViewInterna>
         </ViewExterna>

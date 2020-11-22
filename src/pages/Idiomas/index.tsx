@@ -1,34 +1,46 @@
 import React from "react";
-import { FontAwesome } from "@expo/vector-icons";
 import { Image } from "react-native";
+import { FormattedMessage } from "react-intl";
 
-import global from "../../styles/global";
+import { useLanguage } from "../../contexts/language";
 
 import { Container, OpcoesContainer, Opcao, Icone, Texto } from "./styles";
 
 export default function Idiomas({ navigation }) {
+  const { selectLang } = useLanguage();
+
+  function handleLanguageChange(language) {
+    selectLang(language);
+  }
+
   return (
     <Container>
       <OpcoesContainer>
-        <Opcao onPress={() => navigation.navigate("Idiomas")}>
+        <Opcao onPress={() => handleLanguageChange("pt-BR")}>
           <Icone>
             <Image source={require("../../../assets/bandeiras/brasil.png")} />
           </Icone>
-          <Texto>Português</Texto>
+          <Texto>
+            <FormattedMessage id="languages.portugues" />
+          </Texto>
         </Opcao>
 
-        <Opcao onPress={() => {}}>
+        <Opcao onPress={() => handleLanguageChange("en-US")}>
           <Icone>
             <Image source={require("../../../assets/bandeiras/usa.png")} />
           </Icone>
-          <Texto>Inglês</Texto>
+          <Texto>
+            <FormattedMessage id="languages.english" />
+          </Texto>
         </Opcao>
 
-        <Opcao>
+        <Opcao onPress={() => handleLanguageChange("sp-ES")}>
           <Icone>
             <Image source={require("../../../assets/bandeiras/espanha.png")} />
           </Icone>
-          <Texto>Espanhol</Texto>
+          <Texto>
+            <FormattedMessage id="languages.spanish" />
+          </Texto>
         </Opcao>
       </OpcoesContainer>
     </Container>

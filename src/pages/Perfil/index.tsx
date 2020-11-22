@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import LottieView from "lottie-react-native";
 import { FontAwesome } from "@expo/vector-icons";
+import { FormattedMessage } from "react-intl";
 
 import { useAuth } from "../../contexts/auth";
 import api from "../../api";
@@ -37,33 +38,39 @@ export default function Perfil({ navigation }) {
         <FontAwesome name="user-o" size={72} color={palette.secundary} />
       </Icone>
       <ViewInfos>
-        <Texto>Nome:</Texto>
+        <Texto>
+          <FormattedMessage id="profile.name" />:
+        </Texto>
         <Input>{user.username}</Input>
-        <Texto>Telefone:</Texto>
+        <Texto>
+          <FormattedMessage id="profile.phone" />:
+        </Texto>
         <Input>{user.tel}</Input>
-        <Texto>E-mail:</Texto>
+        <Texto>
+          <FormattedMessage id="profile.email" />:
+        </Texto>
         <Input>{user.email}</Input>
       </ViewInfos>
 
       <BotoesContainer>
         <BotaoArea>
           <Botao
-            texto="Alterar informações"
+            texto={<FormattedMessage id="alter.information" />}
             props={() => navigation.navigate("PerfilEditar", { user })}
             primary={true}
           />
         </BotaoArea>
 
         <BotaoArea>
-          <Botao texto="Trocar e-mail" props={null} primary={true} />
+          <Botao texto={<FormattedMessage id="alter.email" />} props={null} primary={true} />
         </BotaoArea>
 
         <BotaoArea>
-          <Botao texto="Trocar senha" props={null} primary={true} />
+          <Botao texto={<FormattedMessage id="alter.password" />} props={null} primary={true} />
         </BotaoArea>
 
         <BotaoArea>
-          <Botao texto="Sair" props={() => signOut()} primary={true} />
+          <Botao texto={<FormattedMessage id="logout" />} props={() => signOut()} primary={true} />
         </BotaoArea>
       </BotoesContainer>
     </Container>
