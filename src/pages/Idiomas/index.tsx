@@ -21,7 +21,7 @@ export default function Idiomas({ navigation }) {
             <Image source={require("../../../assets/bandeiras/brasil.png")} />
           </Icone>
           <Texto>
-            <FormattedMessage id="languages.portugues" />
+            <FormattedMessage id="languages_portugues" />
           </Texto>
         </Opcao>
 
@@ -30,7 +30,7 @@ export default function Idiomas({ navigation }) {
             <Image source={require("../../../assets/bandeiras/usa.png")} />
           </Icone>
           <Texto>
-            <FormattedMessage id="languages.english" />
+            <FormattedMessage id="languages_english" />
           </Texto>
         </Opcao>
 
@@ -39,7 +39,7 @@ export default function Idiomas({ navigation }) {
             <Image source={require("../../../assets/bandeiras/espanha.png")} />
           </Icone>
           <Texto>
-            <FormattedMessage id="languages.spanish" />
+            <FormattedMessage id="languages_spanish" />
           </Texto>
         </Opcao>
       </OpcoesContainer>

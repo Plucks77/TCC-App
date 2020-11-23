@@ -15,14 +15,14 @@ const ModalExplicacaoPacote: React.FC<props> = ({ visible, setShowModal }) => {
         <ViewExterna>
           <ViewInterna>
             <Titulo>
-              <FormattedMessage id="message.wait" />
+              <FormattedMessage id="message_wait" />
             </Titulo>
             <Texto>
-              <FormattedMessage id="message.wait.text" />
+              <FormattedMessage id="message_wait_text" />
             </Texto>
             <Botao onPress={() => setShowModal(false)}>
               <BotaoTexto>
-                <FormattedMessage id="message.close" />
+                <FormattedMessage id="message_close" />
               </BotaoTexto>
             </Botao>
           </ViewInterna>

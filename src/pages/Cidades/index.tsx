@@ -82,7 +82,9 @@ export default function CidadesProposta({ navigation, route }) {
               </Imagem>
               {cityVisible === city.id && (
                 <DescricaoContainer>
-                  <DescricaoTexto>{<FormattedMessage id="city.description" />}</DescricaoTexto>
+                  <DescricaoTexto>
+                    {<FormattedMessage id="city_resende_description" />}
+                  </DescricaoTexto>
 
                   <DescricaoBotao
                     onPress={() =>
@@ -91,7 +93,7 @@ export default function CidadesProposta({ navigation, route }) {
                   >
                     <DescricaoBotaoContainer>
                       <DescricaoBotaoTexto>
-                        <FormattedMessage id="places.showplaces" />
+                        <FormattedMessage id="places_showplaces" />
                       </DescricaoBotaoTexto>
                       <DescricaoBotaoIcone>
                         <Feather name="arrow-right-circle" size={25} color="white" />

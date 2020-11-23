@@ -3,6 +3,7 @@ import { Alert } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { QRCode } from "react-native-custom-qr-codes-expo";
 import * as Location from "expo-location";
+import { FormattedMessage, useIntl } from "react-intl";
 
 import api from "../../api";
 import { palette } from "../../styles/global";
@@ -23,6 +24,8 @@ interface pacote {
 function PacoteAtivo({ navigation, route }) {
   const [showQRCode, setShowQRCode] = useState(false);
   const { user: user_id } = useAuth();
+  const intl = useIntl();
+
   const pacote = route.params.pacote as pacote;
   navigation.setOptions({ title: pacote.name });
 
@@ -34,7 +37,11 @@ function PacoteAtivo({ navigation, route }) {
           <Icone>
             <FontAwesome name="qrcode" size={24} color={palette.white} />
           </Icone>
-          <Botao texto="Meu QR Code" primary={true} props={() => setShowQRCode(true)} />
+          <Botao
+            texto={<FormattedMessage id="my_qr_code" />}
+            primary={true}
+            props={() => setShowQRCode(true)}
+          />
         </BotaoContainer>
 
         <BotaoContainer>
@@ -42,12 +49,12 @@ function PacoteAtivo({ navigation, route }) {
             <FontAwesome name="exclamation" size={24} color={palette.white} />
           </Icone>
           <Botao
-            texto="Me perdi"
+            texto={<FormattedMessage id="im_lost" />}
             primary={true}
             props={() =>
               Alert.alert(
-                "Calma!",
-                "Clicando em ok, você enviará sua localização atual para o guia, para que ele possa ir até aí te buscar!",
+                intl.messages.calm as string,
+                intl.messages.calm_message as string,
                 [
                   {
                     text: "OK",
@@ -64,7 +71,7 @@ function PacoteAtivo({ navigation, route }) {
                     },
                   },
                   {
-                    text: "Cancelar",
+                    text: intl.messages.cancel as string,
                     onPress: () => {},
                   },
                 ],
@@ -78,7 +85,11 @@ function PacoteAtivo({ navigation, route }) {
   ) : (
     <QRCodeContainer>
       <QRCode content={user_id} size={310} />
-      <Botao texto="Fechar" primary={true} props={() => setShowQRCode(false)} />
+      <Botao
+        texto={<FormattedMessage id="message_close" />}
+        primary={true}
+        props={() => setShowQRCode(false)}
+      />
     </QRCodeContainer>
   );
 }

@@ -39,15 +39,15 @@ export default function Perfil({ navigation }) {
       </Icone>
       <ViewInfos>
         <Texto>
-          <FormattedMessage id="profile.name" />:
+          <FormattedMessage id="profile_name" />:
         </Texto>
         <Input>{user.username}</Input>
         <Texto>
-          <FormattedMessage id="profile.phone" />:
+          <FormattedMessage id="profile_phone" />:
         </Texto>
         <Input>{user.tel}</Input>
         <Texto>
-          <FormattedMessage id="profile.email" />:
+          <FormattedMessage id="profile_email" />:
         </Texto>
         <Input>{user.email}</Input>
       </ViewInfos>
@@ -55,18 +55,18 @@ export default function Perfil({ navigation }) {
       <BotoesContainer>
         <BotaoArea>
           <Botao
-            texto={<FormattedMessage id="alter.information" />}
+            texto={<FormattedMessage id="alter_information" />}
             props={() => navigation.navigate("PerfilEditar", { user })}
             primary={true}
           />
         </BotaoArea>
 
         <BotaoArea>
-          <Botao texto={<FormattedMessage id="alter.email" />} props={null} primary={true} />
+          <Botao texto={<FormattedMessage id="alter_email" />} props={null} primary={true} />
         </BotaoArea>
 
         <BotaoArea>
-          <Botao texto={<FormattedMessage id="alter.password" />} props={null} primary={true} />
+          <Botao texto={<FormattedMessage id="alter_password" />} props={null} primary={true} />
         </BotaoArea>
 
         <BotaoArea>

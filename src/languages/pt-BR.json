@@ -25,7 +25,8 @@
     "alter_email": "Trocar e-mail",
     "alter_password": "Trocar senha",
     "logout": "Sair",
-    "city_description": "Localizada às margens da Rodovia Presidente Dutra (BR-116), que liga o Rio de Janeiro a São Paulo, Resende é uma das mais belas cidades turísticas da Região das Agulhas Negras, no sul do Estado do Rio. Portanto, se você procura paz, tranquilidade, belos cenários com natureza exuberante e preservada com suas matas, rios, cachoeiras, ar puro, o canto dos pássaros e diversidade de fauna e flora, você encontrou o seu lugar.",
+    "city_resende_description": "Localizada às margens da Rodovia Presidente Dutra (BR-116), que liga o Rio de Janeiro a São Paulo, Resende é uma das mais belas cidades turísticas da Região das Agulhas Negras, no sul do Estado do Rio. Portanto, se você procura paz, tranquilidade, belos cenários com natureza exuberante e preservada com suas matas, rios, cachoeiras, ar puro, o canto dos pássaros e diversidade de fauna e flora, você encontrou o seu lugar.",
+    "city_itatiaia_description": "Em Itatiaia, o visitante encontra montanhas, com ótimos lugares para a prática de escalada e florestas úmidas com cachoeiras. Além do Parque Nacional de Itatiaia, Itatiaia conta ainda com outros destinos turísticos, como a Usina Hidrelétrica do Funil, a Colônia Finlandesa de Penedo e as vilas de Maromba e Maringá.",
     "message_wait": "Aguarde!",
     "message_wait_text": "No dia do pacote, quando pressionar aqui você poderá ver as opções dentro do pacote!",
     "message_close": "Fechar",
@@ -50,5 +51,11 @@
     "error_phone_digits": "Seu telefone deve ter pelo menos 10 dígitos",
     "error_email_already_registered":"Usuário informado já está cadastrado!",
     "error_user_already_registered":"E-mail informado já está cadastrado!",
-    "register_user": "Cadastrar"
+    "register_user": "Cadastrar",
+    "save": "Salvar",
+    "my_qr_code": "Meu QR Code",
+    "im_lost": "Me perdi",
+    "calm": "Calma!",
+    "calm_message": "Clicando em ok, você enviará sua localização atual para o guia, para que ele possa ir até aí te buscar!",
+    "cancel": "Cancelar"
 }

@@ -16,14 +16,14 @@ const ModalCompraPacote: React.FC<props> = ({ visible, setShowModal }) => {
         <ViewExterna>
           <ViewInterna>
             <Titulo>
-              <FormattedMessage id="message.success" />
+              <FormattedMessage id="message_success" />
             </Titulo>
             <Texto>
-              <FormattedMessage id="message.menu" />
+              <FormattedMessage id="message_menu" />
             </Texto>
             <Botao onPress={() => setShowModal(false)}>
               <BotaoTexto>
-                <FormattedMessage id="message.close" />
+                <FormattedMessage id="message_close" />
               </BotaoTexto>
             </Botao>
           </ViewInterna>

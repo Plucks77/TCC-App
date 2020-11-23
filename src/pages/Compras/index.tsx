@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from "react";
 import { useFocusEffect } from "@react-navigation/native";
+import { FormattedMessage } from "react-intl";
 
 import { useAuth } from "../../contexts/auth";
 import api from "../../api";
@@ -51,11 +52,15 @@ function Compras({ navigation }) {
           <Foto source={{ uri: pacote.image_url }} />
           <Nome>{pacote.name}</Nome>
           {pacote.dias_restantes === 0 ? (
-            <Data>hoje!</Data>
+            <Data>
+              <FormattedMessage id="date_today" />
+            </Data>
           ) : pacote.dias_restantes !== 1 ? (
             <Data> daqui a {pacote.dias_restantes} dias!</Data>
           ) : (
-            <Data> amanhã!</Data>
+            <Data>
+              <FormattedMessage id="date_tomorrow" />
+            </Data>
           )}
         </PacoteContainer>
       ))}

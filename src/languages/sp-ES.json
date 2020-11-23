@@ -25,7 +25,8 @@
     "alter_email": "Cambiar correo electrónico",
     "alter_password": "Cambia contraseña",
     "logout": "Cerrar sesión",
-    "city_description": "Ubicada en la Carretera Presidente Dutra (BR-116), que conecta Río de Janeiro con São Paulo, Resende es una de las ciudades turísticas más hermosas de la Región de Agulhas Negras, en el sur del estado de Rio. Entonces, si busca la paz , tranquilidad, bello entorno con una naturaleza exuberante y preservada con sus bosques, ríos, cascadas, aire puro, canto de pájaros y diversidad de fauna y flora, has encontrado tu lugar.",
+    "city_resende_description": "Ubicada en la Carretera Presidente Dutra (BR-116), que conecta Río de Janeiro con São Paulo, Resende es una de las ciudades turísticas más hermosas de la Región de Agulhas Negras, en el sur del estado de Rio. Entonces, si busca la paz , tranquilidad, bello entorno con una naturaleza exuberante y preservada con sus bosques, ríos, cascadas, aire puro, canto de pájaros y diversidad de fauna y flora, has encontrado tu lugar.",
+    "city_itatiaia_description": "En Itatiaia, el visitante encuentra montañas, como lugares de escalada y bosques con cascadas. Además del Parque Nacional Itatiaia, Itatiaia cuenta con otros destinos turísticos, como la Central Hidroeléctrica de Funil, la Colonia finlandesa de Penedo y los pueblos de Maromba y Maringá.",
     "message_wait": "Espere!",
     "message_wait_text": "El día del paquete, cuando presiona aquí, ¡puede ver las opciones dentro del paquete!",
     "message_close": "Cerrar",
@@ -50,5 +51,11 @@
     "error_phone_digits": "¡Su teléfono debe tener al menos 10 dígitos!",
     "error_email_already_registered":"¡El usuario informado ya está registrado!",
     "error_user_already_registered":"¡El correo electrónico informado ya está registrado!",
-    "register_user": "Registrar"
+    "register_user": "Registrar",
+    "save": "Guardar",
+    "my_qr_code": "Mi código QR",
+    "im_lost": "Me perdi",
+    "calm": "¡Calma!",
+    "calm_message": "¡Al hacer clic en Aceptar, enviará su ubicación actual al guía, para que pueda ir allí y recogerlo!",
+    "cancel": "Cancelar"
 }

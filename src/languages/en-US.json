@@ -25,7 +25,8 @@
     "alter_email": "Change e-mail",
     "alter_password": "Change password",
     "logout": "Logout",
-    "city_description": "Located on the Presidente Dutra Highway (BR-116), which connects Rio de Janeiro to São Paulo, Resende is one of the most beautiful tourist cities in the Agulhas Negras Region, in the south of the state of Rio. So, if you are looking for peace, tranquility, beautiful surroundings with lush and preserved nature with its forests, rivers, waterfalls, fresh air, birdsong and diversity of fauna and flora, you have found your place.",
+    "city_resende_description": "Located on the Presidente Dutra Highway (BR-116), which connects Rio de Janeiro to São Paulo, Resende is one of the most beautiful tourist cities in the Agulhas Negras Region, in the south of the state of Rio. So, if you are looking for peace, tranquility, beautiful surroundings with lush and preserved nature with its forests, rivers, waterfalls, fresh air, birdsong and diversity of fauna and flora, you have found your place.",
+    "city_itatiaia_description": "In Itatiaia, the visitor finds mountains, as places for climbing and forests with waterfalls. In addition to the Itatiaia National Park, Itatiaia has other tourist destinations, such as the Funil Hydroelectric Plant, the Finnish Colony of Penedo and the Maromba and Maringá villages.",
     "message_wait": "Wait!",
     "message_wait_text": "On the day of the package, when you press here you can see the options within the package!",
     "message_close": "Close",
@@ -50,5 +51,11 @@
     "error_phone_digits": "Your phone must be at least 10 digits.",
     "error_email_already_registered":"The informed user is already registered!",
     "error_user_already_registered":"Informed email is already registered!",
-    "register_user": "Register"
+    "register_user": "Register",
+    "save": "Save",
+    "my_qr_code": "My QR Code",
+    "im_lost": "I'm lost",
+    "calm": "Calm down!",
+    "calm_message": "Clicking ok, you will send your current location to the guide, so that he can go there and pick you up!",
+    "cancel": "Cancel"
 }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FontAwesome } from "@expo/vector-icons";
+import { FormattedMessage } from "react-intl";
 
 import { useAuth } from "../../contexts/auth";
 import api from "../../api";
@@ -37,13 +37,17 @@ export default function PerfilEditar({ navigation, route }) {
   return (
     <Container>
       <ViewInfos>
-        <Texto>Nome:</Texto>
+        <Texto>
+          <FormattedMessage id="profile_name" />:
+        </Texto>
         <Input
           autoCapitalize="words"
           value={user?.username}
           onChangeText={(t) => setUser({ ...user, username: t })}
         />
-        <Texto>Telefone:</Texto>
+        <Texto>
+          <FormattedMessage id="profile_phone" />:
+        </Texto>
         <Input
           keyboardType="phone-pad"
           value={user?.tel}
@@ -52,7 +56,7 @@ export default function PerfilEditar({ navigation, route }) {
       </ViewInfos>
 
       <BotaoArea>
-        <Botao texto="Salvar" props={() => handleSalvar()} primary={true} />
+        <Botao texto={<FormattedMessage id="save" />} props={() => handleSalvar()} primary={true} />
       </BotaoArea>
     </Container>
   );
