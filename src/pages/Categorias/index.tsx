@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
+import { FormattedMessage } from "react-intl";
 import { TouchableOpacity, View, Text } from "react-native";
 import ShimmerPlaceHolder from "react-native-shimmer-placeholder";
 
@@ -75,7 +76,9 @@ export default function Categorias({ navigation, route }) {
   if (ready && pacotes.length === 0) {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text style={{ fontSize: 16 }}>Nenhum pacote encontrado 🙁</Text>
+        <Text style={{ fontSize: 16 }}>
+          <FormattedMessage id="no_packages_found" />
+        </Text>
       </View>
     );
   }

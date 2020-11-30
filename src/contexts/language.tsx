@@ -4,7 +4,7 @@ import { IntlProvider } from "react-intl";
 import Spanish from "../languages/sp-ES.json";
 import English from "../languages/en-US.json";
 import Portuguese from "../languages/pt-BR.json";
-
+import { ReactIntlErrorCode } from "react-intl";
 interface LanguageContextData {
   locale: string;
   selectLang(language: string): void;
@@ -52,10 +52,16 @@ export const LanguageProvider: React.FC = ({ children }) => {
       return;
     }
   }
+  function onError(e) {
+    if ((e.code = ReactIntlErrorCode.MISSING_DATA)) {
+      return;
+    }
+    console.error(e);
+  }
 
   return (
     <LanguageContext.Provider value={{ selectLang, locale }}>
-      <IntlProvider messages={messages} locale={locale}>
+      <IntlProvider onError={onError} messages={messages} locale={locale}>
         {children}
       </IntlProvider>
     </LanguageContext.Provider>

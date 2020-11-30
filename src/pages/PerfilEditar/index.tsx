@@ -16,6 +16,7 @@ interface User {
 export default function PerfilEditar({ navigation, route }) {
   const [user, setUser] = useState<User>();
   const { user: user_id } = useAuth();
+  navigation.setOptions({ title: <FormattedMessage id="screen_edit_profile" /> });
 
   useEffect(() => {
     setUser(route.params.user);

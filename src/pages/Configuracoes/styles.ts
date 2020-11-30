@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import global from "../../styles/global";
 import { palette } from "../../styles/global";
 
 export const Container = styled.View`
@@ -30,7 +29,7 @@ export const Icone = styled.View`
 export const Texto = styled.Text`
   color: ${palette.white};
   font-weight: 500;
-  font-size: 24px;
+  font-size: 20px;
   flex: 2;
-  margin-left: -10px;
+  margin-left: -30px;
 `;

@@ -8,7 +8,7 @@ import { Container, OpcoesContainer, Opcao, Icone, Texto } from "./styles";
 
 export default function Idiomas({ navigation }) {
   const { selectLang } = useLanguage();
-
+  navigation.setOptions({ title: <FormattedMessage id="screen_languages" /> });
   function handleLanguageChange(language) {
     selectLang(language);
   }

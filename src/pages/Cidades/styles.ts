@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import global, { palette } from "../../styles/global";
+import  { palette } from "../../styles/global";
 
 export const Container = styled.ScrollView.attrs(() => ({
   showsVerticalScrollIndicator: false,

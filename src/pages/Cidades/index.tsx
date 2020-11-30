@@ -36,7 +36,8 @@ export default function CidadesProposta({ navigation, route }) {
   const [cities, setCities] = useState<City[]>([]);
   const [cityVisible, setCityVisible] = useState(0);
   const [ready, setReady] = useState(false);
-
+  const [cityName, setCityName] = useState("");
+  navigation.setOptions({ title: <FormattedMessage id="screen_choose_city" /> });
   useEffect(() => {
     api
       .get("/cities")
@@ -56,6 +57,11 @@ export default function CidadesProposta({ navigation, route }) {
       setCityVisible(0);
     } else {
       LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+      if (id === 1) {
+        setCityName("city_resende_description");
+      } else {
+        setCityName("city_itatiaia_description");
+      }
       setCityVisible(id);
     }
   };
@@ -82,9 +88,7 @@ export default function CidadesProposta({ navigation, route }) {
               </Imagem>
               {cityVisible === city.id && (
                 <DescricaoContainer>
-                  <DescricaoTexto>
-                    {<FormattedMessage id="city_resende_description" />}
-                  </DescricaoTexto>
+                  <DescricaoTexto>{<FormattedMessage id={cityName} />}</DescricaoTexto>
 
                   <DescricaoBotao
                     onPress={() =>

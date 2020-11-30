@@ -18,7 +18,7 @@
     "configuration_manual": "User manual",
     "date_today": "today!",
     "date_tomorrow": "tomorrow!",
-    "date_inxdays": "in {package.dias.resting} days!",
+    "date_inxdays": "in {resting} days!",
     "places_showplaces": "Show places",
     "no_packages_found":"No packages found 😕",
     "alter_information": "Change information",
@@ -57,5 +57,14 @@
     "im_lost": "I'm lost",
     "calm": "Calm down!",
     "calm_message": "Clicking ok, you will send your current location to the guide, so that he can go there and pick you up!",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "screen_choose_city": "Choose a city",
+    "screen_choose_local": "Choose a location",
+    "screen_profile": "Profile",
+    "screen_edit_profile": "Edit profile",
+    "screen_my_packages": "My packages",
+    "screen_favorites": "Bookmarks",
+    "screen_configurations": "Settings",
+    "screen_languages": "Languages",
+    "buy": "Purchase"
 }

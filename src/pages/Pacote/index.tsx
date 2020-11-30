@@ -23,6 +23,7 @@ import {
   CampoTexto,
   LikeContainer,
 } from "./styles";
+import { FormattedMessage } from "react-intl";
 
 interface PacoteInterface {
   id: number;
@@ -131,13 +132,17 @@ export default function Pacote({ navigation, route }) {
         ))}
       </Swiper>
       <Campo>
-        <CampoTitulo>Descrição</CampoTitulo>
+        <CampoTitulo>
+          <FormattedMessage id="pacote_description" />
+        </CampoTitulo>
         <TextoContainer>
           <CampoTexto>{pacote.description}</CampoTexto>
         </TextoContainer>
       </Campo>
       <Campo>
-        <CampoTitulo>Data</CampoTitulo>
+        <CampoTitulo>
+          <FormattedMessage id="pacote_date" />
+        </CampoTitulo>
         <TextoContainer>
           <CampoTexto>
             {dia} hás {hora}
@@ -145,20 +150,28 @@ export default function Pacote({ navigation, route }) {
         </TextoContainer>
       </Campo>
       <Campo>
-        <CampoTitulo>Guia</CampoTitulo>
+        <CampoTitulo>
+          <FormattedMessage id="pacote_guide" />
+        </CampoTitulo>
         <TextoContainer>
           <CampoTexto>{guia.name}</CampoTexto>
           <CampoTexto>{guia.description}</CampoTexto>
         </TextoContainer>
       </Campo>
       <Campo>
-        <CampoTitulo>Preço</CampoTitulo>
+        <CampoTitulo>
+          <FormattedMessage id="pacote_price" />
+        </CampoTitulo>
         <TextoContainer>
           <CampoTexto>R$ {pacote.price}</CampoTexto>
         </TextoContainer>
       </Campo>
       <ViewBotao>
-        <Botao texto="Comprar" props={() => handleFingerPrint()} primary={true} />
+        <Botao
+          texto={<FormattedMessage id="buy" />}
+          props={() => handleFingerPrint()}
+          primary={true}
+        />
       </ViewBotao>
     </Container>
   ) : (

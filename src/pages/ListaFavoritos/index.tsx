@@ -13,6 +13,7 @@ import {
   PacoteTextoContainer,
   PacoteTexto,
 } from "./styles";
+import { FormattedMessage } from "react-intl";
 
 interface Pacote {
   id: number;
@@ -27,6 +28,7 @@ export default function ListaFavoritos({ navigation }) {
   const [pacotes, setPacotes] = useState<Pacote[]>([]);
   const [ready, setReady] = useState(false);
   const { user } = useAuth();
+  navigation.setOptions({ title: <FormattedMessage id="screen_favorites" /> });
 
   function getFavorites() {
     api

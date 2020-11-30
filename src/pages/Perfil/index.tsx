@@ -18,6 +18,8 @@ export default function Perfil({ navigation }) {
   const [ready, setReady] = useState(false);
   const isFocused = useIsFocused();
 
+  navigation.setOptions({ title: <FormattedMessage id="screen_profile" /> });
+
   useEffect(() => {
     if (isFocused) {
       getData();

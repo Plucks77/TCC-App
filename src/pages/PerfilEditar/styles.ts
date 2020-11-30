@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import global from "../../styles/global";
 import { palette } from "../../styles/global";
 
 export const Container = styled.View`

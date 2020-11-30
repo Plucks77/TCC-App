@@ -18,7 +18,7 @@
     "configuration_manual": "Manual do usuário",
     "date_today": "hoy!",
     "date_tomorrow": "mañana!",
-    "date_inxdays": "en {package.dias.resting} días!",
+    "date_inxdays": "en {resting} días!",
     "places_showplaces": "Mostrar lugares",
     "no_packages_found":"Ninguno paquete encontrado 😕",
     "alter_information": "Cambiar información",
@@ -57,5 +57,14 @@
     "im_lost": "Me perdi",
     "calm": "¡Calma!",
     "calm_message": "¡Al hacer clic en Aceptar, enviará su ubicación actual al guía, para que pueda ir allí y recogerlo!",
-    "cancel": "Cancelar"
+    "cancel": "Cancelar",
+    "screen_choose_city": "Elige una ciudad",
+    "screen_choose_local": "Elija una ubicación",
+    "screen_profile": "Perfil",
+    "screen_edit_profile": "Editar perfil",
+    "screen_my_packages": "Mis paquetes",
+    "screen_favorites": "Marcadores",
+    "screen_configurations": "Ajustes",
+    "screen_languages": "Idiomas",
+    "buy": "Comprar"
 }

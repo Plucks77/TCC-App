@@ -23,6 +23,7 @@ function Compras({ navigation }) {
   const [compras, setCompras] = useState<pacote[]>([]);
   const [showModal, setShowModal] = useState(false);
   const { user } = useAuth();
+  navigation.setOptions({ title: <FormattedMessage id="screen_my_packages" /> });
 
   useFocusEffect(
     useCallback(() => {
@@ -56,7 +57,9 @@ function Compras({ navigation }) {
               <FormattedMessage id="date_today" />
             </Data>
           ) : pacote.dias_restantes !== 1 ? (
-            <Data> daqui a {pacote.dias_restantes} dias!</Data>
+            <Data>
+              <FormattedMessage id="date_inxdays" values={{ resting: pacote.dias_restantes }} />
+            </Data>
           ) : (
             <Data>
               <FormattedMessage id="date_tomorrow" />

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ShimmerPlaceHolder from "react-native-shimmer-placeholder";
+import { FormattedMessage } from "react-intl";
 
 import api from "../../api";
 
@@ -15,6 +16,7 @@ export default function Locais({ navigation, route }) {
   const [locals, setLocals] = useState<Local[]>([]);
   const [ready, setReady] = useState(false);
   const { city_id, city_name } = route.params;
+  navigation.setOptions({ title: <FormattedMessage id="screen_choose_local" /> });
 
   useEffect(() => {
     api

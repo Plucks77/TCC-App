@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import global, { palette } from "../../styles/global";
+import { palette } from "../../styles/global";
 import { Dimensions } from "react-native";
 const WIDTH = Dimensions.get("window").width;
 
 export const Container = styled.ScrollView`
   display: flex;
   flex: 1;
-  background-color: ${global.background};
+  background-color: ${palette.white};
 `;
 
 export const LikeContainer = styled.TouchableOpacity`
@@ -30,7 +30,7 @@ export const CampoTitulo = styled.Text`
   font-size: 24px;
   padding-left: 20px;
   margin-bottom: 5px;
-  color: ${global.text};
+  color: ${palette.secundary};
 `;
 
 export const TextoContainer = styled.View`
@@ -44,7 +44,7 @@ export const TextoContainer = styled.View`
 export const CampoTexto = styled.Text`
   font-size: 15px;
   font-weight: 400;
-  color: ${global.text};
+  color: ${palette.secundary};
 `;
 
 export const ViewBotao = styled.View`
