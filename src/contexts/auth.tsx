@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
-import AsyncStorage from "@react-native-community/async-storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import api from "../api";
 import * as auth from "../services/auth";
@@ -33,17 +33,18 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 export const AuthProvider: React.FC = ({ children }) => {
   const [user, setUser] = useState<Response | string | null>(null);
 
-  useEffect(() => {
-    async function loadStoragedData() {
-      const storaged_user_id = await AsyncStorage.getItem("@Valetour:user_id");
-      const sotraged_token = await AsyncStorage.getItem("@Valetour:token");
+  async function loadStoragedData() {
+    const storaged_user_id = await AsyncStorage.getItem("@Valetour:user_id");
+    const sotraged_token = await AsyncStorage.getItem("@Valetour:token");
 
-      if (storaged_user_id && sotraged_token) {
-        api.defaults.headers.common["Authorization"] = `Bearer ${JSON.parse(sotraged_token)}`;
+    if (storaged_user_id && sotraged_token) {
+      api.defaults.headers.common["Authorization"] = `Bearer ${JSON.parse(sotraged_token)}`;
 
-        setUser(storaged_user_id);
-      }
+      setUser(storaged_user_id);
     }
+  }
+
+  useEffect(() => {
     loadStoragedData();
   }, []);
 
@@ -69,7 +70,7 @@ export const AuthProvider: React.FC = ({ children }) => {
 
       api.defaults.headers.Authorization = `Bearer ${response.token}`;
 
-      await AsyncStorage.setItem("@Valetour:user.id", JSON.stringify(response.user.id));
+      await AsyncStorage.setItem("@Valetour:user_id", JSON.stringify(response.user.id));
       await AsyncStorage.setItem("@Valetour:token", JSON.stringify(response.token));
     }
     return response;
