@@ -191,7 +191,7 @@ function PurchasedStack() {
 
 function BottomTab() {
   const { hasPurchases } = usePurchase();
-  return !hasPurchases ? (
+  return hasPurchases === null ? (
     <AppBottomTab.Navigator
       tabBarOptions={{
         activeTintColor: palette.secundary,
