@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
-import AsyncStorage from "@react-native-community/async-storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { IntlProvider } from "react-intl";
 import Spanish from "../languages/sp-ES.json";
 import English from "../languages/en-US.json";
@@ -14,7 +14,7 @@ const LanguageContext = createContext<LanguageContextData>({} as LanguageContext
 
 export const LanguageProvider: React.FC = ({ children }) => {
   const [locale, setLocale] = useState("pt-BR");
-  const [messages, setMessages] = useState(English);
+  const [messages, setMessages] = useState(Portuguese);
 
   useEffect(() => {
     async function loadStoragedData() {
@@ -22,12 +22,15 @@ export const LanguageProvider: React.FC = ({ children }) => {
 
       if (storaged_language) {
         if (storaged_language === "en-US") {
+          setLocale("en-US");
           setMessages(English);
         }
         if (storaged_language === "sp-ES") {
+          setLocale("sp-ES");
           setMessages(Spanish);
         }
         if (storaged_language === "pt-BR") {
+          setLocale("pt-BR");
           setMessages(Portuguese);
         }
       }
@@ -38,16 +41,19 @@ export const LanguageProvider: React.FC = ({ children }) => {
   async function selectLang(language) {
     if (language === "en-US") {
       await AsyncStorage.setItem("@Valetour:language", "en-US");
+      setLocale("en-US");
       setMessages(English);
       return;
     }
     if (language === "sp-ES") {
       await AsyncStorage.setItem("@Valetour:language", "sp-ES");
+      setLocale("sp-ES");
       setMessages(Spanish);
       return;
     }
     if (language === "pt-BR") {
       await AsyncStorage.setItem("@Valetour:language", "pt-BR");
+      setLocale("pt-BR");
       setMessages(Portuguese);
       return;
     }
