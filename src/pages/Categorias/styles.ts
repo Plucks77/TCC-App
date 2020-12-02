@@ -12,6 +12,8 @@ export const MenuContainer = styled.View`
   align-items: center;
   justify-content: space-around;
   background: ${palette.lightGray};
+  border-bottom-width: 0.5px;
+  border-bottom-color: gray;
 `;
 
 export const MenuNome = styled.Text`
@@ -36,7 +38,7 @@ export const PacoteContainer = styled.TouchableOpacity.attrs(() => ({
 }))`
   flex: 1;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 `;
 
 export const PacoteFoto = styled.Image`
@@ -46,20 +48,30 @@ export const PacoteFoto = styled.Image`
   resize-mode: stretch;
 `;
 
-export const PacoteTextoContainer = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-  width: 350px;
-  margin-top: -5px;
-  border-radius: 5px;
-  z-index: -5;
-  background: ${palette.lightGray};
+export const PacoteTextoNome = styled.Text`
+  margin: 5px;
+  margin-top: 10px;
+  font-size: 24px;
+  font-weight: bold;
+  color: ${palette.white};
+  position: absolute;
+  left: 20px;
+  top: 10px;
+  text-shadow-radius: 5px;
+  text-shadow-color: black;
+  text-shadow-offset: 0px 0px;
 `;
 
-export const PacoteTexto = styled.Text`
+export const PacoteTextoValor = styled.Text`
   margin: 5px;
   margin-top: 10px;
   font-size: 16px;
-  font-weight: 400;
-  color: ${palette.secundary};
+  font-weight: bold;
+  color: ${palette.white};
+  position: absolute;
+  right: 20px;
+  bottom: 10px;
+  text-shadow-radius: 5px;
+  text-shadow-color: black;
+  text-shadow-offset: 0px 0px;
 `;
