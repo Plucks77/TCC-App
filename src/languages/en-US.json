@@ -66,5 +66,9 @@
     "screen_favorites": "Bookmarks",
     "screen_configurations": "Settings",
     "screen_languages": "Languages",
-    "buy": "Purchase"
+    "screen_forgot_password": "Forgot my password",
+    "buy": "Purchase",
+    "send_email": "Enter the email address of the registered account so that we can send you a password reset link",
+    "sended_email": "We sent an email to {endereco} containing the information to reset the password.",
+    "enviar": "Submit"
 }

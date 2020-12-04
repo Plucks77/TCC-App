@@ -66,5 +66,9 @@
     "screen_favorites": "Favoritos",
     "screen_configurations": "Configurações",
     "screen_languages": "Idiomas",
-    "buy": "Comprar"
+    "screen_forgot_password": "Esqueci minha senha",
+    "buy": "Comprar",
+    "send_email": "Informe o endereço de e-mail da conta cadastrada para que possamos enviar um link de redefinição de senha",
+    "sended_email": "Enviamos um e-mail para o endereço {endereco} contendo as informações para redefinir a senha.",
+    "enviar": "Enviar"
 }

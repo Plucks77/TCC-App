@@ -4,6 +4,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { Formik } from "formik";
 import * as yup from "yup";
 import LottieView from "lottie-react-native";
+import { FormattedMessage } from "react-intl";
 
 import api from "../../api";
 import Botao from "../../components/Botao";
@@ -35,6 +36,7 @@ export default function EsqueciSenha({ navigation }) {
   const [endereco, setEndereco] = useState("");
   const [ready, setReady] = useState(true);
 
+  navigation.setOptions({ title: <FormattedMessage id="screen_forgot_password" /> });
   async function handleEnviar(email) {
     await api
       .post("/forgotpassword", { email })
@@ -54,8 +56,7 @@ export default function EsqueciSenha({ navigation }) {
           <KeyboardAvoidingView behavior="position">
             <TextoArea>
               <Texto>
-                Informe o endereço de e-mail da conta cadastrada para que possamos enviar um link de
-                redefinição de senha
+                <FormattedMessage id="send_email" />
               </Texto>
             </TextoArea>
             <Formik
@@ -94,7 +95,11 @@ export default function EsqueciSenha({ navigation }) {
                     <Erro>{props.touched.email && props.errors.email}</Erro>
                   </ViewInput>
                   <BotaoArea>
-                    <Botao texto="Enviar" props={props.handleSubmit} primary={true} />
+                    <Botao
+                      texto={<FormattedMessage id="enviar" />}
+                      props={props.handleSubmit}
+                      primary={true}
+                    />
                   </BotaoArea>
                 </Campos>
               )}
@@ -104,8 +109,7 @@ export default function EsqueciSenha({ navigation }) {
       ) : (
         <ViewEnviado>
           <Texto>
-            Enviamos um e-mail para o endereço {endereco} contendo as informações para redefinir a
-            senha.
+            <FormattedMessage id="sended_email" values={{ endereco: endereco }} />
           </Texto>
         </ViewEnviado>
       )}

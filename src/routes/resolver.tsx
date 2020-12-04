@@ -14,7 +14,7 @@ const Routes: React.FC = () => {
   const { loading } = usePurchase();
 
   if (loading) {
-    return <AppLoading />;
+    // return <AppLoading />;
     // return <Text>Carregando...</Text>;
   }
 

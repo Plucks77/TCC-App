@@ -66,5 +66,9 @@
     "screen_favorites": "Marcadores",
     "screen_configurations": "Ajustes",
     "screen_languages": "Idiomas",
-    "buy": "Comprar"
+    "screen_forgot_password": "Olvide mi contraseña",
+    "buy": "Comprar",
+    "send_email": "Ingrese la dirección de correo electrónico de la cuenta registrada para que podamos enviarle un enlace de restablecimiento de contraseña",
+    "sended_email": "Enviamos un correo electrónico a {endereco} que contiene la información para restablecer la contraseña.",
+    "enviar": "Enviar"
 }

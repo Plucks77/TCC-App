@@ -39,10 +39,10 @@ import {
 const loginSchema = yup.object({
   email: yup
     .string()
-    .required(((<FormattedMessage id="error.email.needed" />) as unknown) as string)
+    .required(((<FormattedMessage id="error_email_needed" />) as unknown) as string)
     .test(
       "valida-email",
-      ((<FormattedMessage id="error.email.valid" />) as unknown) as string,
+      ((<FormattedMessage id="error_email_valid" />) as unknown) as string,
       (val) => {
         var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
         return re.test(val);
@@ -50,8 +50,8 @@ const loginSchema = yup.object({
     ),
   password: yup
     .string()
-    .required(((<FormattedMessage id="error.password.needed" />) as unknown) as string)
-    .min(8, ((<FormattedMessage id="error.password.valid" />) as unknown) as string),
+    .required(((<FormattedMessage id="error_password_needed" />) as unknown) as string)
+    .min(8, ((<FormattedMessage id="error_password_valid" />) as unknown) as string),
 });
 
 export default function Login({ navigation }) {

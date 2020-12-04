@@ -4,7 +4,7 @@ import { palette } from "../../styles/global";
 export const Container = styled.SafeAreaView`
   display: flex;
   flex: 1;
-
+  height: 100%;
   background-color: ${palette.white};
 `;
 

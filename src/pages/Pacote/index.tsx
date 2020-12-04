@@ -145,7 +145,7 @@ export default function Pacote({ navigation, route }) {
         </CampoTitulo>
         <TextoContainer>
           <CampoTexto>
-            {dia} hás {hora}
+            {dia} às {hora}
           </CampoTexto>
         </TextoContainer>
       </Campo>
